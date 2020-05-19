@@ -151,5 +151,11 @@ public class Contract extends Insurance {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
+	public File getInsuranceDocuments() {
+		return insuranceDocuments;
+	}
+	public void setInsuranceDocuments(File insuranceDocuments) {
+		this.insuranceDocuments = insuranceDocuments;
+	}
 	
 }

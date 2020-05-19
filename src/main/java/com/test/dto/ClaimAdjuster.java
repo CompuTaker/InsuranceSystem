@@ -8,20 +8,20 @@ package com.test.dto;
  */
 public class ClaimAdjuster {
 
-	private int workPlace;
+	private String workPlace;
 	private float satisfactionLevel;
 	private int team;
 	private String claimAdjustingHistory;
 	private int claimAdjusterID;
-	private String name;
-	private String schedule;
+	private String claimAdjusterName;
+	private String schedules;
 	private String phoneNumber;
-	private String position;
+	private String jobPosition;
 	
-	public int getWorkPlace() {
+	public String getWorkPlace() {
 		return workPlace;
 	}
-	public void setWorkPlace(int workPlace) {
+	public void setWorkPlace(String workPlace) {
 		this.workPlace = workPlace;
 	}
 	public float getSatisfactionLevel() {
@@ -48,17 +48,17 @@ public class ClaimAdjuster {
 	public void setClaimAdjusterID(int claimAdjusterID) {
 		this.claimAdjusterID = claimAdjusterID;
 	}
-	public String getName() {
-		return name;
+	public String getClaimAdjusterName() {
+		return claimAdjusterName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setClaimAdjusterName(String claimAdjusterName) {
+		this.claimAdjusterName = claimAdjusterName;
 	}
 	public String getSchedule() {
-		return schedule;
+		return schedules;
 	}
 	public void setSchedule(String schedule) {
-		this.schedule = schedule;
+		this.schedules = schedule;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -67,10 +67,10 @@ public class ClaimAdjuster {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getPosition() {
-		return position;
+		return jobPosition;
 	}
 	public void setPosition(String position) {
-		this.position = position;
+		this.jobPosition = position;
 	}
 
 }

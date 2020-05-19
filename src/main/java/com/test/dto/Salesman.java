@@ -11,7 +11,7 @@ public class Salesman {
 	private int team;
 	private int salesmanID;
 	private int name;
-	private int position;
+	private int jobPosition;
 	
 	public int getTeam() {
 		return team;
@@ -31,11 +31,11 @@ public class Salesman {
 	public void setName(int name) {
 		this.name = name;
 	}
-	public int getPosition() {
-		return position;
+	public int getJobPosition() {
+		return jobPosition;
 	}
-	public void setPosition(int position) {
-		this.position = position;
+	public void setJobPosition(int jobPosition) {
+		this.jobPosition = jobPosition;
 	}
 
 }

@@ -1,16 +1,12 @@
 package com.test.dto;
 
-import java.io.File;
-
 /**
  * @author Administrator
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
 public class Proposal {
-
-	private File VerificationDocuments;
-	private int verificationDocumentListID;
+	
 	private boolean isInternalApproved;
 	private int insuranceDeveloperTeamID;
 	private String insuranceName;
@@ -19,13 +15,8 @@ public class Proposal {
 	private String proposalContent;
 	private int proposalID;
 	private String proposalName;
-
-	public int getVerificationDocumentID() {
-		return verificationDocumentListID;
-	}
-	public void setVerificationDocumentID(int verificationDocumentID) {
-		verificationDocumentListID = verificationDocumentID;
-	}
+	private byte[] verificationDocuments;
+	
 	public boolean isInternalApproved() {
 		return isInternalApproved;
 	}
@@ -74,17 +65,11 @@ public class Proposal {
 	public void setProposalName(String proposalName) {
 		this.proposalName = proposalName;
 	}
-	public File getVerificationDocuments() {
-		return VerificationDocuments;
+	public byte[] getVerificationDocuments() {
+		return this.verificationDocuments;
 	}
-	public void setVerificationDocuments(File verificationDocuments) {
-		VerificationDocuments = verificationDocuments;
-	}
-	public int getVerificationDocumentListID() {
-		return verificationDocumentListID;
-	}
-	public void setVerificationDocumentListID(int verificationDocumentListID) {
-		this.verificationDocumentListID = verificationDocumentListID;
+	public void setVerificationDocuments(byte[] verificationDocuments) {
+		this.verificationDocuments = verificationDocuments;
 	}
 
 }

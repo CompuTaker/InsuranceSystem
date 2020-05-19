@@ -1,6 +1,5 @@
 package com.test.dto;
 
-import java.io.File;
 import java.util.Date;
 
 /**
@@ -29,13 +28,12 @@ public class Contract extends Insurance {
 //	private CompensationType compensationType;
 //	private InsurancePaymentList insurancePaymentList;
 //	private Bank bank;
-	private File insuranceDocuments;
 	private int recipientID;
 	private String paymentType;
 	private String compensationType;
-	private int insurancePaymentListID;
-	private int insuranceDocumentListID;
 	private String bank;
+	private int insurancePaymentListID;
+	private byte[] insuranceDocuments;
 	
 	public int getContractID() {
 		return contractID;
@@ -139,22 +137,16 @@ public class Contract extends Insurance {
 	public void setInsurancePaymentListID(int insurancePaymentListID) {
 		this.insurancePaymentListID = insurancePaymentListID;
 	}
-	public int getInsuranceDocumentListID() {
-		return insuranceDocumentListID;
-	}
-	public void setInsuranceDocumentListID(int insuranceDocumentListID) {
-		this.insuranceDocumentListID = insuranceDocumentListID;
-	}
 	public String getBank() {
 		return bank;
 	}
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public File getInsuranceDocuments() {
+	public byte[] getInsuranceDocuments() {
 		return insuranceDocuments;
 	}
-	public void setInsuranceDocuments(File insuranceDocuments) {
+	public void setInsuranceDocuments(byte[] insuranceDocuments) {
 		this.insuranceDocuments = insuranceDocuments;
 	}
 	

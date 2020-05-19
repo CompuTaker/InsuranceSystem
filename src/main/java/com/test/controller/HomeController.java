@@ -42,4 +42,9 @@ public class HomeController {
 		return "vehicleProposal";
 	}
 	
+	@RequestMapping({ "/internalApprovedList" }) // 제안서 폼화면
+	public String requestInternalApprovedList(Model model) {
+		return "InternalApprovedList";
+	}
+	
 }

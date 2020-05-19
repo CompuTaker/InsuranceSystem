@@ -10,9 +10,9 @@ public class AccidentManager {
 	private String workPlace;
 	private int accidentManagerID;
 	private int team;
-	private int name;
+	private String accidentManagerName;
 	private String phoneNumber;
-	private int position;
+	private String jobPosition;
 	
 	public String getWorkPlace() {
 		return workPlace;
@@ -32,11 +32,11 @@ public class AccidentManager {
 	public void setTeam(int team) {
 		this.team = team;
 	}
-	public int getName() {
-		return name;
+	public String getAccidentManagerName() {
+		return accidentManagerName;
 	}
-	public void setName(int name) {
-		this.name = name;
+	public void setAccidentManagerName(String accidentManagerName) {
+		this.accidentManagerName = accidentManagerName;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -44,11 +44,11 @@ public class AccidentManager {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public int getPosition() {
-		return position;
+	public String getJobPosition() {
+		return jobPosition;
 	}
-	public void setPosition(int position) {
-		this.position = position;
+	public void setJobPosition(String jobPosition) {
+		this.jobPosition = jobPosition;
 	}
 	
 }

@@ -1,0 +1,54 @@
+package com.test.controller;
+
+import com.test.dao.CounselDAO;
+import com.test.dao.CustomerDAO;
+import com.test.dao.SalesmanDAO;
+import com.test.dto.Customer;
+import com.test.dto.Insurance;
+import com.test.dto.Salesman;
+
+/**
+ * @author Administrator
+ * @version 1.0
+ * @created 12-5-2020 ���� 4:22:14
+ */
+public class CounselController {
+
+	public SalesmanDAO salesmanDAO;
+	public CustomerDAO customerDAO;
+	public CounselDAO counselDAO;
+
+	public CounselController(){
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
+
+	/**
+	 * 
+	 * @param ��
+	 * @param �������
+	 */
+	public int requestConsel(Customer customer, Salesman salesman){
+		return 0;
+	}
+
+	/**
+	 * 
+	 * @param �̸�
+	 * @param ���ǳ���
+	 * @param ����ó
+	 * @param �����ǰ
+	 * @param �������
+	 */
+	public int requestCounsel_anon(String name, String conselContent, String phoneNumber, Insurance insurance, Salesman salesman){
+		return 0;
+	}
+
+	public Salesman assignSalesman(){
+		return null;
+	}
+
+}

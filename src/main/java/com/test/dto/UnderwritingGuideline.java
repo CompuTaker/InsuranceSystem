@@ -38,5 +38,5 @@ public class UnderwritingGuideline {
 	public void setGuidelineForDisease(File guidelineForDisease) {
 		this.guidelineForDisease = guidelineForDisease;
 	}
-
+	
 }

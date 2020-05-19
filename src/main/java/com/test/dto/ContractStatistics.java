@@ -72,5 +72,4 @@ public class ContractStatistics {
 	public void setTotalRefundMoney(int totalRefundMoney) {
 		this.totalRefundMoney = totalRefundMoney;
 	}
-
 }

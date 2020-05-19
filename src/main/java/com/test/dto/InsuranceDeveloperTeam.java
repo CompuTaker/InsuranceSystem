@@ -38,5 +38,4 @@ public class InsuranceDeveloperTeam {
 	public void setInsuranceDeveloperTeamExplanation(int insuranceDeveloperTeamExplanation) {
 		this.insuranceDeveloperTeamExplanation = insuranceDeveloperTeamExplanation;
 	}
-
 }

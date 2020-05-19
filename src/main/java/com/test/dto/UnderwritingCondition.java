@@ -22,5 +22,5 @@ public class UnderwritingCondition {
 	public void setUnderwritingGuideline(UnderwritingGuideline underwritingGuideline) {
 		this.underwritingGuideline = underwritingGuideline;
 	}
-
+	
 }

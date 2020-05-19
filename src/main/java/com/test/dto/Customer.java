@@ -125,5 +125,4 @@ public class Customer {
 	public void setJob(Job job) {
 		this.job = job;
 	}
-
 }

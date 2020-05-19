@@ -26,6 +26,7 @@ public class Accident {
 	private String damageScale;
 	public ClaimAdjuster claimAdjuster;
 	public AccidentManager accidentManager;
+	
 	public int getCustomerID() {
 		return customerID;
 	}

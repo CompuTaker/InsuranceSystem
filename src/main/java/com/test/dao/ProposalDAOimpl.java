@@ -1,7 +1,11 @@
 package com.test.dao;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.test.dto.Proposal;
 
@@ -12,14 +16,11 @@ import com.test.dto.Proposal;
  */
 public class ProposalDAOimpl implements ProposalDAO {
 
-	public ProposalDAOimpl(){
+	@Autowired // root-context.xml, 마이바티스를 이용해서 MySQL에 접근하는 변수
+	private SqlSessionTemplate sqlSession;
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-
+	
+	
 	@Override
 	public List<Proposal> showInteralApprovedProposal() {
 		// TODO Auto-generated method stub
@@ -51,9 +52,8 @@ public class ProposalDAOimpl implements ProposalDAO {
 	}
 
 	@Override
-	public Proposal writeProposal() {
-		// TODO Auto-generated method stub
-		return null;
+	public void witeProposal(HashMap<String, Object> proposal) {
+		this.sqlSession.insert("insertTheProposal",proposal);
 	}
 
 

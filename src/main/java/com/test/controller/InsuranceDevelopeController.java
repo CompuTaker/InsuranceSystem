@@ -23,9 +23,6 @@ import com.test.dto.Proposal;
  */
 @Controller
 public class InsuranceDevelopeController {
-	
-	@Autowired
-	private ProposalDAO proposalDAO;
 
 	@RequestMapping({ "/joinInsurance/insuraceListMenu" })
 	public String showInranceListMenu(Model model) {

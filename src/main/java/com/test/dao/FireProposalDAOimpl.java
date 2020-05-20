@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.test.dto.Proposal;
 
-public class FireProposalDAOimpl extends ProposalDAO {
+@Repository
+public class FireProposalDAOimpl implements ProposalDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -44,6 +46,7 @@ public class FireProposalDAOimpl extends ProposalDAO {
 		return 0;
 	}
 	
+	@Override
 	public int writeProposal(HashMap<String, Object> pmap) {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertFireProposal", pmap);

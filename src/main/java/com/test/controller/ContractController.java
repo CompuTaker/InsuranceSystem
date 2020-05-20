@@ -21,10 +21,10 @@ import com.test.dto.Salesman;
  */
 public class ContractController {
 
-	public CustomerDAO customerDAO;
-	public ContractDAO contractDAO;
-	public InsuranceDAO insuranceDAO;
-	public ContractStatisticsDAO contractStatisticsDAO;
+//	public CustomerDAO customerDAO;
+//	public ContractDAO contractDAO;
+//	public InsuranceDAO insuranceDAO;
+//	public ContractStatisticsDAO contractStatisticsDAO;
 
 	public ContractController(){
 

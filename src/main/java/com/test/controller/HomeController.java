@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.dao.FireProposalDAOimpl;
-import com.test.dao.ProposalDAO;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private ProposalDAO proposalDAO;
+	private FireProposalDAOimpl fireProposalDAOimpl;
+	
+	@Autowired
+	private FireProposalDAOimpl injuryProposalDAOimpl;
+	
+	@Autowired
+	private FireProposalDAOimpl vehicleProposalDAOimpl;
 	
 	@RequestMapping({"/index", "/"})
 	public String chat(Model model) {
@@ -65,15 +70,15 @@ public class HomeController {
 	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) // 제안서 작성완료 (작성종료, 내부승인요청버튼)
 	public String submitProposal(@RequestParam HashMap<String, Object> pmap) {
 		String whichProposal = (String) pmap.get("whichProposal");
-//		if(whichProposal.equals("fire")) {
-//			this.fireProposalDAOimpl.writeProposal(pmap);
-//		}else if(whichProposal.equals("injury")) {
-//			this.injuryProposalDAOimpl.writeProposal(pmap);
-//		}else if(whichProposal.equals("vehicle")) {
-//			this.vehicleProposalDAOimpl.writeProposal(pmap);
-//		}
-		this.proposalDAO.writeProposal(pmap, whichProposal);
-		
+		if(whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.writeProposal(pmap);
+		}else if(whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.writeProposal(pmap);
+		}else if(whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.writeProposal(pmap);
+		}else {
+			System.out.println("~NONE~");
+		}
 		return "writeProposal";
 	}
 	

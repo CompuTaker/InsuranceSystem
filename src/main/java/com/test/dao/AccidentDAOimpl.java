@@ -3,6 +3,8 @@ package com.test.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.test.dto.Accident;
 import com.test.dto.AccidentManager;
 import com.test.dto.ClaimAdjuster;
@@ -12,6 +14,7 @@ import com.test.dto.ClaimAdjuster;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
+@Repository
 public class AccidentDAOimpl implements AccidentDAO {
 
 	public Accident accident;

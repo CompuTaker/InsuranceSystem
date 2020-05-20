@@ -13,16 +13,7 @@ import com.test.dto.Proposal;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
-abstract public class ProposalDAO {
-	
-	@Autowired
-	private FireProposalDAOimpl fireProposalDAOimpl; // FireProposalDAOimpl / InjuryProposalDAOimpl / VehicleProposalDAOimpl
-	
-	@Autowired
-	private FireProposalDAOimpl injuryProposalDAOimpl;
-	
-	@Autowired
-	private FireProposalDAOimpl vehicleProposalDAOimpl;
+public interface ProposalDAO {
 	
 	abstract public List<Proposal> showInteralApprovedProposal();
 
@@ -48,15 +39,6 @@ abstract public class ProposalDAO {
 	 */
 	abstract public int saveProposalTemp(Proposal proposal);
 	
-	public int writeProposal(HashMap<String, Object> pmap, String whichProposal) {
-		if(whichProposal.equals("fire")) {
-			return this.fireProposalDAOimpl.writeProposal(pmap);
-		}else if(whichProposal.equals("injury")) {
-			return this.injuryProposalDAOimpl.writeProposal(pmap);
-		}else if(whichProposal.equals("vehicle")) {
-			return this.vehicleProposalDAOimpl.writeProposal(pmap);
-		}
-		return -1;
-	}
+	abstract public int writeProposal(HashMap<String, Object> pmap);
 	
 }

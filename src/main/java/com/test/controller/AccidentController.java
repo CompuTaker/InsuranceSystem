@@ -18,9 +18,9 @@ import com.test.dto.Customer;
  */
 public class AccidentController {
 
-	public CustomerDAO customerDAO;
-	public AccidentDAO accidentDAO;
-	public ContractDAO contractDAO;
+//	public CustomerDAO customerDAO;
+//	public AccidentDAO accidentDAO;
+//	public ContractDAO contractDAO;
 
 	public AccidentController(){
 

@@ -13,11 +13,10 @@ import com.test.dto.Salesman;
  * @created 12-5-2020 ���� 4:22:14
  */
 public class CounselController {
-
-	public SalesmanDAO salesmanDAO;
-	public CustomerDAO customerDAO;
-	public CounselDAO counselDAO;
-
+	
+	// 상담, 영업사원, 고객
+	// Consel, Salesman, Customer DAOs
+	
 	public CounselController(){
 
 	}

@@ -2,6 +2,8 @@ package com.test.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.test.dao.CustomerDAO;
 import com.test.dto.Customer;
 import com.test.dto.Salesman;
@@ -12,7 +14,8 @@ import com.test.dto.Salesman;
  * @created 12-5-2020 ���� 4:22:12
  */
 public class CustomerController {
-
+	
+	@Autowired
 	public CustomerDAO customerDAO;
 
 	public CustomerController(){

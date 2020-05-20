@@ -8,7 +8,7 @@ package com.test.dto;
  */
 public class InjuryInsurance extends Contract {
 
-	private int injuryCoverage ;
+	private int injuryCoverage;
 	private int illCoverage;
 	
 	public int getInjuryCoverage() {

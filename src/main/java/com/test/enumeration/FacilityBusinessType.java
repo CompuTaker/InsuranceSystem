@@ -8,14 +8,13 @@ package com.test.enumeration;
  */
 public enum FacilityBusinessType {
 	housing,
-	Pub,
+	pub,
 	restaurant,
 	sportFacility,
 	PCRoom,
 	swimmingPool, 
-	ResearchFacility,
+	researchFacility,
 	industryFacility,
-	AgricultureFacility,
+	agriculturalFacility,
 	chemistryFacility
-
 }

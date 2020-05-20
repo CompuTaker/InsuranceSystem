@@ -4,21 +4,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.test.dto.Proposal;
 
-/**
- * @author Administrator
- * @version 1.0
- * @created 12-5-2020 ���� 4:22:14
- */
-public class ProposalDAOimpl implements ProposalDAO {
-	
-	@Autowired // root-context.xml 李멸퀬
-	private SqlSessionTemplate sqlSession;
-	
+public class VehicleProposalDAOimpl implements ProposalDAO {
+
 	@Override
 	public List<Proposal> showInteralApprovedProposal() {
 		// TODO Auto-generated method stub
@@ -52,7 +41,6 @@ public class ProposalDAOimpl implements ProposalDAO {
 	@Override
 	public Proposal writeProposal(HashMap<String, Object> pmap) {
 		// TODO Auto-generated method stub
-		this.sqlSession.insert("insertProposal", pmap);
 		return null;
 	}
 	

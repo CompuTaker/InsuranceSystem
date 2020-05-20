@@ -8,18 +8,11 @@ import java.util.List;
  * @created 12-5-2020 ���� 4:22:13
  */
 public class InsuranceDeveloperTeam {
-
-	private List<InsuranceDeveloper> insuranceDeveloperList;
+	
 	private int insuranceDeveloperTeamID;
 	private int insuranceDeveloperTeamName;
 	private int insuranceDeveloperTeamExplanation;
 	
-	public List<InsuranceDeveloper> getInsuranceDeveloperList() {
-		return insuranceDeveloperList;
-	}
-	public void setInsuranceDeveloperList(List<InsuranceDeveloper> insuranceDeveloperList) {
-		this.insuranceDeveloperList = insuranceDeveloperList;
-	}
 	public int getInsuranceDeveloperTeamID() {
 		return insuranceDeveloperTeamID;
 	}

@@ -7,11 +7,12 @@ import java.util.Date;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:12
  */
-public class Contract extends Insurance {
-
+public class Contract { // exetends Insruance
+	
 	private int contractID;
 	private int contractManagerID;
 	private Date contractExpirationDate;
+	private int insuranceID; // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	private int customerID;
 	private float lossRate;
 	private String profitabilityRating;

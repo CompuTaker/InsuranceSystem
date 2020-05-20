@@ -9,8 +9,9 @@ package com.test.dto;
 public class InsuranceDeveloper {
 
 	private int insuranceDeveloperID;
-	private String name;
-	private int position;
+	private int insuranceDeveloperTeamID;
+	private String insuranceDeveloperName;
+	private int jobPosition;
 	
 	public int getInsuranceDeveloperID() {
 		return insuranceDeveloperID;
@@ -18,17 +19,23 @@ public class InsuranceDeveloper {
 	public void setInsuranceDeveloperID(int insuranceDeveloperID) {
 		this.insuranceDeveloperID = insuranceDeveloperID;
 	}
-	public String getName() {
-		return name;
+	public int getInsuranceDeveloperTeamID() {
+		return insuranceDeveloperTeamID;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setInsuranceDeveloperTeamID(int insuranceDeveloperTeamID) {
+		this.insuranceDeveloperTeamID = insuranceDeveloperTeamID;
 	}
-	public int getPosition() {
-		return position;
+	public String getInsuranceDeveloperName() {
+		return insuranceDeveloperName;
 	}
-	public void setPosition(int position) {
-		this.position = position;
+	public void setInsuranceDeveloperName(String insuranceDeveloperName) {
+		this.insuranceDeveloperName = insuranceDeveloperName;
+	}
+	public int getJobPosition() {
+		return jobPosition;
+	}
+	public void setJobPosition(int jobPosition) {
+		this.jobPosition = jobPosition;
 	}
 	
 }

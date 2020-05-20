@@ -1,8 +1,13 @@
 package com.test.controller;
 
+import java.io.File;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -42,9 +47,11 @@ public class HomeController {
 		return "vehicleProposal";
 	}
 	
-	@RequestMapping({ "/internalApprovedList" }) // 제안서 폼화면
-	public String requestInternalApprovedList(Model model) {
-		return "InternalApprovedList";
-	}
+	@RequestMapping(value = "/internalApprovedList", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
+    public ModelAndView customer_signupDo(@RequestParam File file) {
+//      return this.customerService.customer_signupDo(multipartHttpServletRequest, cmap);
+//      return this. //--> 내부승인 요청 검증자료
+		return null; // DAO로 가는 곳
+    }
 	
 }

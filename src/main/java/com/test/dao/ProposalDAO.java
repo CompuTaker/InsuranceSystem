@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import com.test.dto.Proposal;
@@ -36,6 +37,6 @@ public interface ProposalDAO {
 	 */
 	public int saveProposalTemp(Proposal proposal);
 
-	public Proposal writeProposal();
+	public Proposal writeProposal(HashMap<String, Object> pmap);
 
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.test.dto.Proposal;
 
 /**
@@ -11,32 +13,50 @@ import com.test.dto.Proposal;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
-public interface ProposalDAO {
-
-	public List<Proposal> showInteralApprovedProposal();
+abstract public class ProposalDAO {
+	
+	@Autowired
+	private FireProposalDAOimpl fireProposalDAOimpl; // FireProposalDAOimpl / InjuryProposalDAOimpl / VehicleProposalDAOimpl
+	
+	@Autowired
+	private FireProposalDAOimpl injuryProposalDAOimpl;
+	
+	@Autowired
+	private FireProposalDAOimpl vehicleProposalDAOimpl;
+	
+	abstract public List<Proposal> showInteralApprovedProposal();
 
 	/**
 	 * 
 	 * @param ���ȼ�
 	 * @param ����������
 	 */
-	public int requestInternalApproved(Proposal proposal, File VerificationDocumentList);
+	abstract public int requestInternalApproved(Proposal proposal, File VerificationDocumentList);
 
 	/**
 	 * 
 	 * @param ���ȼ�
 	 * @param ����������
 	 */
-	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList);
+	abstract public int requestExternalApproved(Proposal proposal, File VerificationDocumentList);
 
-	public List<Proposal> showExternalApprovedProposal();
+	abstract public List<Proposal> showExternalApprovedProposal();
 
 	/**
 	 * 
 	 * @param ���ȼ�
 	 */
-	public int saveProposalTemp(Proposal proposal);
-
-	public Proposal writeProposal(HashMap<String, Object> pmap);
-
+	abstract public int saveProposalTemp(Proposal proposal);
+	
+	public int writeProposal(HashMap<String, Object> pmap, String whichProposal) {
+		if(whichProposal.equals("fire")) {
+			return this.fireProposalDAOimpl.writeProposal(pmap);
+		}else if(whichProposal.equals("injury")) {
+			return this.injuryProposalDAOimpl.writeProposal(pmap);
+		}else if(whichProposal.equals("vehicle")) {
+			return this.vehicleProposalDAOimpl.writeProposal(pmap);
+		}
+		return -1;
+	}
+	
 }

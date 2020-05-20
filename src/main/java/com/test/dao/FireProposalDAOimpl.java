@@ -4,10 +4,16 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.test.dto.Proposal;
 
-public class FireProposalDAOimpl implements ProposalDAO {
-
+public class FireProposalDAOimpl extends ProposalDAO {
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	@Override
 	public List<Proposal> showInteralApprovedProposal() {
 		// TODO Auto-generated method stub
@@ -37,13 +43,10 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public Proposal writeProposal(HashMap<String, Object> pmap) {
+	
+	public int writeProposal(HashMap<String, Object> pmap) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.insert("insertFireProposal", pmap);
 	}
-	
-	
 	
 }

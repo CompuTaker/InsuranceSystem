@@ -26,12 +26,6 @@ public class InsuranceDevelopeController {
 	
 	@Autowired
 	private ProposalDAO proposalDAO;
-	
-	@RequestMapping({ "/writeFireProposal" })
-	public Proposal writeFireProposal(@RequestParam HashMap<String, Object> pmap) {
-		this.proposalDAO.writeProposal(pmap);
-		return null;
-	}
 
 	@RequestMapping({ "/joinInsurance/insuraceListMenu" })
 	public String showInranceListMenu(Model model) {

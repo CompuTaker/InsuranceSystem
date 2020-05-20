@@ -5,20 +5,37 @@
 
 <mapper namespace="com.test.dto.Proposal">
 	
-	<insert id="insertProposal" parameterType="java.util.Map">
+	<insert id="insertFireProposal" parameterType="java.util.Map">
 		insert into
-		Proposal
-		(customer_Id, customer_Password, customer_Name,
-		customer_ResidentNumber, customer_PhoneNumber, customer_Address,
-		customer_Email,
-		customer_Image)
+		FireProposal
+		(proposalName, housingRate, pubRate, restaurantRate,
+		sportFacilityRate, PCRoomRate, swimmingPoolRate,
+		researchFacilityRate, industryFacilityRate,
+		agriculturalFacilityRate, chemistryFacilityRate,
+		woodenHouseRate, koreanHouseRate, westernHouseRate,
+		firePreventionFacilityRate, vinylHouseRate,
+		isInternalApproved, isExternalApproved,
+		proposalContent, insuranceDeveloperTeamID, verificationDocuments)
 		values(
-		#{customer_Id},
-		#{customer_Password},
-		#{customer_Name}, #{customer_ResidentNumber},
-		#{customer_PhoneNumber},
-		#{customer_Address}, #{customer_Email},
-		#{customer_Image}
+		#{proposalName},
+		#{housingRate},
+		#{pubRate},
+		#{restaurantRate}, #{sportFacilityRate},
+		#{PCRoomRate},
+		#{swimmingPoolRate}, #{researchFacilityRate},
+		#{industryFacilityRate},
+		#{agriculturalFacilityRate},
+		#{chemistryFacilityRate},
+		#{woodenHouseRate},
+		#{koreanHouseRate},
+		#{westernHouseRate},
+		#{firePreventionFacilityRate},
+		#{vinylHouseRate},
+		#{isInternalApproved},
+		#{isExternalApproved},
+		#{proposalContent},
+		#{insuranceDeveloperTeamID},
+		#{verificationDocuments}
 		)
 	</insert>
 

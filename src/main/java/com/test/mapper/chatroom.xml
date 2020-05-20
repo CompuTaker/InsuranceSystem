@@ -6,7 +6,7 @@
 <mapper namespace="com.test.dto.ChatRoomDTO">
 	
 	<select id="listAllChatRoom" resultType="com.test.dto.ChatRoomDTO">
-		select * from ChatRoom;
+		select * from ChatRoom
 	</select>
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 	

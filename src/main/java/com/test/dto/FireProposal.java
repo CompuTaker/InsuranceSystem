@@ -25,7 +25,7 @@ public class FireProposal implements Proposal { // extends Proposal
 	private byte[] verificationDocuments;
 	private boolean isInternalApproved;
 	private int insuranceDeveloperTeamID;
-	private String insuranceType;
+	// ~~ private String insuranceType;
 	private boolean isExternalApproved;
 	private String proposalContent;
 	
@@ -148,12 +148,6 @@ public class FireProposal implements Proposal { // extends Proposal
 	}
 	public void setInsuranceDeveloperTeamID(int insuranceDeveloperTeamID) {
 		this.insuranceDeveloperTeamID = insuranceDeveloperTeamID;
-	}
-	public String getInsuranceType() {
-		return insuranceType;
-	}
-	public void setInsuranceType(String insuranceType) {
-		this.insuranceType = insuranceType;
 	}
 	public boolean isExternalApproved() {
 		return isExternalApproved;

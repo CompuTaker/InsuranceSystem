@@ -70,6 +70,8 @@ public class HomeController {
 	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) // 제안서 작성완료 (작성종료, 내부승인요청버튼)
 	public String submitProposal(@RequestParam HashMap<String, Object> pmap) {
 		String whichProposal = (String) pmap.get("whichProposal");
+		pmap.put("insuranceDeveloperTeamID", 1); // 정필컴퍼니 강제
+		
 		if(whichProposal.equals("fire")) {
 			this.fireProposalDAOimpl.writeProposal(pmap);
 		}else if(whichProposal.equals("injury")) {

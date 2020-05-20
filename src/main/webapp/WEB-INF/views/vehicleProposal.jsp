@@ -19,7 +19,7 @@
    function submitProposal() {
       alert('제안서 작성이 완료되었습니다.');
       var propForm = document.getElementById('vehicleProposal')
-      propForm.action = "witeProposal"
+      propForm.action = "writeProposal"
       propForm.submit()
    }
 </script>
@@ -188,7 +188,7 @@
                      <td colspan="2">
                         <input type="hidden" name="whichProposal" value="vehicle">
                         <button onclick="javascript:tempSave()">임시저장</button>
-                        <button onclick="javascript:submit()">제안서 제출</button>
+                        <button onclick="javascript:submitProposal()">제안서 제출</button>
                      <td>&nbsp;</td>
                   </tr>
                </table>

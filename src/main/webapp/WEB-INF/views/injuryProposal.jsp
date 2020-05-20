@@ -18,7 +18,7 @@
    function submitProposal() {
       alert('제안서 작성이 완료되었습니다.');
       var propForm = document.getElementById('injuryProposal')
-      propForm.action = "witeProposal"
+      propForm.action = "writeProposal"
       propForm.submit()
    }
 </script>

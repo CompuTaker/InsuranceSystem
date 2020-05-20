@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.dao.FireProposalDAOimpl;
+import com.test.dao.InjuryProposalDAOimpl;
+import com.test.dao.VehicleProposalDAOimpl;
 
 @Controller
 public class HomeController {
@@ -20,10 +22,10 @@ public class HomeController {
 	private FireProposalDAOimpl fireProposalDAOimpl;
 	
 	@Autowired
-	private FireProposalDAOimpl injuryProposalDAOimpl;
+	private InjuryProposalDAOimpl injuryProposalDAOimpl;
 	
 	@Autowired
-	private FireProposalDAOimpl vehicleProposalDAOimpl;
+	private VehicleProposalDAOimpl vehicleProposalDAOimpl;
 	
 	@RequestMapping({"/index", "/"})
 	public String chat(Model model) {

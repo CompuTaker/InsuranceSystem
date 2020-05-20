@@ -39,6 +39,66 @@
 		)
 	</insert>
 
+<insert id="insertInjuryProposal" parameterType="java.util.Map">
+		insert into
+		InjuryProposal
+		(proposalName, injuryCoverage, illCoverage, familyBrainRate,
+		familyHeartRate, familyCancerRate, brainRate,
+		heartRate, cancerRate,
+		manRate, womanRate,
+		fieldJobRate, officeJobRate, noJobRate,
+		dangerousJobRate, verificationDocuments,
+		isInternalApproved, isExternalApproved,
+		proposalContent, insuranceDeveloperTeamID)
+		values(
+		#{proposalName},
+		#{injuryCoverage},
+		#{illCoverage},
+		#{familyBrainRate}, #{familyHeartRate},
+		#{familyCancerRate},
+		#{brainRate}, #{heartRate},
+		#{cancerRate},
+		#{manRate},
+		#{womanRate},
+		#{fieldJobRate},
+		#{officeJobRate},
+		#{noJobRate},
+		#{dangerousJobRate},
+		#{verificationDocuments},
+		#{isInternalApproved},
+		#{isExternalApproved},
+		#{proposalContent},
+		#{insuranceDeveloperTeamID}
+		)
+	</insert>
+	
+	
+	<insert id="insertVehicleProposal" parameterType="java.util.Map">
+		insert into
+		VehicleProposal
+		(proposalName, forBusinessRate, ownVehicleRate, rentalRate,
+		suvRate, sedanRate, truckRate,
+		pickupTruckRate, busRate,
+		specialVehicleRate, verificationDocuments,
+		isInternalApproved, isExternalApproved,
+		proposalContent, insuranceDeveloperTeamID)
+		values(
+		#{proposalName},
+		#{forBusinessRate},
+		#{ownVehicleRate},
+		#{rentalRate}, #{suvRate},
+		#{sedanRate},
+		#{truckRate}, #{pickupTruckRate},
+		#{busRate},
+		#{specialVehicleRate},
+		#{verificationDocuments},
+		#{isInternalApproved},
+		#{isExternalApproved},
+		#{proposalContent},
+		#{insuranceDeveloperTeamID}
+		)
+	</insert>
+
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>

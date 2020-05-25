@@ -18,8 +18,7 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	
 	@Override
 	public List<Proposal> showInteralApprovedProposal() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("showInteralApprovedVehicleProposal");
 	}
 
 	@Override

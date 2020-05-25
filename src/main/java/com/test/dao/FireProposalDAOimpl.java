@@ -18,8 +18,7 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	
 	@Override
 	public List<Proposal> showInteralApprovedProposal() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("showInteralApprovedFireProposal");
 	}
 
 	@Override
@@ -53,3 +52,4 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	}
 	
 }
+   

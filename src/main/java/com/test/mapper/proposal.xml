@@ -98,6 +98,21 @@
 		#{insuranceDeveloperTeamID}
 		)
 	</insert>
+	
+	<select id="showInteralApprovedFireProposal" resultType="com.test.dto.FireProposal">
+		select	* from	FireProposal
+		where isInternalApproved = 0
+	</select>
+	
+	<select id="showInteralApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
+		select	* from	InjuryProposal
+		where isInternalApproved = 0
+	</select>
+	
+	<select id="showInteralApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
+		select	* from	VehicleProposal
+		where isInternalApproved = 0
+	</select>
 
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 

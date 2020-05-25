@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script type="text/javascript">
   function requestInternal(){ 
 //       alert('내부승인요청되었습니다.');
@@ -18,16 +19,17 @@
      location.href = "proposalInsuranceType"
   }
   </script>
+
 <title>보험상품 내부승인요청하기</title>
 </head>
 <body>
-<%! boolean isInternalApproved = false;%>
+<%-- <%! boolean isInternalApproved = false;%> --%>
 
 <%--       <%if(!isInternalApproved) { %> --%>
 <%--          <%  } %> --%>
    <!--제안서 목록 출력-->
 
-   <div class="page-wrapper">
+   <div class="page-wrapper"> 
       <div class="container-fluid">
          <div class="col-lg-8">
             <!--게시판 넓이 -->
@@ -46,27 +48,44 @@
                            <th></th>
                            <th>제안서ID</th>
                            <th>제안서이름</th>
-                           <th>보험이름</th>
                            <th>보험종류</th>
                            <th>개발팀ID</th>
                            <th>제안서내용</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <c:forEach items="${list}" var="proposalVO">
-                     <c:if test="${isInternalApproved}">
-<!--                      https://aljjabaegi.tistory.com/70 : 테이블 안에 if문 사용하는 법 -->
+                        <c:forEach items="${fireList}" var="proposalVO">
                            <tr>
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
                               <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
-                              <td>${proposalVO.proposalID}</td>
+                              <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
-                              <td>${proposalVO.insuranceName}</td>
                               <td>${proposalVO.insuranceType}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
                               <td>${proposalVO.proposalContent}</td>
                            </tr>
-                        </c:if>
+                        </c:forEach>
+                        <c:forEach items="${injuryList}" var="proposalVO">
+                           <tr>
+<!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
+                              <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
+                              <td>${proposalVO.injuryProposalID}</td>
+                              <td>${proposalVO.proposalName}</td>
+                              <td>${proposalVO.insuranceType}</td>
+                              <td>${proposalVO.insuranceDeveloperTeamID}</td>
+                              <td>${proposalVO.proposalContent}</td>
+                           </tr>
+                        </c:forEach>
+                        <c:forEach items="${vehicleList}" var="proposalVO">
+                           <tr>
+<!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
+                              <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
+                              <td>${proposalVO.vehicleProposalID}</td>
+                              <td>${proposalVO.proposalName}</td>
+                              <td>${proposalVO.insuranceType}</td>
+                              <td>${proposalVO.insuranceDeveloperTeamID}</td>
+                              <td>${proposalVO.proposalContent}</td>
+                           </tr>
                         </c:forEach>
                      </tbody>
                   </table>

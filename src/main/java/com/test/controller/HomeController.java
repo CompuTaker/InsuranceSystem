@@ -1,7 +1,7 @@
 package com.test.controller;
 
-import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.test.dao.FireProposalDAOimpl;
 import com.test.dao.InjuryProposalDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
+import com.test.dto.Proposal;
 
 @Controller
 public class HomeController {
@@ -26,6 +26,7 @@ public class HomeController {
 	
 	@Autowired
 	private VehicleProposalDAOimpl vehicleProposalDAOimpl;
+	
 	
 	@RequestMapping({"/index", "/"})
 	public String chat(Model model) {
@@ -62,17 +63,26 @@ public class HomeController {
 		return "vehicleProposal";
 	}
 	
-	@RequestMapping(value = "/internalApprovedList", method = RequestMethod.POST, headers = ("content-type=multipart/*"))
-    public ModelAndView customer_signupDo(@RequestParam File file) {
-//      return this.customerService.customer_signupDo(multipartHttpServletRequest, cmap);
-//      return this. //--> 내부승인 요청 검증자료
-		return null; // DAO로 가는 곳
+	@RequestMapping({"/internalApprovedList"})
+	public String requestInternalApproved(Model model) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.showInteralApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.showInteralApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.showInteralApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+		return "internalApprovedList"; // DAO로 가는 곳
     }
 
 	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) // 제안서 작성완료 (작성종료, 내부승인요청버튼)
 	public String submitProposal(@RequestParam HashMap<String, Object> pmap) {
 		String whichProposal = (String) pmap.get("whichProposal");
 		pmap.put("insuranceDeveloperTeamID", 1); // 정필컴퍼니 강제
+		pmap.put("isInternalApproved", 0);
+		pmap.put("isExternalApproved", 0);
 		
 		if(whichProposal.equals("fire")) {
 			this.fireProposalDAOimpl.writeProposal(pmap);
@@ -83,6 +93,11 @@ public class HomeController {
 		}else {
 			System.out.println("~NONE~");
 		}
+		return "writeProposal";
+	}
+	
+	@RequestMapping({ "/writeProposal" })
+	public String writeProposals(Model model) {
 		return "writeProposal";
 	}
 	

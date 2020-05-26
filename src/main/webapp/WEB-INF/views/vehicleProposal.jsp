@@ -8,7 +8,11 @@
 <script type="text/javascript">
    function duplicationInsuranceName() {
       //보험상품 이름의 중복확인
-
+		var propForm = document.getElementById('vehicleProposal')
+		propForm.action = "duplicationProposalName"
+		propForm.submit()
+// 		if(duplication) {alert('이미 존재하는 이름입니다.');}
+// 		else {alert('사용 가능한 이름입니다.');}
    }
    function tempSave() {
       alert('임시저장되었습니다.');
@@ -48,7 +52,7 @@
                      <td>&nbsp;</td>
                      <td align="center">보험상품 이름</td>
                      <td>
-                        <input name="proposalName" size="50" maxlength="100"> <input type="button" value="중복확인" onclick="duplicationInsuranceName()"> <input type="hidden" name="insuranceNameDuplication" value="nameUncheck">
+                        <input name="proposalName" id = "insuranceName" size="50" maxlength="100"> <input type="button" value="중복확인" onclick="duplicationInsuranceName()"> <input type="hidden" name="insuranceNameDuplication" value="nameUncheck">
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -172,7 +176,7 @@
                      <td>&nbsp;</td>
                      <td align="center">기타사항</td>
                      <td>
-                     <textarea name="proposalContent" cols="50" rows="13"></textarea>
+                     	<input name="proposalContent" size="50" maxlength="50">
                      </td>
                      <td>&nbsp;</td>
                   </tr>

@@ -15,14 +15,16 @@ import com.test.dto.Proposal;
  */
 public interface ProposalDAO {
 	
-	abstract public List<Proposal> showInteralApprovedProposal();
+	abstract public List<Proposal> beforeInternalApprovedProposal();
+	abstract public List<Proposal> afterInternalApprovedProposal();
+	abstract public List<Proposal> showInternalApprovedProposal();
 
 	/**
 	 * 
 	 * @param ���ȼ�
 	 * @param ����������
 	 */
-	abstract public int requestInternalApproved(Proposal proposal, File VerificationDocumentList);
+	abstract public int requestInternalApproved(int proposalID, File VerificationDocumentList);
 
 	/**
 	 * 
@@ -40,5 +42,8 @@ public interface ProposalDAO {
 	abstract public int saveProposalTemp(Proposal proposal);
 	
 	abstract public int writeProposal(HashMap<String, Object> pmap);
+	
+	abstract public int internalApproved(int proposalID, File VerificationDocumentList);
+
 	
 }

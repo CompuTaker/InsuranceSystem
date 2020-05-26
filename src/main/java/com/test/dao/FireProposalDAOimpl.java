@@ -17,20 +17,38 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Proposal> showInteralApprovedProposal() {
-		return sqlSession.selectList("showInteralApprovedFireProposal");
+	public List<Proposal> beforeInternalApprovedProposal() {
+		return sqlSession.selectList("beforeInternalApprovedFireProposal");
+	}
+	
+	@Override
+	public List<Proposal> afterInternalApprovedProposal() {
+		return sqlSession.selectList("afterInternalApprovedFireProposal");
 	}
 
 	@Override
-	public int requestInternalApproved(Proposal proposal, File VerificationDocumentList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Proposal> showInternalApprovedProposal() {
+		return sqlSession.selectList("showInternalApprovedFireProposal");
+	}
+	
+	public List<String> showProposal() {
+		return sqlSession.selectList("showFireProposal");
+	}
+
+	@Override
+	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("requestInternalApprovedFire", proposalID);
 	}
 
 	@Override
 	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public int internalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("internalApprovedFire", proposalID);
 	}
 
 	@Override
@@ -50,6 +68,7 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertFireProposal", pmap);
 	}
+
 	
 }
    

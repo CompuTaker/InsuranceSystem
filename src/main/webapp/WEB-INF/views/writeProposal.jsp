@@ -9,7 +9,7 @@
 </script>
 </head>
 <body>
-<button onclick="location.href='internalApprovedList'">내부승인 요청하기</button>
+<button onclick="location.href='beforeInternalApproved'">내부승인 요청하기</button>
 <button onclick="location.href='endProposal'">제안서 작성 종료하기</button>
 
 </body>

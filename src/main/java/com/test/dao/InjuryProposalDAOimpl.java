@@ -17,20 +17,38 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Proposal> showInteralApprovedProposal() {
-		return sqlSession.selectList("showInteralApprovedInjuryProposal");
+	public List<Proposal> beforeInternalApprovedProposal() {
+		return sqlSession.selectList("beforeInternalApprovedInjuryProposal");
+	}
+	
+	@Override
+	public List<Proposal> afterInternalApprovedProposal() {
+		return sqlSession.selectList("afterInternalApprovedInjuryProposal");
+	}
+	
+	@Override
+	public List<Proposal> showInternalApprovedProposal() {
+		return sqlSession.selectList("showInternalApprovedInjuryProposal");
+	}
+
+	public List<String> showProposal() {
+		return sqlSession.selectList("showInjuryProposal");
 	}
 
 	@Override
-	public int requestInternalApproved(Proposal proposal, File VerificationDocumentList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("requestInternalApprovedInjury", proposalID);
 	}
 
 	@Override
 	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public int internalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("internalApprovedInjury", proposalID);
 	}
 
 	@Override
@@ -50,5 +68,6 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertInjuryProposal", pmap);
 	}
+
 	
 }

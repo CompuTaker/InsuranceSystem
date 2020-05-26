@@ -99,19 +99,107 @@
 		)
 	</insert>
 	
-	<select id="showInteralApprovedFireProposal" resultType="com.test.dto.FireProposal">
+	<!-- 내부승인요청전(0) -->
+	<select id="beforeInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
 		select	* from	FireProposal
 		where isInternalApproved = 0
 	</select>
 	
-	<select id="showInteralApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
+	<select id="beforeInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
 		select	* from	InjuryProposal
 		where isInternalApproved = 0
 	</select>
 	
-	<select id="showInteralApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
+	<select id="beforeInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
 		select	* from	VehicleProposal
 		where isInternalApproved = 0
+	</select>
+	
+	
+	<!-- 내부승인요청완료(1) -->
+	<select id="afterInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
+		select	* from	FireProposal
+		where isInternalApproved = 1
+	</select>
+	
+	<select id="afterInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
+		select	* from	InjuryProposal
+		where isInternalApproved = 1
+	</select>
+	
+	<select id="afterInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
+		select	* from	VehicleProposal
+		where isInternalApproved = 1
+	</select>
+	
+	
+	<!-- 내부승인요청완료(2) -->
+	<select id="showInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
+		select	* from	FireProposal
+		where isInternalApproved = 2
+	</select>
+	
+	<select id="showInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
+		select	* from	InjuryProposal
+		where isInternalApproved = 2
+	</select>
+	
+	<select id="showInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
+		select	* from	VehicleProposal
+		where isInternalApproved = 2
+	</select>
+	
+	
+	<!-- 내부승인요청해서 isInternal 1로 바꾸기 -->
+	<update id="requestInternalApprovedFire" parameterType="java.lang.Integer">
+		update FireProposal 
+		set isInternalApproved = 1
+		where fireProposalID = #{proposalID}
+	</update>
+	
+	<update id="requestInternalApprovedInjury" parameterType="java.lang.Integer">
+		update InjuryProposal 
+		set isInternalApproved = 1
+		where injuryProposalID = #{proposalID}
+	</update>
+	
+	<update id="requestInternalApprovedVehicle" parameterType="java.lang.Integer">
+		update VehicleProposal 
+		set isInternalApproved = 1
+		where vehicleProposalID = #{proposalID}
+	</update>
+	
+	
+	<!-- 내부승인해서 isInternal 2로 바꾸기 -->
+	<update id="internalApprovedFire" parameterType="java.lang.Integer">
+		update FireProposal 
+		set isInternalApproved = 2
+		where fireProposalID = #{proposalID}
+	</update>
+	
+	<update id="internalApprovedInjury" parameterType="java.lang.Integer">
+		update InjuryProposal 
+		set isInternalApproved = 2
+		where injuryProposalID = #{proposalID}
+	</update>
+	
+	<update id="internalApprovedVehicle" parameterType="java.lang.Integer">
+		update VehicleProposal 
+		set isInternalApproved = 2
+		where vehicleProposalID = #{proposalID}
+	</update>
+	
+	
+	<select id="showFireProposal" resultType="String">
+		select proposalName from FireProposal
+	</select>
+	
+	<select id="showInjuryProposal" resultType="String">
+		select proposalName from InjuryProposal
+	</select>
+	
+	<select id="showVehicleProposal" resultType="String">
+		select proposalName from VehicleProposal
 	</select>
 
 	<!-- 세미콜론 없이 쿼리문 작성! -->

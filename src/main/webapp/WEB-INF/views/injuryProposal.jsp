@@ -8,6 +8,9 @@
 <script type="text/javascript">
    function duplicationInsuranceName() {
       //보험상품 이름의 중복확인   
+      	var propForm = document.getElementById('injuryProposal')
+		propForm.action = "duplicationProposalName"
+		propForm.submit()
    }
    function tempSave() {
       alert('임시저장되었습니다.');

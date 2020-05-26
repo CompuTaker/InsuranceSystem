@@ -12,22 +12,52 @@
 
   <script type="text/javascript">
   function requestInternal(){ 
-//       alert('내부승인요청되었습니다.');
-   //파일 업로드 확인
-  }
-  function requestInternal(){ 
-     location.href = "proposalInsuranceType"
+	    var propForm = null;
+// 		propForm.action = "checkedProposal"
+// 		propForm.submit()
+// 		var chekcedOne = document.get
+		var theForm = document.getElementById("checkedBeforeInternalApproved");
+		var whichProposal = null;
+		
+	        var check_count = document.getElementsByName("fireProposalRequest").length;
+	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("fireProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("fireProposalRequest")[i].value);
+			        whichProposal = "fire";
+					propForm = document.getElementsByName("fireProposalRequest")[i].value
+	            }
+	        }
+	        
+	        check_count = document.getElementsByName("injuryProposalRequest").length;
+	   	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("injuryProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("injuryProposalRequest")[i].value);
+					whichProposal = "injury";
+					propForm = document.getElementsByName("injuryProposalRequest")[i].value
+	            }
+	        }
+	        
+	        check_count = document.getElementsByName("vehicleProposalRequest").length;
+	   	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("vehicleProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("vehicleProposalRequest")[i].value);
+					whichProposal = "vehicle";
+					propForm = document.getElementsByName("vehicleProposalRequest")[i].value
+	            }
+	        }
+	        
+	        //이러면 여러개 선택되는데 하나만 보내질듯
+	        theForm.action = "checkedBeforeInternalApproved?whichProposal="+whichProposal+"&proposalID="+propForm;
+	    	theForm.submit()
   }
   </script>
 
 <title>보험상품 내부승인요청하기</title>
 </head>
 <body>
-<%-- <%! boolean isInternalApproved = false;%> --%>
-
-<%--       <%if(!isInternalApproved) { %> --%>
-<%--          <%  } %> --%>
-   <!--제안서 목록 출력-->
 
    <div class="page-wrapper"> 
       <div class="container-fluid">
@@ -42,6 +72,9 @@
             <div class="panel panel-default">
                <div class="panel-heading">제안서 목록</div>
                <div class="panel-body">
+               
+            <form action="checkedProposal" id="checkedBeforeInternalApproved" method="post">
+               
                   <table class="table table-hover">
                      <thead>
                         <tr>
@@ -56,8 +89,9 @@
                      <tbody>
                         <c:forEach items="${fireList}" var="proposalVO">
                            <tr>
+                           
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
+                              <td><input type = "radio" name = "fireProposalRequest" value="${proposalVO.fireProposalID}"></td>
                               <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceType}</td>
@@ -65,10 +99,25 @@
                               <td>${proposalVO.proposalContent}</td>
                            </tr>
                         </c:forEach>
+                     </tbody>
+                  </table>
+                        
+				<table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th></th>
+                           <th>제안서ID</th>
+                           <th>제안서이름</th>
+                           <th>보험종류</th>
+                           <th>개발팀ID</th>
+                           <th>제안서내용</th>
+                        </tr>
+                     </thead>
+                     <tbody>
                         <c:forEach items="${injuryList}" var="proposalVO">
                            <tr>
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
+                              <td><input type="radio" name="injuryProposalRequest" value="${proposalVO.injuryProposalID}"></td>
                               <td>${proposalVO.injuryProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceType}</td>
@@ -76,10 +125,25 @@
                               <td>${proposalVO.proposalContent}</td>
                            </tr>
                         </c:forEach>
+                     </tbody>
+                  </table>
+                        
+				<table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th></th>
+                           <th>제안서ID</th>
+                           <th>제안서이름</th>
+                           <th>보험종류</th>
+                           <th>개발팀ID</th>
+                           <th>제안서내용</th>
+                        </tr>
+                     </thead>
+                     <tbody>
                         <c:forEach items="${vehicleList}" var="proposalVO">
                            <tr>
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type = "radio" name = "proposalVO.proposalName" value = "proposalVO.proposalID"></td>
+                              <td><input type = "radio" name = "vehicleProposalRequest" value="${proposalVO.vehicleProposalID}"></td>
                               <td>${proposalVO.vehicleProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceType}</td>
@@ -89,6 +153,9 @@
                         </c:forEach>
                      </tbody>
                   </table>
+                  
+                </form>
+                
                </div>
             </div>
          </div>

@@ -17,6 +17,7 @@ public interface ProposalDAO {
 	
 	abstract public List<Proposal> showInteralApprovedProposal();
 
+
 	/**
 	 * 
 	 * @param ���ȼ�

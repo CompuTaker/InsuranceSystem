@@ -4,7 +4,7 @@ public class Insurance {
 	
 	private int insuranceMoneyLimit;
 	private int insuranceID;
-	private String name;
+	private String insuranceName;
 	private String insuranceType;
 	private String explanation;
 	// insurance is one
@@ -25,11 +25,11 @@ public class Insurance {
 	public void setInsuranceID(int insuranceID) {
 		this.insuranceID = insuranceID;
 	}
-	public String getName() {
-		return name;
+	public String getInsuranceName() {
+		return insuranceName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setInsuranceName(String insuranceName) {
+		this.insuranceName = insuranceName;
 	}
 	public String getInsuranceType() {
 		return insuranceType;

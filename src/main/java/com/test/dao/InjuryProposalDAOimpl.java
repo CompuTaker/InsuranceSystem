@@ -20,7 +20,7 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> showInteralApprovedProposal() {
 		return sqlSession.selectList("showInteralApprovedInjuryProposal");
 	}
-
+	
 	@Override
 	public int requestInternalApproved(Proposal proposal, File VerificationDocumentList) {
 		// TODO Auto-generated method stub

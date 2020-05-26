@@ -20,7 +20,7 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> showInteralApprovedProposal() {
 		return sqlSession.selectList("showInteralApprovedVehicleProposal");
 	}
-
+	
 	@Override
 	public int requestInternalApproved(Proposal proposal, File VerificationDocumentList) {
 		// TODO Auto-generated method stub

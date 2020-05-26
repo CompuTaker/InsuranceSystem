@@ -30,7 +30,8 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> showInternalApprovedProposal() {
 		return sqlSession.selectList("showInternalApprovedVehicleProposal");
 	}
-
+	
+	@Override
 	public List<String> showProposal() {
 		return sqlSession.selectList("showVehicleProposal");
 	}

@@ -19,13 +19,16 @@ public interface ProposalDAO {
 	abstract public List<Proposal> afterInternalApprovedProposal();
 	abstract public List<Proposal> showInternalApprovedProposal();
 
+
 	/**
 	 * 
 	 * @param ���ȼ�
 	 * @param ����������
 	 */
 	abstract public int requestInternalApproved(int proposalID, File VerificationDocumentList);
-
+	
+	abstract public List<String> showProposal();
+	
 	/**
 	 * 
 	 * @param ���ȼ�

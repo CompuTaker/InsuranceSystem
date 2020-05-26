@@ -31,6 +31,7 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		return sqlSession.selectList("showInternalApprovedFireProposal");
 	}
 	
+	@Override
 	public List<String> showProposal() {
 		return sqlSession.selectList("showFireProposal");
 	}

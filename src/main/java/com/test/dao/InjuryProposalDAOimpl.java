@@ -30,11 +30,12 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> showInternalApprovedProposal() {
 		return sqlSession.selectList("showInternalApprovedInjuryProposal");
 	}
-
+	
+	@Override
 	public List<String> showProposal() {
 		return sqlSession.selectList("showInjuryProposal");
 	}
-
+	
 	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("requestInternalApprovedInjury", proposalID);

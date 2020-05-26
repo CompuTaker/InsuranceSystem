@@ -202,6 +202,7 @@
 		select proposalName from VehicleProposal
 	</select>
 
+	
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>

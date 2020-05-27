@@ -34,22 +34,9 @@
       <td>&nbsp;</td>
      </tr>
      <tr>
-     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
-      <td>&nbsp;</td>
-      <td align="center">주민번호</td>
-      <td><input name="socialSecurityNumber" size="50" maxlength="100">
-      </td>
-      <td>&nbsp;</td>
+      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td>
      </tr>
-     <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td align="center">매매가</td>
-      <td><input name="bargainPrice" size="50" maxlength="50"></td>
-      <td>&nbsp;</td>
-     </tr>
-      <tr height="1" bgcolor="#dddddd"><td colspan="4"></td></tr>
-    <tr>
+     <tr>
       <td>&nbsp;</td>
       <td align="center">가입업종</td>
       <td><input name="facilityBusinessType" size="50" maxlength="50"></td>

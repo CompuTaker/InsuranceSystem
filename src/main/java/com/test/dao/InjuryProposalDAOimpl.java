@@ -25,6 +25,11 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> afterInternalApprovedProposal() {
 		return sqlSession.selectList("afterInternalApprovedInjuryProposal");
 	}
+
+	@Override
+	public List<Proposal> afterExternalApprovedProposal() {
+		return sqlSession.selectList("afterExternalApprovedInjuryProposal"); // 외부승인 요청한 제안서 받아오기
+	}
 	
 	@Override
 	public List<Proposal> showInternalApprovedProposal() {
@@ -40,16 +45,30 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("requestInternalApprovedInjury", proposalID);
 	}
-
+	
 	@Override
-	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int requestExternalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("requestExternalApprovedInjury", proposalID);
 	}
 	
 	@Override
 	public int internalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("internalApprovedInjury", proposalID);
+	}
+	
+	@Override
+	public int externalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("externalApprovedInjury", proposalID);
+	}
+	
+	@Override
+	public List<Proposal> beforePublicFromProposal() {
+		return sqlSession.selectList("beforePublicFromInjuryProposal");
+	}
+
+	@Override
+	public int publicFromProposal(int proposalID) {
+		return sqlSession.update("publicFromInjuryProposal", proposalID);
 	}
 
 	@Override
@@ -70,5 +89,4 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 		return this.sqlSession.insert("insertInjuryProposal", pmap);
 	}
 
-	
 }

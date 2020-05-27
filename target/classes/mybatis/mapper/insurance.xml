@@ -15,8 +15,10 @@
 	<select id="showInsuranceDetail" resultType="com.test.dto.Insurance">
 		select * from Insurance 
 		where insuranceID = #{ insuranceID }
-	</select>	
+	</select>
 	
+	<insert id="" parameterType="com.test.dto.Insurance">
+	</insert>
 	
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 

@@ -25,6 +25,11 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	public List<Proposal> afterInternalApprovedProposal() {
 		return sqlSession.selectList("afterInternalApprovedVehicleProposal");
 	}
+
+	@Override
+	public List<Proposal> afterExternalApprovedProposal() {
+		return sqlSession.selectList("afterExternalApprovedVehicleProposal"); // 외부승인 요청한 제안서 받아오기
+	}
 	
 	@Override
 	public List<Proposal> showInternalApprovedProposal() {
@@ -42,9 +47,8 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	}
 
 	@Override
-	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int requestExternalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("requestExternalApprovedVehicle", proposalID);
 	}
 	
 	@Override
@@ -52,6 +56,22 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 		return sqlSession.update("internalApprovedVehicle", proposalID);
 	}
 
+	@Override
+	public int externalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("externalApprovedVehicle", proposalID);
+	}
+	
+	@Override
+	public List<Proposal> beforePublicFromProposal() {
+		return sqlSession.selectList("beforePublicFromVehicleProposal");
+	}
+
+	@Override
+	public int publicFromProposal(int proposalID) {
+		System.out.println(proposalID + "자동차");
+		return sqlSession.update("publicFromVehicleProposal", proposalID);
+	}
+	
 	@Override
 	public List<Proposal> showExternalApprovedProposal() {
 		// TODO Auto-generated method stub
@@ -69,5 +89,5 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertVehicleProposal", pmap);
 	}
-	
+
 }

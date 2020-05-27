@@ -97,6 +97,7 @@ public class HomeController {
 		return "writeProposal";
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////내부승인요청하기
 	
 	//내부승인 요청하기 전
 	@RequestMapping({"/beforeInternalApproved"})
@@ -111,21 +112,6 @@ public class HomeController {
 		model.addAttribute("vehicleList", vehicleInternalApprovedList);
 		
 		return "beforeInternalApproved"; // DAO로 가는 곳
-    }
-	
-	//내부승인 요청 후 (완료는 아니고 그냥 요청만._.)
-	@RequestMapping({"/afterInternalApproved"})
-	public String requestInternalApproved(Model model) {
-
-		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterInternalApprovedProposal();
-		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterInternalApprovedProposal();
-		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterInternalApprovedProposal();
-		
-		model.addAttribute("fireList", fireInternalApprovedList);
-		model.addAttribute("injuryList", injuryInternalApprovedList);
-		model.addAttribute("vehicleList", vehicleInternalApprovedList);
-		
-		return "afterInternalApproved"; // DAO로 가는 곳
     }
 	
 	@RequestMapping({"/checkedBeforeInternalApproved"})
@@ -155,6 +141,25 @@ public class HomeController {
 		return "redirect:/beforeInternalApproved"; // DAO로 가는 곳
     }
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////내부승인하기
+	
+	//내부승인 요청 후 (완료는 아니고 그냥 요청만._.)
+	@RequestMapping({"/afterInternalApproved"})
+	public String requestInternalApproved(Model model) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterInternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterInternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterInternalApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+		return "afterInternalApproved"; // DAO로 가는 곳
+    }
+	
 	@RequestMapping({"/checkedAfterInternalApproved"})
 	public String checkedAfterInternalApproved(Model model, String whichProposal, int proposalID) {
 //		System.out.println(fireProposalRequest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -182,6 +187,146 @@ public class HomeController {
 		return "redirect:/afterInternalApproved"; // DAO로 가는 곳
     }
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////외부승인요청하기
+	
+	//외부승인 요청하기 전
+	@RequestMapping({"/beforeExternalApproved"})
+	public String beforeExternalApproved(Model model) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.showInternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.showInternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.showInternalApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+		return "beforeExternalApproved"; // DAO로 가는 곳
+    }
+	
+//	checkedBeforeExternalApproved
+	
+	@RequestMapping({"/checkedBeforeExternalApproved"})
+	public String checkedBeforeExternalApproved(Model model, String whichProposal, int proposalID) {
+//		System.out.println(fireProposalRequest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.showInternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.showInternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.showInternalApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+//		System.out.println(whichProposal + "  ~~  " + proposalID);
+		
+		if(whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.requestExternalApproved(proposalID, null);
+		}else if(whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.requestExternalApproved(proposalID, null);
+		}else if(whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.requestExternalApproved(proposalID, null);
+		}else {
+			System.out.println("~NONE~");
+		}
+		
+		return "redirect:/beforeExternalApproved"; // DAO로 가는 곳
+    }
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////외부승인하기
+	
+	@RequestMapping({"/afterExternalApproved"})
+	public String requestExternalApproved(Model model) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterExternalApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+		return "afterExternalApproved"; // DAO로 가는 곳
+    }
+	
+	@RequestMapping({"/checkedAfterExternalApproved"})
+	public String checkedAfterExternalApproved(Model model, String whichProposal, int proposalID) {
+//		System.out.println(fireProposalRequest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterExternalApprovedProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+//		System.out.println(whichProposal + "  ~~  " + proposalID);
+		
+		if(whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.externalApproved(proposalID, null);
+		}else if(whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.externalApproved(proposalID, null);
+		}else if(whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.externalApproved(proposalID, null);
+		}else {
+			System.out.println("~NONE~");
+		}
+		
+		return "redirect:/afterExternalApproved"; // DAO로 가는 곳
+    }
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////내부승인요청하기
+	
+	//내부승인 요청하기 전
+	@RequestMapping({"/makeInsurancePublicFromProposal"})
+	public String beforePublicFromProposal(Model model) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforePublicFromProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.beforePublicFromProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.beforePublicFromProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+		return "makeInsurancePublicFromProposal"; // DAO로 가는 곳
+    }
+	
+	@RequestMapping({"/checkedBeforePublicFromProposal"})
+	public String checkedBeforePublicFromProposal(Model model, String whichProposal, int proposalID) {
+
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforePublicFromProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.beforePublicFromProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.beforePublicFromProposal();
+		
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		
+//		System.out.println(whichProposal + "  ~~  " + proposalID);
+		
+		if(whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.publicFromProposal(proposalID);
+		}else if(whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.publicFromProposal(proposalID);
+		}else if(whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.publicFromProposal(proposalID);
+		}else {
+			System.out.println("~NONE~");
+		}
+		
+		return "redirect:/makeInsurancePublicFromProposal"; // DAO로 가는 곳
+    }
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 
 	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) // 제안서 작성완료 (작성종료, 내부승인요청버튼)

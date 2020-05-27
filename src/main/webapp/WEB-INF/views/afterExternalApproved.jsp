@@ -11,12 +11,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-  function InternalApprove(){ 
+  function ExternalApprove(){ 
 	    var propForm = null;
 // 		propForm.action = "checkedProposal"
 // 		propForm.submit()
 // 		var chekcedOne = document.get
-		var theForm = document.getElementById("checkedAfterInternalApproved");
+		var theForm = document.getElementById("checkedAfterExternalApproved");
 		var whichProposal = null;
 		
 	        var check_count = document.getElementsByName("fireProposalRequest").length;
@@ -50,12 +50,12 @@
 	        }
 	        
 	        //이러면 여러개 선택되는데 하나만 보내질듯
-	        theForm.action = "checkedAfterInternalApproved?whichProposal="+whichProposal+"&proposalID="+propForm;
+	        theForm.action = "checkedAfterExternalApproved?whichProposal="+whichProposal+"&proposalID="+propForm;
 	    	theForm.submit()
   }
   </script>
 
-<title>보험상품 내부승인요청하기</title>
+<title>보험상품 외부승인하기</title>
 </head>
 <body>
 
@@ -64,7 +64,7 @@
          <div class="col-lg-8">
             <!--게시판 넓이 -->
             <div class="col-lg-12">
-               <h1 class="page-header">보험상품 내부승인하기</h1>
+               <h1 class="page-header">보험상품 외부승인하기</h1>
             </div>
             <div class="row">
                <div class="col-lg-12"></div>
@@ -73,7 +73,7 @@
                <div class="panel-heading">제안서 목록</div>
                <div class="panel-body">
                
-            <form action="checkedProposal" id="checkedAfterInternalApproved" method="post">
+            <form action="checkedProposal" id="checkedAfterExternalApproved" method="post">
                
                   <table class="table table-hover">
                      <thead>
@@ -165,11 +165,8 @@
       <!-- 제안요청 버튼 -->
    <div class="row">
       <div class="col-lg-12">
-         <button type="button" class="btn btn-outline btn-primary" onclick="InternalApprove()">
-            <i class="fa fa-edit fa-fw"></i> 내부승인하기
-         </button>
-         <button type="button" class="btn btn-outline btn-primary" onclick="location.href='beforeExternalApproved'">
-            <i class="fa fa-edit fa-fw"></i> 외부승인 요청하기
+         <button type="button" class="btn btn-outline btn-primary" onclick="ExternalApprove()">
+            <i class="fa fa-edit fa-fw"></i> 외부승인하기
          </button>
       </div>
    </div>

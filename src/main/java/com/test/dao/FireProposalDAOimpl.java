@@ -18,40 +18,62 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	
 	@Override
 	public List<Proposal> beforeInternalApprovedProposal() {
-		return sqlSession.selectList("beforeInternalApprovedFireProposal");
+		return sqlSession.selectList("beforeInternalApprovedFireProposal"); // 내부승인 전 제안서 받아오기
 	}
 	
 	@Override
 	public List<Proposal> afterInternalApprovedProposal() {
-		return sqlSession.selectList("afterInternalApprovedFireProposal");
+		return sqlSession.selectList("afterInternalApprovedFireProposal"); // 내부승인 요청한 제안서 받아오기
+	}
+
+	@Override
+	public List<Proposal> afterExternalApprovedProposal() {
+		return sqlSession.selectList("afterExternalApprovedFireProposal"); // 외부승인 요청한 제안서 받아오기
 	}
 
 	@Override
 	public List<Proposal> showInternalApprovedProposal() {
-		return sqlSession.selectList("showInternalApprovedFireProposal");
+		return sqlSession.selectList("showInternalApprovedFireProposal"); // 내부승인 완료된 제안서 받아오기
 	}
 	
 	@Override
 	public List<String> showProposal() {
-		return sqlSession.selectList("showFireProposal");
+		return sqlSession.selectList("showFireProposal"); // 이름 중복하려고 만들었는데 못함
 	}
 
 	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("requestInternalApprovedFire", proposalID);
+		return sqlSession.update("requestInternalApprovedFire", proposalID); // 내부승인하기
 	}
 
 	@Override
-	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int requestExternalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("requestExternalApprovedFire", proposalID); // 외부승인하기
 	}
 	
 	@Override
 	public int internalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("internalApprovedFire", proposalID);
+		return sqlSession.update("internalApprovedFire", proposalID); 
 	}
 
+	@Override
+	public int externalApproved(int proposalID, File VerificationDocumentList) {
+		return sqlSession.update("externalApprovedFire", proposalID);
+	}
+
+	
+	@Override
+	public List<Proposal> beforePublicFromProposal() {
+		return sqlSession.selectList("beforePublicFromFireProposal");
+	}
+
+	@Override
+	public int publicFromProposal(int proposalID) {
+		System.out.println(proposalID);
+		return sqlSession.update("publicFromFireProposal", proposalID);
+	}
+
+	
 	@Override
 	public List<Proposal> showExternalApprovedProposal() {
 		// TODO Auto-generated method stub
@@ -69,7 +91,5 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertFireProposal", pmap);
 	}
-
-	
 }
    

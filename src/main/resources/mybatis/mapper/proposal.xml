@@ -40,7 +40,6 @@
    </insert>
 
 <insert id="insertInjuryProposal" parameterType="java.util.Map">
-<<<<<<< HEAD
       insert into
       InjuryProposal
       (proposalName, injuryCoverage, illCoverage, familyBrainRate,
@@ -159,6 +158,44 @@
       AND isExternalApproved = 0
    </select>
    
+   <!-- 외부승인요청한 거 받아오기(1) -->
+   <select id="afterExternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
+      select   * from   FireProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 1
+   </select>
+   
+   <select id="afterExternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
+      select   * from   InjuryProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 1
+   </select>
+   
+   <select id="afterExternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
+      select   * from   VehicleProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 1
+   </select>
+   
+   <!-- 공시할 제안서 받아오기(22) -->
+   <select id="beforePublicFromFireProposal" resultType="com.test.dto.FireProposal">
+      select   * from   FireProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 2
+   </select>
+   
+   <select id="beforePublicFromInjuryProposal" resultType="com.test.dto.InjuryProposal">
+      select   * from   InjuryProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 2
+   </select>
+   
+   <select id="beforePublicFromVehicleProposal" resultType="com.test.dto.VehicleProposal">
+      select   * from   VehicleProposal
+      where isInternalApproved = 2
+      AND isExternalApproved = 2
+   </select>
+   
    
    <!-- 내부승인요청해서 isInternal 1로 바꾸기 -->
    <update id="requestInternalApprovedFire" parameterType="java.lang.Integer">
@@ -219,6 +256,43 @@
       where vehicleProposalID = #{proposalID}
    </update>
    
+      <!-- 외부승인해서 isExternal 2로 바꾸기 -->
+   <update id="externalApprovedFire" parameterType="java.lang.Integer">
+      update FireProposal 
+      set isExternalApproved = 2
+      where fireProposalID = #{proposalID}
+   </update>
+   
+   <update id="externalApprovedInjury" parameterType="java.lang.Integer">
+      update InjuryProposal 
+      set isExternalApproved = 2
+      where injuryProposalID = #{proposalID}
+   </update>
+   
+   <update id="externalApprovedVehicle" parameterType="java.lang.Integer">
+      update VehicleProposal 
+      set isExternalApproved = 2
+      where vehicleProposalID = #{proposalID}
+   </update>
+   
+   <!-- 공시해서 isExternal, isInternal -1로 바꾸기 -->
+   <update id="publicFromFireProposal" parameterType="java.lang.Integer">
+      update FireProposal 
+      set isInternalApproved = -1, isExternalApproved = -1
+      where fireProposalID = #{proposalID}
+   </update>
+   
+   <update id="publicFromInjuryProposal" parameterType="java.lang.Integer">
+      update InjuryProposal 
+      set isInternalApproved = -1, isExternalApproved = -1
+      where injuryProposalID = #{proposalID}
+   </update>
+            
+   <update id="publicFromVehicleProposal" parameterType="java.lang.Integer">
+      update VehicleProposal 
+      set isInternalApproved = -1, isExternalApproved = -1
+      where vehicleProposalID = #{proposalID}
+   </update>
    
    <select id="showFireProposal" resultType="String">
       select proposalName from FireProposal
@@ -231,273 +305,6 @@
    <select id="showVehicleProposal" resultType="String">
       select proposalName from VehicleProposal
    </select>
-=======
-		insert into
-		InjuryProposal
-		(proposalName, injuryCoverage, illCoverage, familyBrainRate,
-		familyHeartRate, familyCancerRate, brainRate,
-		heartRate, cancerRate,
-		manRate, womanRate,
-		fieldJobRate, officeJobRate, noJobRate,
-		dangerousJobRate, verificationDocuments,
-		isInternalApproved, isExternalApproved,
-		proposalContent, insuranceDeveloperTeamID)
-		values(
-		#{proposalName},
-		#{injuryCoverage},
-		#{illCoverage},
-		#{familyBrainRate}, #{familyHeartRate},
-		#{familyCancerRate},
-		#{brainRate}, #{heartRate},
-		#{cancerRate},
-		#{manRate},
-		#{womanRate},
-		#{fieldJobRate},
-		#{officeJobRate},
-		#{noJobRate},
-		#{dangerousJobRate},
-		#{verificationDocuments},
-		#{isInternalApproved},
-		#{isExternalApproved},
-		#{proposalContent},
-		#{insuranceDeveloperTeamID}
-		)
-	</insert>
-	
-	
-	<insert id="insertVehicleProposal" parameterType="java.util.Map">
-		insert into
-		VehicleProposal
-		(proposalName, forBusinessRate, ownVehicleRate, rentalRate,
-		suvRate, sedanRate, truckRate,
-		pickupTruckRate, busRate,
-		specialVehicleRate, verificationDocuments,
-		isInternalApproved, isExternalApproved,
-		proposalContent, insuranceDeveloperTeamID)
-		values(
-		#{proposalName},
-		#{forBusinessRate},
-		#{ownVehicleRate},
-		#{rentalRate}, #{suvRate},
-		#{sedanRate},
-		#{truckRate}, #{pickupTruckRate},
-		#{busRate},
-		#{specialVehicleRate},
-		#{verificationDocuments},
-		#{isInternalApproved},
-		#{isExternalApproved},
-		#{proposalContent},
-		#{insuranceDeveloperTeamID}
-		)
-	</insert>
-	
-	<!-- 내부승인요청전 받아오기(0) -->
-	<select id="beforeInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
-		select	* from	FireProposal
-		where isInternalApproved = 0
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="beforeInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
-		select	* from	InjuryProposal
-		where isInternalApproved = 0
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="beforeInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
-		select	* from	VehicleProposal
-		where isInternalApproved = 0
-		AND isExternalApproved = 0
-	</select>
-	
-	
-	<!-- 내부승인요청한 거 받아오기(1) -->
-	<select id="afterInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
-		select	* from	FireProposal
-		where isInternalApproved = 1
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="afterInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
-		select	* from	InjuryProposal
-		where isInternalApproved = 1
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="afterInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
-		select	* from	VehicleProposal
-		where isInternalApproved = 1
-		AND isExternalApproved = 0
-	</select>
-	
-	
-	<!-- 내부승인요청완료된 거 받아오기(2) -->
-	<select id="showInternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
-		select	* from	FireProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="showInternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
-		select	* from	InjuryProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 0
-	</select>
-	
-	<select id="showInternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
-		select	* from	VehicleProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 0
-	</select>
-	
-	<!-- 외부승인요청한 거 받아오기(1) -->
-	<select id="afterExternalApprovedFireProposal" resultType="com.test.dto.FireProposal">
-		select	* from	FireProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 1
-	</select>
-	
-	<select id="afterExternalApprovedInjuryProposal" resultType="com.test.dto.InjuryProposal">
-		select	* from	InjuryProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 1
-	</select>
-	
-	<select id="afterExternalApprovedVehicleProposal" resultType="com.test.dto.VehicleProposal">
-		select	* from	VehicleProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 1
-	</select>
-	
-	<!-- 공시할 제안서 받아오기(22) -->
-	<select id="beforePublicFromFireProposal" resultType="com.test.dto.FireProposal">
-		select	* from	FireProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 2
-	</select>
-	
-	<select id="beforePublicFromInjuryProposal" resultType="com.test.dto.InjuryProposal">
-		select	* from	InjuryProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 2
-	</select>
-	
-	<select id="beforePublicFromVehicleProposal" resultType="com.test.dto.VehicleProposal">
-		select	* from	VehicleProposal
-		where isInternalApproved = 2
-		AND isExternalApproved = 2
-	</select>
-	
-	
-	<!-- 내부승인요청해서 isInternal 1로 바꾸기 -->
-	<update id="requestInternalApprovedFire" parameterType="java.lang.Integer">
-		update FireProposal 
-		set isInternalApproved = 1
-		where fireProposalID = #{proposalID}
-	</update>
-	
-	<update id="requestInternalApprovedInjury" parameterType="java.lang.Integer">
-		update InjuryProposal 
-		set isInternalApproved = 1
-		where injuryProposalID = #{proposalID}
-	</update>
-	
-	<update id="requestInternalApprovedVehicle" parameterType="java.lang.Integer">
-		update VehicleProposal 
-		set isInternalApproved = 1
-		where vehicleProposalID = #{proposalID}
-	</update>
-	
-	
-	<!-- 내부승인해서 isInternal 2로 바꾸기 -->
-	<update id="internalApprovedFire" parameterType="java.lang.Integer">
-		update FireProposal 
-		set isInternalApproved = 2
-		where fireProposalID = #{proposalID}
-	</update>
-	
-	<update id="internalApprovedInjury" parameterType="java.lang.Integer">
-		update InjuryProposal 
-		set isInternalApproved = 2
-		where injuryProposalID = #{proposalID}
-	</update>
-	
-	<update id="internalApprovedVehicle" parameterType="java.lang.Integer">
-		update VehicleProposal 
-		set isInternalApproved = 2
-		where vehicleProposalID = #{proposalID}
-	</update>
-	
-	
-	<!-- 외부승인요청해서 isExternal 1로 바꾸기 -->
-	<update id="requestExternalApprovedFire" parameterType="java.lang.Integer">
-		update FireProposal 
-		set isExternalApproved = 1
-		where fireProposalID = #{proposalID}
-	</update>
-	
-	<update id="requestExternalApprovedInjury" parameterType="java.lang.Integer">
-		update InjuryProposal 
-		set isExternalApproved = 1
-		where injuryProposalID = #{proposalID}
-	</update>
-	
-	<update id="requestExternalApprovedVehicle" parameterType="java.lang.Integer">
-		update VehicleProposal 
-		set isExternalApproved = 1
-		where vehicleProposalID = #{proposalID}
-	</update>
-	
-		<!-- 외부승인해서 isExternal 2로 바꾸기 -->
-	<update id="externalApprovedFire" parameterType="java.lang.Integer">
-		update FireProposal 
-		set isExternalApproved = 2
-		where fireProposalID = #{proposalID}
-	</update>
-	
-	<update id="externalApprovedInjury" parameterType="java.lang.Integer">
-		update InjuryProposal 
-		set isExternalApproved = 2
-		where injuryProposalID = #{proposalID}
-	</update>
-	
-	<update id="externalApprovedVehicle" parameterType="java.lang.Integer">
-		update VehicleProposal 
-		set isExternalApproved = 2
-		where vehicleProposalID = #{proposalID}
-	</update>
-	
-	<!-- 공시해서 isExternal, isInternal -1로 바꾸기 -->
-	<update id="publicFromFireProposal" parameterType="java.lang.Integer">
-		update FireProposal 
-		set isInternalApproved = -1, isExternalApproved = -1
-		where fireProposalID = #{proposalID}
-	</update>
-	
-	<update id="publicFromInjuryProposal" parameterType="java.lang.Integer">
-		update InjuryProposal 
-		set isInternalApproved = -1, isExternalApproved = -1
-		where injuryProposalID = #{proposalID}
-	</update>
-				
-	<update id="publicFromVehicleProposal" parameterType="java.lang.Integer">
-		update VehicleProposal 
-		set isInternalApproved = -1, isExternalApproved = -1
-		where vehicleProposalID = #{proposalID}
-	</update>
-	
-	<select id="showFireProposal" resultType="String">
-		select proposalName from FireProposal
-	</select>
-	
-	<select id="showInjuryProposal" resultType="String">
-		select proposalName from InjuryProposal
-	</select>
-	
-	<select id="showVehicleProposal" resultType="String">
-		select proposalName from VehicleProposal
-	</select>
->>>>>>> 5c16ed90ae7f3c024a78b83fb0f64e462e0bd47b
 
    
    <!-- 세미콜론 없이 쿼리문 작성! -->

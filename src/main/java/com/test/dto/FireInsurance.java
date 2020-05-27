@@ -1,50 +1,46 @@
 package com.test.dto;
 
-import com.test.enumeration.FacilityBusinessType;
-import com.test.enumeration.FacilityMaterialType;
-
-/**
- * @author Administrator
- * @version 1.0
- * @created 12-5-2020 ���� 4:22:12
- */
-public class FireInsurance extends Contract {
-
-	private FacilityBusinessType joinType;
-	private int bargainPrice;
-	private float discountRate;
-	private float extraChargeRate;
-	private FacilityMaterialType fireFacility;
+public class FireInsurance implements Insurance {
+//	  insuranceID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+//	  fireProposalID INT(11) unsigned,
+//	  insuranceName varchar(32),
+//	  explanation varchar(32),
+//	  officialDocumentsID INT(11) unsigned,  
+	private int insuranceID;
+	private int fireProposalID;
+	private String insuranceName;
+	private String explanation;
+	private int officialDocumentsID;
 	
-	public FacilityBusinessType getJoinType() {
-		return joinType;
+	public int getInsuranceID() {
+		return insuranceID;
 	}
-	public void setJoinType(FacilityBusinessType joinType) {
-		this.joinType = joinType;
+	public void setInsuranceID(int insuranceID) {
+		this.insuranceID = insuranceID;
 	}
-	public int getBargainPrice() {
-		return bargainPrice;
+	public int getFireProposalID() {
+		return fireProposalID;
 	}
-	public void setBargainPrice(int bargainPrice) {
-		this.bargainPrice = bargainPrice;
+	public void setFireProposalID(int fireProposalID) {
+		this.fireProposalID = fireProposalID;
 	}
-	public float getDiscountRate() {
-		return discountRate;
+	public String getInsuranceName() {
+		return insuranceName;
 	}
-	public void setDiscountRate(float discountRate) {
-		this.discountRate = discountRate;
+	public void setInsuranceName(String insuranceName) {
+		this.insuranceName = insuranceName;
 	}
-	public float getExtraChargeRate() {
-		return extraChargeRate;
+	public String getExplanation() {
+		return explanation;
 	}
-	public void setExtraChargeRate(float extraChargeRate) {
-		this.extraChargeRate = extraChargeRate;
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
 	}
-	public FacilityMaterialType getFireFacility() {
-		return fireFacility;
+	public int getOfficialDocumentsID() {
+		return officialDocumentsID;
 	}
-	public void setFireFacility(FacilityMaterialType fireFacility) {
-		this.fireFacility = fireFacility;
+	public void setOfficialDocumentsID(int officialDocumentsID) {
+		this.officialDocumentsID = officialDocumentsID;
 	}
-
+	
 }

@@ -77,11 +77,10 @@ public class HomeController {
 				return "redirect:index";
 			}
 			model.addAttribute("insuranceInteralApprover", insuranceInteralApprovers.get(0));
-		}else {
-			System.out.println("~~NONE_LOGIN~~");
 		}
 		return "redirect:index";
 	}
+
 	
 	@RequestMapping(value = "/logout")
 	public String logout(Model model, SessionStatus status) {

@@ -23,10 +23,10 @@ public class FireProposal implements Proposal { // extends Proposal
 	// Proposal
 	private String proposalName;
 	private byte[] verificationDocuments;
-	private boolean isInternalApproved;
+	private int isInternalApproved;
 	private int insuranceDeveloperTeamID;
 	private String insuranceType;
-	private boolean isExternalApproved;
+	private int isExternalApproved;
 	private String proposalContent;
 	
 	public int getFireProposalID() {
@@ -137,10 +137,10 @@ public class FireProposal implements Proposal { // extends Proposal
 	public void setVerificationDocuments(byte[] verificationDocuments) {
 		this.verificationDocuments = verificationDocuments;
 	}
-	public boolean isInternalApproved() {
+	public int isInternalApproved() {
 		return isInternalApproved;
 	}
-	public void setInternalApproved(boolean isInternalApproved) {
+	public void setInternalApproved(int isInternalApproved) {
 		this.isInternalApproved = isInternalApproved;
 	}
 	public int getInsuranceDeveloperTeamID() {
@@ -149,10 +149,10 @@ public class FireProposal implements Proposal { // extends Proposal
 	public void setInsuranceDeveloperTeamID(int insuranceDeveloperTeamID) {
 		this.insuranceDeveloperTeamID = insuranceDeveloperTeamID;
 	}
-	public boolean isExternalApproved() {
+	public int isExternalApproved() {
 		return isExternalApproved;
 	}
-	public void setExternalApproved(boolean isExternalApproved) {
+	public void setExternalApproved(int isExternalApproved) {
 		this.isExternalApproved = isExternalApproved;
 	}
 	public String getProposalContent() {

@@ -14,15 +14,28 @@ import com.test.dto.Proposal;
  * @created 12-5-2020 ���� 4:22:14
  */
 public interface ProposalDAO {
+
+	abstract public List<Proposal> beforeInternalApprovedProposal(); // 내부승인 요청하기 전 제안서 목록
+	abstract public List<Proposal> afterInternalApprovedProposal(); // 내부승인 요청한 제안서 목록
+	abstract public List<Proposal> afterExternalApprovedProposal(); // 외부승인 요청한 제안서 목록
+	abstract public List<Proposal> showInternalApprovedProposal(); // 내부승인 완료된 제안서 목록
 	
-	abstract public List<Proposal> beforeInternalApprovedProposal();
-	abstract public List<Proposal> afterInternalApprovedProposal();
-	abstract public List<Proposal> showInternalApprovedProposal();
+	abstract public int internalApproved(int proposalID, File VerificationDocumentList); // 내부승인
+	abstract public int externalApproved(int proposalID, File VerificationDocumentList); // 외부승인
 	
+	abstract public List<Proposal> beforePublicFromProposal(); // 내부외부 둘 다 승인된 공시할 제안서 목록
+	abstract public int publicFromProposal(int proposalID); // 상품공시
+	
+	/**
+	 * 
+	 * @param ���ȼ�
+	 * @param ����������
+	 */
 	abstract public int requestInternalApproved(int proposalID, File VerificationDocumentList);
 	
 	abstract public List<String> showProposal();
 	
+
 	abstract public int requestExternalApproved(int proposalID, File VerificationDocumentList);
 
 	abstract public List<Proposal> showExternalApprovedProposal();
@@ -31,7 +44,6 @@ public interface ProposalDAO {
 	
 	abstract public int writeProposal(HashMap<String, Object> pmap);
 	
-	abstract public int internalApproved(int proposalID, File VerificationDocumentList);
 
 	
 }

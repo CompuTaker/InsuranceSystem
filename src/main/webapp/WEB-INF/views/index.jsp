@@ -8,11 +8,19 @@
 <title>보험사 시스템</title>
 <script type="text/javascript">
 	function pageChange() {
-		location.href = "proposalRequest"
+		location.href = "proposalRequest";
 	}
 	
 	function showAllInsurance() {
-		location.href = "allInsurance"
+		location.href = "allInsurance";
+	}
+	
+	function login(){
+		location.href = "login";
+	}
+	
+	function logout(){
+		location.href = "logout";
 	}
 </script>
 </head>
@@ -24,6 +32,15 @@
 	<div>
 		<button onclick="showAllInsurance()">보험상품 조회하기</button>
 	</div>
-
+	<div>
+		<c:choose>
+			<c:when test="${who == 'anon'}">
+				<button onclick="login()">로그인</button>
+			</c:when>
+			<c:otherwise>
+				<button onclick="logout()">로그아웃</button>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </body>
 </html>

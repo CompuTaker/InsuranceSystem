@@ -35,12 +35,26 @@ public class HomeController {
 	private InsuranceInternalApproverDAO insuranceInternalApproverDAO;
 	
 	@RequestMapping({"/index", "/"})
-	public String chat(Model model) {
+	public String chat(Model model, HttpSession session) {
+		if(session.getAttribute("customer") != null) {
+			model.addAttribute("who", "customer");
+		}else if(session.getAttribute("salesman") != null) {
+			model.addAttribute("who", "salesman");
+		}else if(session.getAttribute("insuranceInteralApprover") != null) {
+			model.addAttribute("who", "insuranceInteralApprover");
+		}else { // all null
+			model.addAttribute("who", "anon");
+		}
 		return "index"; // chat.jsp
 	}
 	
+	@RequestMapping(value = "/login")
+	public String loginDo(Model model) {
+		return "login";
+	}
+	
 	@RequestMapping(value = "/loginDo", method = RequestMethod.POST)
-	public Object loginDo(Model model, String id, String pw, String whoLogin, HttpSession session, SessionStatus status) {
+	public String loginDo(Model model, String id, String pw, String whoLogin, HttpSession session, SessionStatus status) {
 		Map<String, String> loginInfo = new HashMap<String, String>();
 		loginInfo.put("id", id); // Map객체에 Id값을 저장한다.
 		loginInfo.put("pw", pw); // Map객체에 PW값을 저장한다.
@@ -48,17 +62,31 @@ public class HomeController {
 		if(whoLogin.equals("고객")) {
 			List<Customer> customers = this.customerDAO.login(loginInfo);
 			model.addAttribute("customer", customers.get(0));
+			if(customers.size() == 0) {
+				return "redirect:index";
+			}
 		}else if(whoLogin.equals("영업사원")) {
 			List<Salesman> salesmans = this.salesmanDAO.login(loginInfo);
+			if(salesmans.size() == 0) {
+				return "redirect:index";
+			}
 			model.addAttribute("salesman", salesmans.get(0));
 		}else if(whoLogin.equals("내부승인자")) {
 			List<InsuranceInternalApprover> insuranceInteralApprovers = this.insuranceInternalApproverDAO.login(loginInfo);
+			if(insuranceInteralApprovers.size() == 0) {
+				return "redirect:index";
+			}
 			model.addAttribute("insuranceInteralApprover", insuranceInteralApprovers.get(0));
 		}else {
 			System.out.println("~~NONE_LOGIN~~");
 		}
-		
 		return "redirect:index";
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout(Model model, SessionStatus status) {
+		status.setComplete(); // sessionAttribute를 초기화해준다.
+		return "redirect:/";
 	}
 	
 }

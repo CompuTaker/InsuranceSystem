@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form action="loginDo" name="loginform" method="post">
-		<input type="radio" name="whoLogin" value="고객" checked/>
-		<input type="radio" name="whoLogin" value="영업사원"/>
-		<input type="radio" name="whoLogin" value="내부승인자"/>
+		<input type="radio" name="whoLogin" value="고객" checked/>고객 /
+		<input type="radio" name="whoLogin" value="영업사원"/>영업사원 /
+		<input type="radio" name="whoLogin" value="내부승인자"/>내부승인자
 		<div class="logindiv">
 			<input type="text" class="form-control" name="id" id="userid"
 				placeholder="ID">

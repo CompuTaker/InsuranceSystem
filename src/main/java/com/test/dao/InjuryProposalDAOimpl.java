@@ -42,9 +42,9 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	}
 
 	@Override
-	public int requestExternalApproved(Proposal proposal, File VerificationDocumentList) {
+	public int requestExternalApproved(int proposalID, File VerificationDocumentList) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("requestExternalApprovedInjury", proposalID);
 	}
 	
 	@Override

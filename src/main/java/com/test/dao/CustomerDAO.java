@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.test.dto.Accident;
 import com.test.dto.Customer;
@@ -38,7 +39,7 @@ public interface CustomerDAO {
 	 * @param ����
 	 * @param ��й�ȣ
 	 */
-	public Customer login(String customerID, String password);
+	public List<Customer> login(Map<String, String> loginInfo);
 
 	/**
 	 * 

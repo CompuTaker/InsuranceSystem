@@ -1,5 +1,8 @@
 package com.test.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.test.dto.Salesman;
 
 /**
@@ -10,5 +13,7 @@ import com.test.dto.Salesman;
 public interface SalesmanDAO {
 
 	public Salesman assignSalesman();
-
+	
+	public List<Salesman> login(Map<String, String> loginInfo);
+	
 }

@@ -1,6 +1,11 @@
 package com.test.dao;
 
 import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.test.dto.Accident;
 import com.test.dto.Customer;
@@ -11,16 +16,15 @@ import com.test.dto.Salesman;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:12
  */
+@Repository
 public class CustomerDAOimpl implements CustomerDAO {
-
-	public CustomerDAOimpl(){
-
-	}
-
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
 	public void finalize() throws Throwable {
 
 	}
-
 
 	@Override
 	public List<Customer> showAllCustomer() {
@@ -47,9 +51,9 @@ public class CustomerDAOimpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer login(String customerID, String password) {
+	public List<Customer> login(Map<String, String> loginInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.sqlSession.selectList("customerLogin", loginInfo);
 	}
 
 	@Override

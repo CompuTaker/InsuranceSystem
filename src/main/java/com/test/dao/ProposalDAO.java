@@ -18,30 +18,15 @@ public interface ProposalDAO {
 	abstract public List<Proposal> beforeInternalApprovedProposal();
 	abstract public List<Proposal> afterInternalApprovedProposal();
 	abstract public List<Proposal> showInternalApprovedProposal();
-
-
-	/**
-	 * 
-	 * @param ���ȼ�
-	 * @param ����������
-	 */
+	
 	abstract public int requestInternalApproved(int proposalID, File VerificationDocumentList);
 	
 	abstract public List<String> showProposal();
 	
-	/**
-	 * 
-	 * @param ���ȼ�
-	 * @param ����������
-	 */
-	abstract public int requestExternalApproved(Proposal proposal, File VerificationDocumentList);
+	abstract public int requestExternalApproved(int proposalID, File VerificationDocumentList);
 
 	abstract public List<Proposal> showExternalApprovedProposal();
-
-	/**
-	 * 
-	 * @param ���ȼ�
-	 */
+	
 	abstract public int saveProposalTemp(Proposal proposal);
 	
 	abstract public int writeProposal(HashMap<String, Object> pmap);

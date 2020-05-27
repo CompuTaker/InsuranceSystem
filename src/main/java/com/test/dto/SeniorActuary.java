@@ -7,7 +7,7 @@ import java.util.Date;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
-public class SeniorActuary extends InsurnaceInternalApprover {
+public class SeniorActuary extends InsuranceInternalApprover {
 
 	private Date appointmentStartDate;
 	private Date appointmentEndDate;

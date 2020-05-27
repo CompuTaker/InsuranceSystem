@@ -1,8 +1,8 @@
 package com.test.controller;
 
-import com.test.dao.CounselDAO;
-import com.test.dao.CustomerDAO;
-import com.test.dao.SalesmanDAO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import com.test.dto.Customer;
 import com.test.dto.Insurance;
 import com.test.dto.Salesman;
@@ -12,18 +12,14 @@ import com.test.dto.Salesman;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:14
  */
+@Controller
+@SessionAttributes({"customer", "salesman", "insuranceInteralApprover"})
 public class CounselController {
 	
 	// 상담, 영업사원, 고객
 	// Consel, Salesman, Customer DAOs
 	
-	public CounselController(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
+	
 
 	/**
 	 * 

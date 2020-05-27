@@ -9,5 +9,10 @@
 		resultType="com.test.dto.Customer">
 		select * from Customer where customer_Id = #{customer_Id}
 	</select>
-
+	
+	<select id="customerLogin" parameterType="java.util.Map"
+		resultType="com.test.dto.Customer">
+		select * from Customer where loginID = #{id} and loginPassword = #{pw}
+	</select>
+	
 </mapper>

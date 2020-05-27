@@ -1,6 +1,10 @@
 package com.test.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.test.dto.Insurance;
+import com.test.dto.InsuranceInternalApprover;
 import com.test.dto.OfficalDocuments;
 import com.test.dto.Proposal;
 
@@ -9,7 +13,7 @@ import com.test.dto.Proposal;
  * @version 1.0
  * @created 12-5-2020 ���� 4:22:13
  */
-public interface InsuranceInteralApproverDAO {
+public interface InsuranceInternalApproverDAO {
 
 	/**
 	 * 
@@ -23,5 +27,7 @@ public interface InsuranceInteralApproverDAO {
 	 * @param ���ȼ�
 	 */
 	public int internalApprovePropoal(Proposal proposal);
+	
+	public List<InsuranceInternalApprover> login(Map<String, String> loginInfo);
 
 }

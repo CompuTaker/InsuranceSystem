@@ -55,10 +55,17 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	public int internalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("internalApprovedInjury", proposalID);
 	}
-	
+	@Override
+	public int internalRejected(int proposalID) {
+		return sqlSession.update("internalRejectedInjury", proposalID); // 내부승인거절하기
+	}
 	@Override
 	public int externalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("externalApprovedInjury", proposalID);
+	}
+	@Override
+	public int externalRejected(int proposalID) {
+		return sqlSession.update("externalRejectedInjury", proposalID); // 외부승인거절하기
 	}
 	
 	@Override

@@ -55,10 +55,17 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	public int internalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("internalApprovedVehicle", proposalID);
 	}
-
+	@Override
+	public int internalRejected(int proposalID) {
+		return sqlSession.update("internalRejectedVehicle", proposalID); // 내부승인거절하기
+	}
 	@Override
 	public int externalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("externalApprovedVehicle", proposalID);
+	}
+	@Override
+	public int externalRejected(int proposalID) {
+		return sqlSession.update("externalRejectedVehicle", proposalID); // 외부승인거절하기
 	}
 	
 	@Override

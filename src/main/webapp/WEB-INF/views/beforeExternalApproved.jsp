@@ -171,6 +171,9 @@
          <button type="button" class="btn btn-outline btn-primary" onclick="uploadFile()">
             <i class="fa fa-edit fa-fw"></i> 파일 업로드하기
          </button>
+         <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
+            <i class="fa fa-edit fa-fw"></i> 처음으로
+         </button>
       </div>
    </div>
 </body>

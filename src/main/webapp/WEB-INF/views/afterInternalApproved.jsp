@@ -53,6 +53,49 @@
 	        theForm.action = "checkedAfterInternalApproved?whichProposal="+whichProposal+"&proposalID="+propForm;
 	    	theForm.submit()
   }
+  
+  function InternalReject() {
+	    var propForm = null;
+// 		propForm.action = "checkedProposal"
+// 		propForm.submit()
+// 		var chekcedOne = document.get
+		var theForm = document.getElementById("checkedAfterInternalApproved");
+		var whichProposal = null;
+		
+	        var check_count = document.getElementsByName("fireProposalRequest").length;
+	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("fireProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("fireProposalRequest")[i].value);
+			        whichProposal = "fire";
+					propForm = document.getElementsByName("fireProposalRequest")[i].value
+	            }
+	        }
+	        
+	        check_count = document.getElementsByName("injuryProposalRequest").length;
+	   	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("injuryProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("injuryProposalRequest")[i].value);
+					whichProposal = "injury";
+					propForm = document.getElementsByName("injuryProposalRequest")[i].value
+	            }
+	        }
+	        
+	        check_count = document.getElementsByName("vehicleProposalRequest").length;
+	   	 
+	        for (var i=0; i<check_count; i++) {
+	            if (document.getElementsByName("vehicleProposalRequest")[i].checked == true) {
+// 	                alert(document.getElementsByName("vehicleProposalRequest")[i].value);
+					whichProposal = "vehicle";
+					propForm = document.getElementsByName("vehicleProposalRequest")[i].value
+	            }
+	        }
+	        
+	        //이러면 여러개 선택되는데 하나만 보내질듯
+	        theForm.action = "checkedAfterInternalRejected?whichProposal="+whichProposal+"&proposalID="+propForm;
+	    	theForm.submit()
+  }
   </script>
 
 <title>보험상품 내부승인요청하기</title>
@@ -168,8 +211,14 @@
          <button type="button" class="btn btn-outline btn-primary" onclick="InternalApprove()">
             <i class="fa fa-edit fa-fw"></i> 내부승인하기
          </button>
+		<button type="button" class="btn btn-outline btn-primary" onclick="InternalReject()">
+            <i class="fa fa-edit fa-fw"></i> 내부승인 거절하기
+         </button>
          <button type="button" class="btn btn-outline btn-primary" onclick="location.href='beforeExternalApproved'">
             <i class="fa fa-edit fa-fw"></i> 외부승인 요청하기
+         </button>
+         <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
+            <i class="fa fa-edit fa-fw"></i> 처음으로
          </button>
       </div>
    </div>

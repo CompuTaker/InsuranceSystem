@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.test.dao.FireInsuranceDAOimpl;
 import com.test.dao.InjuryInsuranceDAOimpl;
-import com.test.dao.InsuranceDAO;
-import com.test.dao.InsuranceDAOimpl;
 import com.test.dao.VehicleInsuranceDAOimpl;
 import com.test.dto.Insurance;
 

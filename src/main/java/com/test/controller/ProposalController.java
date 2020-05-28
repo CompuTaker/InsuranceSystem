@@ -99,13 +99,13 @@ public class ProposalController {
 	@RequestMapping({ "/beforeInternalApproved" })
 	public String beforeInternalApproved(Model model) {
 
-		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
-		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.beforeInternalApprovedProposal();
-		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> fireBeforeInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> injuryBeforeInternalApprovedList = injuryProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> vehicleBeforeInternalApprovedList = vehicleProposalDAOimpl.beforeInternalApprovedProposal();
 
-		model.addAttribute("fireList", fireInternalApprovedList);
-		model.addAttribute("injuryList", injuryInternalApprovedList);
-		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		model.addAttribute("fireList", fireBeforeInternalApprovedList);
+		model.addAttribute("injuryList", injuryBeforeInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleBeforeInternalApprovedList);
 
 		return "beforeInternalApproved"; // DAO로 가는 곳
 	}
@@ -114,13 +114,13 @@ public class ProposalController {
 	@RequestMapping({ "/checkedBeforeInternalApproved" })
 	public String checkedBeforeInternalApproved(Model model, String whichProposal, int proposalID) {
 
-		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
-		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.beforeInternalApprovedProposal();
-		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> fireRequestedInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> injuryRequestedInternalApprovedList = injuryProposalDAOimpl.beforeInternalApprovedProposal();
+		List<Proposal> vehicleRequestedInternalApprovedList = vehicleProposalDAOimpl.beforeInternalApprovedProposal();
 
-		model.addAttribute("fireList", fireInternalApprovedList);
-		model.addAttribute("injuryList", injuryInternalApprovedList);
-		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+		model.addAttribute("fireList", fireRequestedInternalApprovedList);
+		model.addAttribute("injuryList", injuryRequestedInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleRequestedInternalApprovedList);
 
 
 		if (whichProposal.equals("fire")) {

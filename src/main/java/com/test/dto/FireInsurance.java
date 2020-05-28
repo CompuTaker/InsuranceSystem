@@ -8,8 +8,6 @@ public class FireInsurance implements Insurance {
 //	  officialDocumentsID INT(11) unsigned,  
 	private int insuranceID;
 	private int fireProposalID;
-	private String insuranceName;
-	private String explanation;
 	private int officialDocumentsID;
 	
 	public int getInsuranceID() {
@@ -23,18 +21,6 @@ public class FireInsurance implements Insurance {
 	}
 	public void setFireProposalID(int fireProposalID) {
 		this.fireProposalID = fireProposalID;
-	}
-	public String getInsuranceName() {
-		return insuranceName;
-	}
-	public void setInsuranceName(String insuranceName) {
-		this.insuranceName = insuranceName;
-	}
-	public String getExplanation() {
-		return explanation;
-	}
-	public void setExplanation(String explanation) {
-		this.explanation = explanation;
 	}
 	public int getOfficialDocumentsID() {
 		return officialDocumentsID;

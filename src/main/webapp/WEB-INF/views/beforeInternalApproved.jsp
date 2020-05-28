@@ -89,8 +89,6 @@
                      <tbody>
                         <c:forEach items="${fireList}" var="proposalVO">
                            <tr>
-                           
-<!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
                               <td><input type = "radio" name = "fireProposalRequest" value="${proposalVO.fireProposalID}"></td>
                               <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
@@ -115,7 +113,6 @@
                      <tbody>
                         <c:forEach items="${injuryList}" var="proposalVO">
                            <tr>
-<!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
                               <td><input type="radio" name="injuryProposalRequest" value="${proposalVO.injuryProposalID}"></td>
                               <td>${proposalVO.injuryProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
@@ -140,7 +137,6 @@
                      <tbody>
                         <c:forEach items="${vehicleList}" var="proposalVO">
                            <tr>
-<!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
                               <td><input type = "radio" name = "vehicleProposalRequest" value="${proposalVO.vehicleProposalID}"></td>
                               <td>${proposalVO.vehicleProposalID}</td>
                               <td>${proposalVO.proposalName}</td>

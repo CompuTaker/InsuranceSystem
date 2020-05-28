@@ -14,56 +14,30 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+	var whichInsurance;
+	var insuranceID = -1;
+	function setWhichInsurance( insuranceButton, setVal ){
+		insuranceID = insuranceButton.value;
+		whichInsurance = setVal;
+	}
 	function showInsuranceDetail() {
 		// location.href = "insuranceDetail"
-		alert("show!");
-		console.log(insuranceID);
-		
-		var propForm = null;
-		var theForm = document.getElementById("theForm");
-		var whichInsurance = null;
-
-		var check_count = document.getElementsByName("fireInsuranceID").length;
-		for (var i = 0; i < check_count; i++) {
-			if (document.getElementsByName("fireInsuranceID")[i].checked == true) {
-				// 	                alert(document.getElementsByName("fireProposalRequest")[i].value);
-				whichInsurance = "fire";
-				propForm = document.getElementsByName("fireProposalRequest")[i].value
-			}
-		}
-
-		check_count = document.getElementsByName("injuryInsuranceID").length;
-		for (var i = 0; i < check_count; i++) {
-			if (document.getElementsByName("injuryInsuranceID")[i].checked == true) {
-				// 	                alert(document.getElementsByName("injuryProposalRequest")[i].value);
-				whichInsurance = "injury";
-				propForm = document.getElementsByName("injuryProposalRequest")[i].value
-			}
-		}
-
-		check_count = document.getElementsByName("vehicleInsuranceID").length;
-		for (var i = 0; i < check_count; i++) {
-			if (document.getElementsByName("vehicleInsuranceID")[i].checked == true) {
-				// 	                alert(document.getElementsByName("vehicleProposalRequest")[i].value);
-				whichInsurance = "vehicle";
-				propForm = document.getElementsByName("vehicleProposalRequest")[i].value
-			}
-		}
-
+		alert("show! => " + whichInsurance + " / " + insuranceID);
 		//이러면 여러개 선택되는데 하나만 보내질듯
-		theForm.action = "insuranceDetail?whichInsurance=" + whichInsurance + "&insuranceID=" + propForm;
-		theForm.submit()
+		var theForm = document.getElementById("theForm");
+		theForm.action = "insuranceDetail?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
+		alert(theForm.action);
+		theForm.submit();
 	}
-	function requestCounsel() {
-		//location.href = "proposalInsuranceType"
-		alert("request!");
+	function requestCounsel(){
+		alert("Not Yet!");
 	}
 </script>
 
 <title>보험사 시스템</title>
 </head>
 <body>
-	<form id="theForm" method = "get">
+	<form id="theForm" action="insuranceDetail" method = "get">
 		<div class="page-wrapper">
 			<div class="container-fluid">
 				<div class="col-lg-8">
@@ -80,7 +54,6 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th></th>
 										<th>보험 종류</th>
 										<th>보험상품명</th>
 										<th>내용</th>
@@ -89,34 +62,54 @@
 								<tbody>
 									<c:forEach items="${fireInsuranceList}" var="fireInsurance">
 										<tr>
-											<td><input type="radio" name="fireInsuranceID"
+											<td><input type="radio" name="insurance"
+												onclick="setWhichInsurance(this, 'fireInsurance')"
 												value="${ fireInsurance.insuranceID }"/>
-												</td>
-											<td>${fireInsurance.insuranceType}</td>
-											<td>${fireInsurance.insuranceName}</td>
-											<td>${fireInsurance.explanation}</td>
+											</td>
+											<td>${fireInsurance.fireProposalID}</td>
+											<td>${fireInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>
-									<tr><td colspan="4">~~~~~</td></tr>
+								</tbody>
+							</table>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>보험 종류</th>
+										<th>보험상품명</th>
+										<th>내용</th>
+									</tr>
+								</thead>
+								<tbody>
 									<c:forEach items="${injuryInsuranceList}" var="injuryInsurance">
 										<tr>
-											<td><input type="radio" name="injuryInsuranceID"
+											<td><input type="radio" name="insurance"
+												onclick="setWhichInsurance(this, 'injuryInsurance')"
 												value="${ injuryInsurance.insuranceID }"/>
-												</td>
-											<td>${injuryInsurance.insuranceType}</td>
-											<td>${injuryInsurance.insuranceName}</td>
-											<td>${injuryInsurance.explanation}</td>
+											</td>
+											<td>${injuryInsurance.injuryProposalID}</td>
+											<td>${injuryInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>
-									<tr><td colspan="4">~~~~~</td></tr>
+								</tbody>
+							</table>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>보험 종류</th>
+										<th>보험상품명</th>
+										<th>내용</th>
+									</tr>
+								</thead>
+								<tbody>
 									<c:forEach items="${vehicleInsuranceList}" var="vehicleInsurance">
 										<tr>
-											<td><input type="radio" name="vehicleInsuranceID"
+											<td><input type="radio" name="insurance"
+												onclick="setWhichInsurance(this, 'vehicleInsurance')"
 												value="${ vehicleInsurance.insuranceID }"/>
-												</td>
-											<td>${vehicleInsurance.insuranceType}</td>
-											<td>${vehicleInsurance.insuranceName}</td>
-											<td>${vehicleInsurance.explanation}</td>
+											</td>
+											<td>${vehicleInsurance.vehicleProposalID}</td>
+											<td>${vehicleInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -126,20 +119,19 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- 제안요청 버튼 -->
-		<div class="row">
-			<div class="col-lg-12">
-				<button class="btn btn-outline btn-primary"
-					onclick="showInsuranceDetail()">
-					<i class="fa fa-edit fa-fw"></i> 보험상품 상세보기
-				</button>
-				<button class="btn btn-outline btn-primary"
-					onclick="requestCounsel()">
-					<i class="fa fa-edit fa-fw"></i> 상담 요청하기
-				</button>
-			</div>
-		</div>
 	</form>
+	<!-- 제안요청 버튼 -->
+	<div class="row">
+		<div class="col-lg-12">
+			<button class="btn btn-outline btn-primary"
+				onclick="showInsuranceDetail()">
+				<i class="fa fa-edit fa-fw"></i> 보험상품 상세보기
+			</button>
+			<button class="btn btn-outline btn-primary"
+				onclick="requestCounsel()">
+				<i class="fa fa-edit fa-fw"></i> 상담 요청하기
+			</button>
+		</div>
+	</div>
 </body>
 </html>

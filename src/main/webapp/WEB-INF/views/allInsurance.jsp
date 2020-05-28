@@ -62,7 +62,7 @@
 									<c:forEach items="${fireInsuranceList}" var="fireInsurance">
 										<tr>
 											<td><input type="radio" name="insurance"
-												onclick="setWhichInsurance(this, 'fireInsurance')"
+												onclick="setWhichInsurance(this, 'fire')"
 												value="${ fireInsurance.insuranceID }"/>
 											</td>
 											<td>${fireInsurance.fireProposalID}</td>
@@ -83,7 +83,7 @@
 									<c:forEach items="${injuryInsuranceList}" var="injuryInsurance">
 										<tr>
 											<td><input type="radio" name="insurance"
-												onclick="setWhichInsurance(this, 'injuryInsurance')"
+												onclick="setWhichInsurance(this, 'injury')"
 												value="${ injuryInsurance.insuranceID }"/>
 											</td>
 											<td>${injuryInsurance.injuryProposalID}</td>
@@ -104,7 +104,7 @@
 									<c:forEach items="${vehicleInsuranceList}" var="vehicleInsurance">
 										<tr>
 											<td><input type="radio" name="insurance"
-												onclick="setWhichInsurance(this, 'vehicleInsurance')"
+												onclick="setWhichInsurance(this, 'vehicle')"
 												value="${ vehicleInsurance.insuranceID }"/>
 											</td>
 											<td>${vehicleInsurance.vehicleProposalID}</td>

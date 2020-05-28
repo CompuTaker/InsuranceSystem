@@ -11,45 +11,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
-  function ExternalApprove(){ 
-	    var propForm = null;
+	var whichProposal;
+	var proposalID = -1;
+	function setWhichProposal( proposalButton, setVal ){
+		proposalID = proposalButton.value;
+		// alert(proposalID);
+		whichProposal = setVal;
+	}	
+	
+	function publishProposal() {
+		// alert("show! => " + whichProposal + " / " + proposalID);
 		var theForm = document.getElementById("checkedBeforePublicFromProposal");
-		var whichProposal = null;
-		
-	        var check_count = document.getElementsByName("fireProposalRequest").length;
-	 
-	        for (var i=0; i<check_count; i++) {
-	            if (document.getElementsByName("fireProposalRequest")[i].checked == true) {
-// 	                alert(document.getElementsByName("fireProposalRequest")[i].value);
-			        whichProposal = "fire";
-					propForm = document.getElementsByName("fireProposalRequest")[i].value
-	            }
-	        }
-	        
-	        check_count = document.getElementsByName("injuryProposalRequest").length;
-	   	 
-	        for (var i=0; i<check_count; i++) {
-	            if (document.getElementsByName("injuryProposalRequest")[i].checked == true) {
-// 	                alert(document.getElementsByName("injuryProposalRequest")[i].value);
-					whichProposal = "injury";
-					propForm = document.getElementsByName("injuryProposalRequest")[i].value
-	            }
-	        }
-	        
-	        check_count = document.getElementsByName("vehicleProposalRequest").length;
-	   	 
-	        for (var i=0; i<check_count; i++) {
-	            if (document.getElementsByName("vehicleProposalRequest")[i].checked == true) {
-// 	                alert(document.getElementsByName("vehicleProposalRequest")[i].value);
-					whichProposal = "vehicle";
-					propForm = document.getElementsByName("vehicleProposalRequest")[i].value
-	            }
-	        }
-	        
-	        //이러면 여러개 선택되는데 하나만 보내질듯
-	        theForm.action = "checkedBeforePublicFromProposal?whichProposal="+whichProposal+"&proposalID="+propForm;
-	    	theForm.submit()
-  }
+		theForm.action = "checkedBeforePublicFromProposal?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+		theForm.submit()
+	}
   </script>
 
 <title>보험상품 공시하기</title>
@@ -88,7 +63,9 @@
                            <tr>
                            
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type = "radio" name = "fireProposalRequest" value="${proposalVO.fireProposalID}"></td>
+                              <td><input type = "radio" name = "proposalRequest"
+                              onclick="setWhichProposal(this, 'fire')"
+                              value="${proposalVO.fireProposalID}"></td>
                               <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
@@ -113,7 +90,9 @@
                         <c:forEach items="${injuryList}" var="proposalVO">
                            <tr>
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type="radio" name="injuryProposalRequest" value="${proposalVO.injuryProposalID}"></td>
+                              <td><input type="radio" name="proposalRequest"
+                              onclick="setWhichProposal(this, 'injury')"
+                              value="${proposalVO.injuryProposalID}"></td>
                               <td>${proposalVO.injuryProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
@@ -138,7 +117,9 @@
                         <c:forEach items="${vehicleList}" var="proposalVO">
                            <tr>
 <!--                            https://fors.tistory.com/233 : 라디오 버튼 -->
-                              <td><input type = "radio" name = "vehicleProposalRequest" value="${ proposalVO.vehicleProposalID }"></td>
+                              <td><input type = "radio" name = "proposalRequest"
+                              onclick="setWhichProposal(this, 'vehicle')"
+                              value="${ proposalVO.vehicleProposalID }"></td>
                               <td>${proposalVO.vehicleProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
@@ -159,7 +140,7 @@
       <!-- 제안요청 버튼 -->
    <div class="row">
       <div class="col-lg-12">
-         <button type="button" class="btn btn-outline btn-primary" onclick="ExternalApprove()">
+         <button type="button" class="btn btn-outline btn-primary" onclick="publishProposal()">
             <i class="fa fa-edit fa-fw"></i> 공시하기
          </button>
          <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">

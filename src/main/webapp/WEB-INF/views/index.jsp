@@ -11,6 +11,10 @@
 		location.href = "proposalRequest";
 	}
 	
+	function requestInternalApprover() {
+		location.href = "beforeInternalApproved";
+	}
+	
 	function approveInternal() {
 		location.href = "afterInternalApproved"
 	}	
@@ -39,16 +43,19 @@
 <body>
 	<h1>MJU 보험사</h1>
 	<div>
-		<button onclick="pageChange()">보험상품 개발하기</button>
+		<button onclick="pageChange()">제안서 개발하기</button>
 	</div>
 	<div>
-		<button onclick="approveInternal()">보험상품 내부승인하기</button>
+		<button onclick="requestInternalApprover()">제안서 내부승인 요청하기</button>
 	</div>
 	<div>
-		<button onclick="approveExternal()">보험상품 외부승인하기</button>
+		<button onclick="approveInternal()">제안서 내부승인하기(외부승인요청하기)</button>
 	</div>
 	<div>
-		<button onclick="makeInsurancePublicFromProposal()">보험상품 공시하기</button>
+		<button onclick="approveExternal()">제안서 외부승인하기</button>
+	</div>
+	<div>
+		<button onclick="makeInsurancePublicFromProposal()">제안서 공시하기</button>
 	</div>
 	<div>
 		<button onclick="showAllInsurance()">보험상품 조회하기</button>

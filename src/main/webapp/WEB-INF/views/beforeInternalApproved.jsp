@@ -52,6 +52,7 @@
 								<thead>
 									<tr><th>화재보험</th></tr>
 									<tr>
+										<th></th>
 										<th>제안서ID</th>
 										<th>제안서이름</th>
 										<th>개발팀ID</th>
@@ -62,7 +63,7 @@
 									<c:forEach items="${fireList}" var="proposalVO">
 										<tr>
 											<td><input type="radio" name="proposalRequest"
-												onclick="setWhichProposal(this, 'fireProposal')"
+												onclick="setWhichProposal(this, 'fire')"
 												value="${proposalVO.fireProposalID}"></td>
 											<td>${proposalVO.fireProposalID}</td>
 											<td>${proposalVO.proposalName}</td>
@@ -87,7 +88,7 @@
 									<c:forEach items="${injuryList}" var="proposalVO">
 										<tr>
 											<td><input type="radio" name="proposalRequest"
-												onclick="setWhichProposal(this, 'injuryProposal')"
+												onclick="setWhichProposal(this, 'injury')"
 												value="${proposalVO.injuryProposalID}"></td>
 											<td>${proposalVO.injuryProposalID}</td>
 											<td>${proposalVO.proposalName}</td>
@@ -112,7 +113,7 @@
 									<c:forEach items="${vehicleList}" var="proposalVO">
 										<tr>
 											<td><input type="radio" name="proposalRequest"
-												onclick="setWhichProposal(this, 'vehicleProposal')"
+												onclick="setWhichProposal(this, 'vehicle')"
 												value="${proposalVO.vehicleProposalID}"></td>
 											<td>${proposalVO.vehicleProposalID}</td>
 											<td>${proposalVO.proposalName}</td>
@@ -132,16 +133,13 @@
 	<!-- 제안요청 버튼 -->
 	<div class="row">
 		<div class="col-lg-12">
-			<button type="button" class="btn btn-outline btn-primary"
-				onclick="requestInternal()">
+			<button type="button" class="btn btn-outline btn-primary" onclick="requestInternal()">
 				<i class="fa fa-edit fa-fw"></i> 내부승인 요청하기
 			</button>
-			<button type="button" class="btn btn-outline btn-primary"
-				onclick="uploadFile()">
+			<button type="button" class="btn btn-outline btn-primary" onclick="uploadFile()">
 				<i class="fa fa-edit fa-fw"></i> 파일 업로드하기
 			</button>
-			<button type="button" class="btn btn-outline btn-primary"
-				onclick="location.href='index'">
+			<button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
 				<i class="fa fa-edit fa-fw"></i> 처음으로
 			</button>
 		</div>

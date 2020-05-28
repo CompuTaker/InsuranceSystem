@@ -32,25 +32,11 @@ public class InsuranceController {
 	@Autowired
 	private VehicleInsuranceDAOimpl vehicleInsuranceDAOimpl;
 	
-	public Insurance showInsuranceDetail(int insuranceID){
-		return null;
-	}
-
-	public List<Insurance> showAllInsurance(){
-		return null;
-	}
-	
 	@RequestMapping({ "/allInsurance" }) // 모든 보험 상품 보기
 	public String showAllInsurnace(Model model) {
-		
 		List<Insurance> fireInsuranceList = this.fireInsuranceDAOimpl.showAllInsurance();
 		List<Insurance> injuryInsuranceList = this.injuryInsuranceDAOimpl.showAllInsurance();
 		List<Insurance> vehicleInsuranceList = this.vehicleInsuranceDAOimpl.showAllInsurance();
-		System.out.println("------%%%%%%");
-		System.out.println(fireInsuranceList.size());
-		System.out.println(injuryInsuranceList.size());
-		System.out.println(vehicleInsuranceList.size());
-		System.out.println("%%%%%%-----");
 		
 		model.addAttribute("fireInsuranceList", fireInsuranceList);
 		model.addAttribute("injuryInsuranceList", injuryInsuranceList);
@@ -61,15 +47,12 @@ public class InsuranceController {
 	
 	@RequestMapping(value = "/insuranceDetail") // 보험상품 상세보기
 	public String showInsuranceDetail(Model model, String whichInsurance, int insuranceID) {
-		System.out.println(whichInsurance);
-		System.out.println(insuranceID); // should get with String // var
-//		int insuranceIDint = Integer.parseInt(insuranceID);
 		Insurance insurance = null;
-		if(whichInsurance.equals("fireInsurance")) {
+		if(whichInsurance.equals("fire")) {
 			insurance = this.fireInsuranceDAOimpl.showInsuranceDetail(insuranceID);
-		}else if(whichInsurance.equals("injuryInsurance")) {
+		}else if(whichInsurance.equals("injury")) {
 			insurance = this.injuryInsuranceDAOimpl.showInsuranceDetail(insuranceID);
-		}else if(whichInsurance.equals("vehicleInsurance")) {
+		}else if(whichInsurance.equals("vehicle")) {
 			insurance = this.vehicleInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 		}else {
 			System.out.println("~~NONE_insuranceDetail~~");

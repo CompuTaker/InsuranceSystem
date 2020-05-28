@@ -75,7 +75,7 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 
 	@Override
 	public int publicFromProposal(int proposalID) {
-		System.out.println(proposalID + "자동차");
+		sqlSession.insert("publicVehicleProposal", proposalID);
 		return sqlSession.update("publicFromVehicleProposal", proposalID);
 	}
 	

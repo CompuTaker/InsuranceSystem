@@ -75,6 +75,7 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 
 	@Override
 	public int publicFromProposal(int proposalID) {
+		sqlSession.insert("publicInjuryProposal", proposalID);
 		return sqlSession.update("publicFromInjuryProposal", proposalID);
 	}
 

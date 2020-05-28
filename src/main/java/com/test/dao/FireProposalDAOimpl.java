@@ -79,7 +79,7 @@ public class FireProposalDAOimpl implements ProposalDAO {
 
 	@Override
 	public int publicFromProposal(int proposalID) {
-		System.out.println(proposalID);
+		sqlSession.insert("publicFireProposal", proposalID);
 		return sqlSession.update("publicFromFireProposal", proposalID);
 	}
 

@@ -13,9 +13,6 @@
   <script type="text/javascript">
   function ExternalApprove(){ 
 	    var propForm = null;
-// 		propForm.action = "checkedProposal"
-// 		propForm.submit()
-// 		var chekcedOne = document.get
 		var theForm = document.getElementById("checkedBeforePublicFromProposal");
 		var whichProposal = null;
 		
@@ -77,11 +74,11 @@
                
                   <table class="table table-hover">
                      <thead>
+					 <tr>화재보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
                            <th>제안서이름</th>
-                           <th>보험종류</th>
                            <th>개발팀ID</th>
                            <th>제안서내용</th>
                         </tr>
@@ -94,7 +91,6 @@
                               <td><input type = "radio" name = "fireProposalRequest" value="${proposalVO.fireProposalID}"></td>
                               <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
-                              <td>${proposalVO.insuranceType}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
                               <td>${proposalVO.proposalContent}</td>
                            </tr>
@@ -104,11 +100,11 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>상해보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
                            <th>제안서이름</th>
-                           <th>보험종류</th>
                            <th>개발팀ID</th>
                            <th>제안서내용</th>
                         </tr>
@@ -120,7 +116,6 @@
                               <td><input type="radio" name="injuryProposalRequest" value="${proposalVO.injuryProposalID}"></td>
                               <td>${proposalVO.injuryProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
-                              <td>${proposalVO.insuranceType}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
                               <td>${proposalVO.proposalContent}</td>
                            </tr>
@@ -130,11 +125,11 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>자동차보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
                            <th>제안서이름</th>
-                           <th>보험종류</th>
                            <th>개발팀ID</th>
                            <th>제안서내용</th>
                         </tr>
@@ -146,7 +141,6 @@
                               <td><input type = "radio" name = "vehicleProposalRequest" value="${ proposalVO.vehicleProposalID }"></td>
                               <td>${proposalVO.vehicleProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
-                              <td>${proposalVO.insuranceType}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
                               <td>${proposalVO.proposalContent}</td>
                            </tr>

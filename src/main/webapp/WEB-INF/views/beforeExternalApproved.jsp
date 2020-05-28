@@ -77,6 +77,7 @@
                
                   <table class="table table-hover">
                      <thead>
+					 <tr>화재보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -104,6 +105,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>상해보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -130,6 +132,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>자동차보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>

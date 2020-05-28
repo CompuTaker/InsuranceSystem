@@ -77,6 +77,7 @@
                
                   <table class="table table-hover">
                      <thead>
+					 <tr>화재보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -104,6 +105,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>상해보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -130,6 +132,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>자동차보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -170,6 +173,9 @@
          </button>
          <button type="button" class="btn btn-outline btn-primary" onclick="uploadFile()">
             <i class="fa fa-edit fa-fw"></i> 파일 업로드하기
+         </button>
+         <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
+            <i class="fa fa-edit fa-fw"></i> 처음으로
          </button>
       </div>
    </div>

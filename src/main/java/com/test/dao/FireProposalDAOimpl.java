@@ -43,23 +43,32 @@ public class FireProposalDAOimpl implements ProposalDAO {
 
 	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("requestInternalApprovedFire", proposalID); // 내부승인하기
+		return sqlSession.update("requestInternalApprovedFire", proposalID); // 내부승인 요청하기
 	}
+	
 
 	@Override
 	public int requestExternalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("requestExternalApprovedFire", proposalID); // 외부승인하기
+		return sqlSession.update("requestExternalApprovedFire", proposalID); // 외부승인 요청하기
 
 	}
 	
+	
 	@Override
 	public int internalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("internalApprovedFire", proposalID); 
+		return sqlSession.update("internalApprovedFire", proposalID); // 내부승인하기
 	}
-
+	@Override
+	public int internalRejected(int proposalID) {
+		return sqlSession.update("internalRejectedFire", proposalID); // 내부승인거절하기
+	}
 	@Override
 	public int externalApproved(int proposalID, File VerificationDocumentList) {
-		return sqlSession.update("externalApprovedFire", proposalID);
+		return sqlSession.update("externalApprovedFire", proposalID); // 외부승인하기
+	}
+	@Override
+	public int externalRejected(int proposalID) {
+		return sqlSession.update("externalRejectedFire", proposalID); // 외부승인거절하기
 	}
 
 	
@@ -70,7 +79,7 @@ public class FireProposalDAOimpl implements ProposalDAO {
 
 	@Override
 	public int publicFromProposal(int proposalID) {
-		System.out.println(proposalID);
+		sqlSession.insert("publicFireProposal", proposalID);
 		return sqlSession.update("publicFromFireProposal", proposalID);
 	}
 

@@ -53,6 +53,49 @@
 	        theForm.action = "checkedAfterExternalApproved?whichProposal="+whichProposal+"&proposalID="+propForm;
 	    	theForm.submit()
   }
+  
+  function ExternalReject() { 
+	    var propForm = null;
+//	propForm.action = "checkedProposal"
+//	propForm.submit()
+//	var chekcedOne = document.get
+	var theForm = document.getElementById("checkedAfterExternalApproved");
+	var whichProposal = null;
+	
+      var check_count = document.getElementsByName("fireProposalRequest").length;
+
+      for (var i=0; i<check_count; i++) {
+          if (document.getElementsByName("fireProposalRequest")[i].checked == true) {
+//               alert(document.getElementsByName("fireProposalRequest")[i].value);
+		        whichProposal = "fire";
+				propForm = document.getElementsByName("fireProposalRequest")[i].value
+          }
+      }
+      
+      check_count = document.getElementsByName("injuryProposalRequest").length;
+ 	 
+      for (var i=0; i<check_count; i++) {
+          if (document.getElementsByName("injuryProposalRequest")[i].checked == true) {
+//               alert(document.getElementsByName("injuryProposalRequest")[i].value);
+				whichProposal = "injury";
+				propForm = document.getElementsByName("injuryProposalRequest")[i].value
+          }
+      }
+      
+      check_count = document.getElementsByName("vehicleProposalRequest").length;
+ 	 
+      for (var i=0; i<check_count; i++) {
+          if (document.getElementsByName("vehicleProposalRequest")[i].checked == true) {
+//               alert(document.getElementsByName("vehicleProposalRequest")[i].value);
+				whichProposal = "vehicle";
+				propForm = document.getElementsByName("vehicleProposalRequest")[i].value
+          }
+      }
+      
+      //이러면 여러개 선택되는데 하나만 보내질듯
+      theForm.action = "checkedAfterExternalRejected?whichProposal="+whichProposal+"&proposalID="+propForm;
+  	  theForm.submit()
+  }
   </script>
 
 <title>보험상품 외부승인하기</title>
@@ -77,6 +120,7 @@
                
                   <table class="table table-hover">
                      <thead>
+					 <tr>화재보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -104,6 +148,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+                 	 <tr>상해보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -130,6 +175,7 @@
                         
 				<table class="table table-hover">
                      <thead>
+					 <tr>자동차보험</tr>
                         <tr>
                            <th></th>
                            <th>제안서ID</th>
@@ -167,6 +213,12 @@
       <div class="col-lg-12">
          <button type="button" class="btn btn-outline btn-primary" onclick="ExternalApprove()">
             <i class="fa fa-edit fa-fw"></i> 외부승인하기
+         </button>
+         <button type="button" class="btn btn-outline btn-primary" onclick="ExternalReject()">
+            <i class="fa fa-edit fa-fw"></i> 외부승인거절하기
+         </button>
+         <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
+            <i class="fa fa-edit fa-fw"></i> 처음으로
          </button>
       </div>
    </div>

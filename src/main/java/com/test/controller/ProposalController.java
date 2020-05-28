@@ -95,7 +95,7 @@ public class ProposalController {
 	}
 
 
-	// 내부승인 요청하기 전
+	// 내부승인 요청하기 전 목록 출력
 	@RequestMapping({ "/beforeInternalApproved" })
 	public String beforeInternalApproved(Model model) {
 
@@ -110,6 +110,7 @@ public class ProposalController {
 		return "beforeInternalApproved"; // DAO로 가는 곳
 	}
 
+	// 내부승인 요청하기
 	@RequestMapping({ "/checkedBeforeInternalApproved" })
 	public String checkedBeforeInternalApproved(Model model, String whichProposal, int proposalID) {
 
@@ -136,7 +137,7 @@ public class ProposalController {
 	}
 
 
-	// 내부승인 요청 후 (완료는 아니고 그냥 요청만._.)
+	// 내부승인 요청한 제안서 목록
 	@RequestMapping({ "/afterInternalApproved" })
 	public String requestInternalApproved(Model model) {
 
@@ -151,6 +152,7 @@ public class ProposalController {
 		return "afterInternalApproved"; // DAO로 가는 곳
 	}
 
+	// 내부승인하기
 	@RequestMapping({ "/checkedAfterInternalApproved" })
 	public String checkedAfterInternalApproved(Model model, String whichProposal, int proposalID) {
 
@@ -175,8 +177,35 @@ public class ProposalController {
 
 		return "redirect:/afterInternalApproved"; // DAO로 가는 곳
 	}
+	
+//	checkedAfterInternalRejected
+	// 내부승인 거절하기
+	@RequestMapping({ "/checkedAfterInternalRejected" })
+	public String checkedAfterInternalRejected(Model model, String whichProposal, int proposalID) {
 
-	// 외부승인 요청하기 전
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterInternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterInternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterInternalApprovedProposal();
+
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+
+
+		if (whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.internalRejected(proposalID);
+		} else if (whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.internalRejected(proposalID);
+		} else if (whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.internalRejected(proposalID);
+		} else {
+			System.out.println("~NONE~");
+		}
+
+		return "redirect:/afterInternalApproved"; // DAO로 가는 곳
+	}
+
+	// 외부승인 요청하기 전 제안서 목록 출력
 	@RequestMapping({ "/beforeExternalApproved" })
 	public String beforeExternalApproved(Model model) {
 
@@ -191,7 +220,8 @@ public class ProposalController {
 		return "beforeExternalApproved"; // DAO로 가는 곳
 	}
 
-
+	
+	// 외부승인 요청하기
 	@RequestMapping({ "/checkedBeforeExternalApproved" })
 	public String checkedBeforeExternalApproved(Model model, String whichProposal, int proposalID) {
 
@@ -217,7 +247,8 @@ public class ProposalController {
 		return "redirect:/beforeExternalApproved"; // DAO로 가는 곳
 	}
 
-
+	
+	// 외부승인 요청된 제안서 목록 출력
 	@RequestMapping({ "/afterExternalApproved" })
 	public String requestExternalApproved(Model model) {
 
@@ -231,7 +262,8 @@ public class ProposalController {
 
 		return "afterExternalApproved"; // DAO로 가는 곳
 	}
-
+	
+	// 외부승인하기
 	@RequestMapping({ "/checkedAfterExternalApproved" })
 	public String checkedAfterExternalApproved(Model model, String whichProposal, int proposalID) {
 
@@ -257,8 +289,34 @@ public class ProposalController {
 		return "redirect:/afterExternalApproved"; // DAO로 가는 곳
 	}
 
+	// 외부승인거절하기
+	@RequestMapping({ "/checkedAfterExternalRejected" })
+	public String checkedAfterExternalRejected(Model model, String whichProposal, int proposalID) {
 
-	// 내부승인 요청하기 전
+		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterExternalApprovedProposal();
+		List<Proposal> vehicleInternalApprovedList = vehicleProposalDAOimpl.afterExternalApprovedProposal();
+
+		model.addAttribute("fireList", fireInternalApprovedList);
+		model.addAttribute("injuryList", injuryInternalApprovedList);
+		model.addAttribute("vehicleList", vehicleInternalApprovedList);
+
+
+		if (whichProposal.equals("fire")) {
+			this.fireProposalDAOimpl.externalRejected(proposalID);
+		} else if (whichProposal.equals("injury")) {
+			this.injuryProposalDAOimpl.externalRejected(proposalID);
+		} else if (whichProposal.equals("vehicle")) {
+			this.vehicleProposalDAOimpl.externalRejected(proposalID);
+		} else {
+			System.out.println("~NONE~");
+		}
+
+		return "redirect:/afterExternalApproved"; // DAO로 가는 곳
+	}
+
+
+	// 내부승인, 외부승인 둘 다 완료된 제안서 목록 출력
 	@RequestMapping({ "/makeInsurancePublicFromProposal" })
 	public String beforePublicFromProposal(Model model) {
 
@@ -272,7 +330,8 @@ public class ProposalController {
 
 		return "makeInsurancePublicFromProposal"; // DAO로 가는 곳
 	}
-
+	
+	// 상품 공시하기 (보험으로 바꾸는 기능 추가해야함)---------------------------------
 	@RequestMapping({ "/checkedBeforePublicFromProposal" })
 	public String checkedBeforePublicFromProposal(Model model, String whichProposal, int proposalID) {
 
@@ -299,7 +358,9 @@ public class ProposalController {
 		return "redirect:/makeInsurancePublicFromProposal"; // DAO로 가는 곳
 	}
 
-	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) // 제안서 작성완료 (작성종료, 내부승인요청버튼)
+	
+	// 제안서 작성완료 (작성종료, 내부승인요청버튼)
+	@RequestMapping(value = "/writeProposal", method = RequestMethod.POST) 
 	public String submitProposal(@RequestParam HashMap<String, Object> pmap) {
 		String whichProposal = (String) pmap.get("whichProposal");
 		pmap.put("insuranceDeveloperTeamID", 1); // 정필컴퍼니 강제

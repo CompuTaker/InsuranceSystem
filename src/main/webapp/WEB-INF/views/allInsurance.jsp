@@ -18,15 +18,13 @@
 	var insuranceID = -1;
 	function setWhichInsurance( insuranceButton, setVal ){
 		insuranceID = insuranceButton.value;
+		// alert(insuranceID);
 		whichInsurance = setVal;
 	}
 	function showInsuranceDetail() {
-		// location.href = "insuranceDetail"
-		alert("show! => " + whichInsurance + " / " + insuranceID);
-		//이러면 여러개 선택되는데 하나만 보내질듯
+		// alert("show! => " + whichInsurance + " / " + insuranceID);
 		var theForm = document.getElementById("theForm");
 		theForm.action = "insuranceDetail?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
-		alert(theForm.action);
 		theForm.submit();
 	}
 	function requestCounsel(){
@@ -37,20 +35,21 @@
 <title>보험사 시스템</title>
 </head>
 <body>
-	<form id="theForm" action="insuranceDetail" method = "get">
-		<div class="page-wrapper">
-			<div class="container-fluid">
-				<div class="col-lg-8">
-					<!--게시판 넓이 -->
-					<div class="col-lg-12">
-						<h1 class="page-header">보험 상품</h1>
-					</div>
-					<div class="row">
-						<div class="col-lg-12"></div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">보험 상품 목록</div>
-						<div class="panel-body">
+	<div class="page-wrapper">
+		<div class="container-fluid">
+			<div class="col-lg-8">
+				<!--게시판 넓이 -->
+				<div class="col-lg-12">
+					<h1 class="page-header">보험 상품</h1>
+				</div>
+				<div class="row">
+					<div class="col-lg-12"></div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">보험 상품 목록</div>
+					<div class="panel-body">
+						<form id="theForm" action="insuranceDetail" method = "post">
+							<!-- post로 해놔야 action 변경이 잘 된다! -->
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -114,12 +113,12 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</div>
 	<!-- 제안요청 버튼 -->
 	<div class="row">
 		<div class="col-lg-12">

@@ -61,6 +61,7 @@ public class InsuranceController {
 	
 	@RequestMapping(value = "/insuranceDetail") // 보험상품 상세보기
 	public String showInsuranceDetail(Model model, String whichInsurance, int insuranceID) {
+		System.out.println(whichInsurance);
 		System.out.println(insuranceID); // should get with String // var
 //		int insuranceIDint = Integer.parseInt(insuranceID);
 		Insurance insurance = null;

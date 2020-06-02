@@ -112,20 +112,29 @@ public class SalesController {
 	
 	@RequestMapping(value = "/insuranceSalesInput") // 보험상품 상세보기
 	public String showInsuranceDetail(Model model, String whichInsurance, int insuranceID) {
-		Insurance insurance = null;
-		FireInsurance fi;
+		FireInsurance finsurance = null;
+		InjuryInsurance iinsurance = null;
+		VehicleInsurance vinsurance = null;
+		
 		if(whichInsurance.equals("fire")) {
-			fi = (FireInsurance) this.fireInsuranceDAOimpl.showInsuranceDetail(insuranceID);
-			
+			finsurance = (FireInsurance) this.fireInsuranceDAOimpl.showInsuranceDetail(insuranceID);
+			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(finsurance.getFireProposalID());
+			model.addAttribute("proposal", fp);
+			model.addAttribute("insurance", finsurance);
 		}else if(whichInsurance.equals("injury")) {
-			insurance = this.injuryInsuranceDAOimpl.showInsuranceDetail(insuranceID);
+			iinsurance = (InjuryInsurance)this.injuryInsuranceDAOimpl.showInsuranceDetail(insuranceID);
+			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(iinsurance.getInjuryProposalID());
+			model.addAttribute("proposal", ip);
+			model.addAttribute("insurance", iinsurance);
 		}else if(whichInsurance.equals("vehicle")) {
-			insurance = this.vehicleInsuranceDAOimpl.showInsuranceDetail(insuranceID);
+			vinsurance = (VehicleInsurance) this.vehicleInsuranceDAOimpl.showInsuranceDetail(insuranceID);
+			VehicleProposal vp = (VehicleProposal) this.vehicleProposalDAOimpl.showSpecificProposal(vinsurance.getVehicleProposalID());
+			model.addAttribute("proposal", vp);
+			model.addAttribute("insurance", vinsurance);
 		}else {
 			System.out.println("~~NONE_insuranceDetail~~");
 			return "redirect:/";
 		}
-		model.addAttribute("insurance", insurance);		
 		return whichInsurance + "InsuranceInput"; // /fire/injury/vechicle/InsuranceInput
 	}
 

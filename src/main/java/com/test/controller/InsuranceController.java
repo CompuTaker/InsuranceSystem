@@ -124,14 +124,17 @@ public class InsuranceController {
 		if(whichInsurance.equals("fire")) {
 			finsurance = (FireInsurance) this.fireInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(finsurance.getFireProposalID());
+			model.addAttribute("proposal", fp);
 			model.addAttribute("insurance", finsurance);
 		}else if(whichInsurance.equals("injury")) {
 			iinsurance = (InjuryInsurance)this.injuryInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(iinsurance.getInjuryProposalID());
+			model.addAttribute("proposal", ip);
 			model.addAttribute("insurance", iinsurance);
 		}else if(whichInsurance.equals("vehicle")) {
 			vinsurance = (VehicleInsurance) this.vehicleInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 			VehicleProposal vp = (VehicleProposal) this.vehicleProposalDAOimpl.showSpecificProposal(vinsurance.getVehicleProposalID());
+			model.addAttribute("proposal", vp);
 			model.addAttribute("insurance", vinsurance);
 		}else {
 			System.out.println("~~NONE_insuranceDetail~~");

@@ -42,6 +42,11 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 	}
 	
 	@Override
+	public Proposal showSpecificProposal(int proposalID) {
+		return sqlSession.selectOne("showSpecificVehicleProposal", proposalID); // 이름 중복하려고 만들었는데 못함
+	}
+	
+	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("requestInternalApprovedVehicle", proposalID);
 	}

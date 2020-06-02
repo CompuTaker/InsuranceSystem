@@ -40,6 +40,11 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	public List<String> showProposal() {
 		return sqlSession.selectList("showFireProposal"); // 이름 중복하려고 만들었는데 못함
 	}
+	
+	@Override
+	public Proposal showSpecificProposal(int proposalID) {
+		return sqlSession.selectOne("showSpecificFireProposal", proposalID); // 이름 중복하려고 만들었는데 못함
+	}
 
 	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
@@ -52,7 +57,6 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		return sqlSession.update("requestExternalApprovedFire", proposalID); // 외부승인 요청하기
 
 	}
-	
 	
 	@Override
 	public int internalApproved(int proposalID, File VerificationDocumentList) {

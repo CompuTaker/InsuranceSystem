@@ -42,6 +42,11 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 	}
 	
 	@Override
+	public Proposal showSpecificProposal(int proposalID) {
+		return sqlSession.selectOne("showSpecificInjuryProposal", proposalID); // 이름 중복하려고 만들었는데 못함
+	}
+	
+	@Override
 	public int requestInternalApproved(int proposalID, File VerificationDocumentList) {
 		return sqlSession.update("requestInternalApprovedInjury", proposalID);
 	}

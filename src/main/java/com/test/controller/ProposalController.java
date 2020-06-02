@@ -66,7 +66,7 @@ public class ProposalController {
 		boolean duplication = false;
 
 		String proposalName = (String) pmap.get("proposalName");
-
+		
 		List<String> list = fireProposalDAOimpl.showProposal();
 		for (int i = 0; i < list.size(); i++) {
 			if (proposalName.equals(list.get(i)))

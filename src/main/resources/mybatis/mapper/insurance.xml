@@ -16,6 +16,9 @@
 	<select id="showVehicleInsurance" resultType="com.test.dto.VehicleInsurance">
 		select * from VehicleInsurance
 	</select>
+
+
+	
 	
 <!-- ===============  보험 상세 조회     ================================ -->
 	<select id="showFireInsuranceDetail" resultType="com.test.dto.FireInsurance">

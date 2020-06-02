@@ -418,6 +418,5 @@
       from VehicleProposal
       where vehicleProposalID = #{ proposalID };
    </select>
-
-	
+   
 </mapper>

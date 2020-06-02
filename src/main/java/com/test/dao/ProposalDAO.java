@@ -32,6 +32,8 @@ public interface ProposalDAO {
 	
 	abstract public List<String> showProposal();
 	
+	abstract public Proposal showSpecificProposal(int proposalID);
+	
 	abstract public List<Proposal> showExternalApprovedProposal();
 	
 	abstract public int saveProposalTemp(Proposal proposal);

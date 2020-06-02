@@ -362,6 +362,24 @@
       select proposalName from VehicleProposal
    </select>
 
+
+   
+<!-- ===============   제안서 아이디로 proposal 정보 가져오기     ================================ -->   
+   <select id="showSpecificFireProposal" resultType="com.test.dto.FireProposal">
+      select *
+      from FireProposal
+      where fireProposalID = #{ proposalID };
+   </select>
+   <select id="showSpecificInjuryProposal" resultType="com.test.dto.InjuryProposal">
+      select *
+      from InjuryProposal
+      where injuryProposalID = #{ proposalID };
+   </select>
+   <select id="showSpecificVehicleProposal" resultType="com.test.dto.VehicleProposal">
+      select *
+      from VehicleProposal
+      where vehicleProposalID = #{ proposalID };
+   </select>
    
    <!-- 세미콜론 없이 쿼리문 작성! -->
 

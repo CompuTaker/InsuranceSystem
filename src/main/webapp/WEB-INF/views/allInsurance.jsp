@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -53,19 +53,19 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>보험 종류</th>
+										<th>화재보험</th>
 										<th>보험상품명</th>
-										<th>내용</th>
+										<th>공시서류ID</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${fireInsuranceList}" var="fireInsurance">
+									<c:forEach items="${fireInsuranceList}" var="fireInsurance" varStatus = "status">
 										<tr>
 											<td><input type="radio" name="insurance"
 												onclick="setWhichInsurance(this, 'fire')"
 												value="${ fireInsurance.insuranceID }"/>
 											</td>
-											<td>${fireInsurance.fireProposalID}</td>
+											<td>${fireProposalList[status.index].proposalName}</td>
 											<td>${fireInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>
@@ -74,19 +74,20 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>보험 종류</th>
+										<th>상해보험</th>
 										<th>보험상품명</th>
-										<th>내용</th>
+										<th>공시서류ID</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${injuryInsuranceList}" var="injuryInsurance">
+									<c:forEach items="${injuryInsuranceList}" var="injuryInsurance"
+												varStatus = "status">
 										<tr>
 											<td><input type="radio" name="insurance"
 												onclick="setWhichInsurance(this, 'injury')"
 												value="${ injuryInsurance.insuranceID }"/>
 											</td>
-											<td>${injuryInsurance.injuryProposalID}</td>
+											<td>${injuryProposalList[status.index].proposalName}</td>
 											<td>${injuryInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>
@@ -95,19 +96,20 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>보험 종류</th>
+										<th>자동차보험</th>
 										<th>보험상품명</th>
-										<th>내용</th>
+										<th>공시서류ID</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${vehicleInsuranceList}" var="vehicleInsurance">
+									<c:forEach items="${vehicleInsuranceList}" var="vehicleInsurance"
+												varStatus = "status">
 										<tr>
 											<td><input type="radio" name="insurance"
 												onclick="setWhichInsurance(this, 'vehicle')"
 												value="${ vehicleInsurance.insuranceID }"/>
 											</td>
-											<td>${vehicleInsurance.vehicleProposalID}</td>
+											<td>${vehicleProposalList[status.index].proposalName}</td>
 											<td>${vehicleInsurance.officialDocumentsID}</td>
 										</tr>
 									</c:forEach>

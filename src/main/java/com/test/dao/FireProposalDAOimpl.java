@@ -37,6 +37,11 @@ public class FireProposalDAOimpl implements ProposalDAO {
 	}
 	
 	@Override
+   public Proposal showSpecificProposal(int proposalID) {
+      return sqlSession.selectOne("showSpecificFireProposal", proposalID); // 이름 중복하려고 만들었는데 못함
+   }
+	
+	@Override
 	public List<String> showProposal() {
 		return sqlSession.selectList("showFireProposal"); // 이름 중복하려고 만들었는데 못함
 	}

@@ -74,7 +74,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">나이</td>
+							<td align="center">매매가</td>
 							<td><input name="bargainPrice" size="50" maxlength="50"></td>
 							<td>&nbsp;</td>
 						</tr>
@@ -84,7 +84,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">직업</td>
+							<td align="center">가입업종</td>
 							<td><input name="facilityBusinessType" size="50" maxlength="50"></td>
 							<td>&nbsp;</td>
 						</tr>
@@ -93,7 +93,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">성별</td>
+							<td align="center">화재설비</td>
 							<td><textarea name="facilityMaterialType" cols="50" rows="13"></textarea></td>
 							<td>&nbsp;</td>
 						</tr>

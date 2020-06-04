@@ -107,7 +107,7 @@ public class SalesController {
 		model.addAttribute("injuryProposalList", injuryProposalList);
 		model.addAttribute("vehicleProposalList", vehicleProposalList);
 		
-		return "insuranceList";
+		return "joinInsurance/insuranceList";
 	}
 	
 	@RequestMapping(value = "/insuranceSalesInput") // 보험상품 상세보기
@@ -135,7 +135,8 @@ public class SalesController {
 			System.out.println("~~NONE_insuranceDetail~~");
 			return "redirect:/";
 		}
-		return whichInsurance + "InsuranceInput"; // /fire/injury/vechicle/InsuranceInput
+		return "joinInsurance/" + whichInsurance + "InsuranceInput";
+		// /fire/injury/vechicle/InsuranceInput
 	}
 
 }

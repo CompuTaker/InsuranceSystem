@@ -419,4 +419,25 @@
       where vehicleProposalID = #{ proposalID };
    </select>
    
+   
+<!--    proposalID -> proposalName -->
+   <select id="selectFireProposalName" parameterType="java.lang.Integer"
+   		resultType="String">
+   		select proposalName
+   		from FireProposal
+   		where fireProposalID = #{ proposalID };
+   </select>
+      <select id="selectInjuryProposalName" parameterType="java.lang.Integer"
+   		resultType="String">
+   		select proposalName
+   		from InjuryProposal
+   		where injuryProposalID = #{ proposalID };
+   </select>
+      <select id="selectVehicleProposalName" parameterType="java.lang.Integer"
+   		resultType="String">
+   		select proposalName
+   		from VehicleProposal
+   		where vehicleProposalID = #{ proposalID };
+   </select>
+   
 </mapper>

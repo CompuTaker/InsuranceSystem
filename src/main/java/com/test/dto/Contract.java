@@ -12,7 +12,8 @@ public class Contract { // exetends Insruance
 	private int contractID;
 	private int contractManagerID;
 	private Date contractExpirationDate;
-	private int insuranceID; // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	private int insuranceID;
+	private String insuranceType;
 	private int customerID;
 	private float lossRate;
 	private String profitabilityRating;
@@ -36,6 +37,18 @@ public class Contract { // exetends Insruance
 	private int insurancePaymentListID;
 	private byte[] insuranceDocuments;
 	
+	public int getInsuranceID() {
+		return insuranceID;
+	}
+	public void setInsuranceID(int insuranceID) {
+		this.insuranceID = insuranceID;
+	}
+	public String getInsuranceType() {
+		return insuranceType;
+	}
+	public void setInsuranceType(String insuranceType) {
+		this.insuranceType = insuranceType;
+	}
 	public int getContractID() {
 		return contractID;
 	}

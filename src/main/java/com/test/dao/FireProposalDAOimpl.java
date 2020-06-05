@@ -105,5 +105,10 @@ public class FireProposalDAOimpl implements ProposalDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.insert("insertFireProposal", pmap);
 	}
+
+	@Override
+	public String getProprosalName(int proposalID) {
+		return this.sqlSession.selectOne("selectFireProposalName", proposalID);
+	}
 }
    

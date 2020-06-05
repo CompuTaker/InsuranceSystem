@@ -102,4 +102,9 @@ public class InjuryProposalDAOimpl implements ProposalDAO {
 		return this.sqlSession.insert("insertInjuryProposal", pmap);
 	}
 
+	@Override
+	public String getProprosalName(int proposalID) {
+		return this.sqlSession.selectOne("selectInjuryProposalName", proposalID);
+	}
+
 }

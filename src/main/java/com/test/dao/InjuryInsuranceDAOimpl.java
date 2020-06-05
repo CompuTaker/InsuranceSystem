@@ -16,6 +16,11 @@ public class InjuryInsuranceDAOimpl implements InsuranceDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public int getProprosalID(int insuranceID) {
+		return sqlSession.selectOne("getInjuryProposalID", insuranceID);
+	}
+	
+	@Override
 	public Insurance showInsuranceDetail(int insuranceID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("showInjuryInsuranceDetail", insuranceID);

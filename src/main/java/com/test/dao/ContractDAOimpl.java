@@ -2,6 +2,8 @@ package com.test.dao;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.dto.Contract;
@@ -18,13 +20,12 @@ public class ContractDAOimpl implements ContractDAO {
 
 	public Contract contract;
 	public ContractManager contractManager;
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 
-	public ContractDAOimpl(){
-
-	}
-
-	public void finalize() throws Throwable {
-
+	public List<Contract> showAllContract(int customerID) {
+		return sqlSession.selectList("showCustomerContract", customerID);
 	}
 
 	/**

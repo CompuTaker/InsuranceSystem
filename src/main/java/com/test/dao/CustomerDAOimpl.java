@@ -22,6 +22,14 @@ public class CustomerDAOimpl implements CustomerDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	//고객ID에 맞는 고객이름 가져오기
+	public String showCustomerName(int customerID) {
+		return sqlSession.selectOne("getCustomerName", customerID);
+	}
+	
+	
+	
 	public void finalize() throws Throwable {
 
 	}

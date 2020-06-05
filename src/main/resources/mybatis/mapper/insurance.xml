@@ -33,6 +33,28 @@
 		select * from VehicleInsurance 
 		where insuranceID = #{ insuranceID }
 	</select>
+	
+	
+	<!-- ===============  InsuranceID -> proposalID  ================================ -->
+	<select id="getFireProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select fireProposalID
+		from FireInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+		<select id="getInjuryProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select injuryProposalID
+		from InjuryInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+		<select id="getVehicleProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select vehicleProposalID
+		from VehicleInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+	
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 
 </mapper>

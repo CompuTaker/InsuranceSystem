@@ -102,4 +102,9 @@ public class VehicleProposalDAOimpl implements ProposalDAO {
 		return this.sqlSession.insert("insertVehicleProposal", pmap);
 	}
 
+	@Override
+	public String getProprosalName(int proposalID) {
+		return this.sqlSession.selectOne("selectVehicleProposalName", proposalID);
+	}
+
 }

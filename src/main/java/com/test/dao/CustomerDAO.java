@@ -13,6 +13,13 @@ import com.test.dto.Salesman;
  * @created 12-5-2020 ���� 4:22:12
  */
 public interface CustomerDAO {
+	
+	//고객ID에 맞는 고객이름 가져오기
+	public String showCustomerName(int customerID);
+	
+	
+	
+	
 
 	public List<Customer> showAllCustomer();
 

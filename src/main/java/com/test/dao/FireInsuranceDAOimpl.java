@@ -14,6 +14,11 @@ public class FireInsuranceDAOimpl implements InsuranceDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+	@Override
+	public int getProprosalID(int insuranceID) {
+		return sqlSession.selectOne("getFireProposalID", insuranceID);
+	}
 	
 	@Override
 	public Insurance showInsuranceDetail(int insuranceID) {
@@ -32,5 +37,6 @@ public class FireInsuranceDAOimpl implements InsuranceDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
 }

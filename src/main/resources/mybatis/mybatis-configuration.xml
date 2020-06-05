@@ -11,5 +11,7 @@
 		<mapper resource="mybatis/mapper/insuranceInternalApprover.xml" />
 		<mapper resource="mybatis/mapper/proposal.xml" />
 		<mapper resource="mybatis/mapper/salesman.xml" />
+		<mapper resource="mybatis/mapper/contract.xml" />
+		<mapper resource="mybatis/mapper/recipient.xml" />
 	</mappers>
 </configuration>

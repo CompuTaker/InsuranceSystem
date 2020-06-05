@@ -15,4 +15,9 @@
 		select * from Customer where loginID = #{id} and loginPassword = #{pw}
 	</select>
 	
+	<select id="getCustomerName" parameterType="java.lang.Integer"
+		resultType="String">
+		select customerName from Customer where customerID = #{customerID}
+	</select>
+	
 </mapper>

@@ -29,6 +29,7 @@ public interface ProposalDAO {
 	abstract public int externalRejected(int proposalID); // 외부승인 거절하기
 	abstract public int publicFromProposal(int proposalID); // 상품공시하기
 	
+	abstract public String getProprosalName(int proposalID);
 	
 	abstract public List<String> showProposal();
 	

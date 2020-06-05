@@ -15,6 +15,8 @@ public interface InsuranceDAO {
 	abstract public Insurance showInsuranceDetail(int insuranceID);
 
 	abstract public List<Insurance> showAllInsurance();
+	
+	abstract public int getProprosalID(int insuranceID);
 
 	/**
 	 * 

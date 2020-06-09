@@ -1,5 +1,7 @@
 package com.test.dao;
 
+import org.springframework.stereotype.Repository;
+
 import com.test.dto.Counsel;
 import com.test.dto.Customer;
 import com.test.dto.Insurance;
@@ -16,7 +18,7 @@ public interface CounselDAO {
 	 * 
 	 * @param ���
 	 */
-	public int writeConselContent(Counsel counsel);
+	public int writeCounselContent(Counsel counsel);
 
 	/**
 	 * 
@@ -24,7 +26,7 @@ public interface CounselDAO {
 	 * @param ���
 	 * @param �������
 	 */
-	public int assignConsel(Customer customer, Counsel counsel, Salesman salesman);
+	public int assignCounsel(Customer customer, Counsel counsel, Salesman salesman);
 
 	/**
 	 * 
@@ -35,6 +37,6 @@ public interface CounselDAO {
 	 * @param ����ó
 	 * @param ���
 	 */
-	public int assignConsel_anon(String name, String counselContent, Insurance insurance, Salesman salesman, String phoneNumber, Counsel counsel);
+	public int assignCounsel_anon(String name, String counselContent, Insurance insurance, Salesman salesman, String phoneNumber, Counsel counsel);
 
 }

@@ -7,6 +7,7 @@
 	<mappers>
 		<mapper resource="mybatis/mapper/chatroom.xml" />
 		<mapper resource="mybatis/mapper/customer.xml" />
+		<mapper resource="mybatis/mapper/customerForSales.xml" />
 		<mapper resource="mybatis/mapper/insurance.xml" />
 		<mapper resource="mybatis/mapper/insuranceInternalApprover.xml" />
 		<mapper resource="mybatis/mapper/proposal.xml" />

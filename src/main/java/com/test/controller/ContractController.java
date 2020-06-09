@@ -28,16 +28,16 @@ import com.test.dto.InsurancePaymentList;
 public class ContractController {
 	
 	@Autowired
-	CustomerDAO customerDAOimpl;
+	private CustomerDAO customerDAOimpl;
 	
 	@Autowired
-	ContractDAO contractDAOimpl;
+	private ContractDAO contractDAOimpl;
 
 	@Autowired
-	ContractManagerDAO contractManagerDAOimpl;
+	private ContractManagerDAO contractManagerDAOimpl;
 	
 	@Autowired
-	RecipientDAO recipientDAOimpl;
+	private RecipientDAO recipientDAOimpl;
 
 	@Autowired
 	private FireInsuranceDAOimpl fireInsuranceDAOimpl;

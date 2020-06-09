@@ -1,12 +1,15 @@
 package com.test.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.test.dao.FireInsuranceDAOimpl;
@@ -23,6 +26,12 @@ import com.test.dto.Insurance;
 import com.test.dto.Proposal;
 import com.test.dto.VehicleInsurance;
 import com.test.dto.VehicleProposal;
+import com.test.enumeration.Bank;
+import com.test.enumeration.CompensationType;
+import com.test.enumeration.FacilityBusinessType;
+import com.test.enumeration.FacilityMaterialType;
+import com.test.enumeration.Job;
+import com.test.enumeration.PaymentType;
 
 /**
  * @author Administrator
@@ -121,6 +130,8 @@ public class SalesController {
 			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(finsurance.getFireProposalID());
 			model.addAttribute("proposal", fp);
 			model.addAttribute("insurance", finsurance);
+			model.addAttribute("facilityBusinessTypes", FacilityBusinessType.values());
+			model.addAttribute("facilityMaterialTypes", FacilityMaterialType.values());
 		}else if(whichInsurance.equals("injury")) {
 			iinsurance = (InjuryInsurance)this.injuryInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(iinsurance.getInjuryProposalID());
@@ -135,8 +146,60 @@ public class SalesController {
 			System.out.println("~~NONE_insuranceDetail~~");
 			return "redirect:/";
 		}
+		
+		model.addAttribute("banks", Bank.values());
+		model.addAttribute("jobs", Job.values());
+		model.addAttribute("paymentTypes", PaymentType.values());
+		model.addAttribute("compensationTypes", CompensationType.values());
+		// Bank
+		// PaymentType
+		// CompensationType
+		// Job // maybe common
+		// -- common
+		// FacilityBusinessType
+		// FacilityMaterialType
+		// -- fire
+		// IllHistory
+		// FamilyIllHistory // 없는 듯
+		// -- injury
+		// VehiclePurpose
+		// VehicleType
+		// -- vehicle
+		
 		return "joinInsurance/" + whichInsurance + "InsuranceInput";
 		// /fire/injury/vechicle/InsuranceInput
 	}
-
+	
+	@RequestMapping(value = "/calculateRate") // 보험상품 상세보기
+	@ResponseBody
+	public float calculateRate(Model model, @RequestParam HashMap<String, Object> rmap) {
+		float rate = -1;
+		
+		String whichInsurance = (String) rmap.get("whichInsurance");
+		int proposalID = Integer.parseInt((String) rmap.get("proposalID"));
+		
+		Proposal proposal = null;
+		
+		if(whichInsurance.equals("fire")) {
+			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(proposalID);
+			proposal = fp;
+		}else if(whichInsurance.equals("fire")) {
+			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(proposalID);
+			proposal = ip;
+		}else if(whichInsurance.equals("vehicle")) {
+			VehicleProposal vp = (VehicleProposal) this.vehicleProposalDAOimpl.showSpecificProposal(proposalID);
+			proposal = vp;
+		}
+		
+		UnderwritingTestStub underwritingTestStub = new UnderwritingTestStub();
+		try {
+			rate = underwritingTestStub.calculateRate(proposal, whichInsurance, rmap);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rate; // Ajax
+	}
+	
 }

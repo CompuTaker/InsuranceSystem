@@ -61,10 +61,10 @@ public class HomeController {
 		
 		if(whoLogin.equals("고객")) {
 			List<Customer> customers = this.customerDAO.login(loginInfo);
-			model.addAttribute("customer", customers.get(0));
 			if(customers.size() == 0) {
 				return "redirect:index";
 			}
+			model.addAttribute("customer", customers.get(0));
 		}else if(whoLogin.equals("영업사원")) {
 			List<Salesman> salesmans = this.salesmanDAO.login(loginInfo);
 			if(salesmans.size() == 0) {

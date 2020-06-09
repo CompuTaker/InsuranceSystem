@@ -19,16 +19,29 @@
 		
 		function makeRequest() {
 			httpRequest = new XMLHttpRequest();
-			
-			if(!httpRequest) {
+			if (!httpRequest) {
 				alert('XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
 				return false;
 			}
 			httpRequest.onreadystatechange = alertContents;
-			httpRequest.open('GET', 'test.html');
+			
+			var toBeCalculated = document.getElementsByClassName("toBeCalculated");
+			var params = "";
+			for(var i=0; i < toBeCalculated.length; i++){
+				var target = toBeCalculated[i];
+				if(target.checked){
+					params = params + target.getAttribute("name") + "=" + target.getAttribute("value") + "&";
+				}
+			}
+			var whichInsurance = document.getElementById("whichInsurance").value;
+			var proposalID = document.getElementById("proposalID").value;
+			params = "whichInsurance=" + whichInsurance + "&proposalID=" + proposalID + "&" + params;
+			params = params.slice(0,-1);
+			
+			httpRequest.open('GET', 'calculateRate?' + params); // calculateRate // 언더라이팅 대용
 			httpRequest.send();
 		}
-		
+
 		function alertContents() {
 			if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				if (httpRequest.status === 200) {
@@ -43,10 +56,8 @@
 		<tr>
 			<td>
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
-					<tr style="background: url('img/table_mid.gif') repeat-x; text-align: center;">
-						<td width="5"><img src="img/table_left.gif" width="5" height="30" /></td>
-						<td>가입하기</td>
-						<td width="5"><img src="img/table_right.gif" width="5" height="30" /></td>
+					<tr style="text-align: center;">
+						<td>화재보험 가입하기</td>
 					</tr>
 				</table>
 				<form>
@@ -55,6 +66,8 @@
 							<td>&nbsp;</td>
 							<td align="center">고객 성명</td>
 							<td><input name="customerName" size="50" maxlength="100">
+							<input type="hidden" id="whichInsurance" name="whichInsurance" value="fire">
+							<input type="hidden" id="proposalID" name="proposalID" value="${proposal.fireProposalID}">
 							</td>
 							<td>&nbsp;</td>
 						</tr>
@@ -68,24 +81,33 @@
 							<td><input name="socialSecurityNumber" size="50" maxlength="100"></td>
 							<td>&nbsp;</td>
 						</tr>
-	
 						<tr height="1" bgcolor="#dddddd">
 							<td colspan="4"></td>
 						</tr>
+						
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">나이</td>
-							<td><input name="bargainPrice" size="50" maxlength="50"></td>
+							<td align="center">은행</td>
+							<td>
+								<c:forEach items="${banks}" var="oneBank" varStatus = "status">
+									<input type="radio" name="bank" checked="checked" value="${oneBank.name()}">${oneBank.name()} /
+								</c:forEach>
+							</td>
 							<td>&nbsp;</td>
 						</tr>
-	
 						<tr height="1" bgcolor="#dddddd">
 							<td colspan="4"></td>
 						</tr>
+						
 						<tr>
 							<td>&nbsp;</td>
 							<td align="center">직업</td>
-							<td><input name="facilityBusinessType" size="50" maxlength="50"></td>
+							<td>
+								<c:forEach items="${jobs}" var="oneJob" varStatus = "status">
+									<input type="radio" class="toBeCalculated" checked="checked"
+									name="job" value="${oneJob.name()}">${oneJob.name()} /
+								</c:forEach>
+							</td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr height="1" bgcolor="#dddddd">
@@ -93,11 +115,73 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">성별</td>
-							<td><textarea name="facilityMaterialType" cols="50" rows="13"></textarea></td>
+							<td align="center">보험료납부방식</td>
+							<td>
+								<c:forEach items="${paymentTypes}" var="onePaymentType" varStatus = "status">
+									<input type="radio" class="toBeCalculated" checked="checked"
+									 name="paymentType" value="${onePaymentType.name()}">${onePaymentType.name()} /
+								</c:forEach>
+							</td>
 							<td>&nbsp;</td>
 						</tr>
-	
+						<tr height="1" bgcolor="#dddddd">
+							<td colspan="4"></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td align="center">보험금지급방식</td>
+							<td>
+								<c:forEach items="${compensationTypes}" var="oneCompensationType" varStatus = "status">
+									<input type="radio" class="toBeCalculated" checked="checked"
+									name="compensationType" value="${oneCompensationType.name()}">${oneCompensationType.name()} /
+								</c:forEach>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr height="1" bgcolor="#dddddd">
+							<td colspan="4"></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td align="center">가입업종</td>
+							<td>
+								<c:forEach items="${facilityBusinessTypes}" var="oneFacilityBusinessType" varStatus = "status">
+									<input type="radio" class="toBeCalculated" checked="checked"
+									name="facilityBusinessType" value="${oneFacilityBusinessType.name()}">${oneFacilityBusinessType.name()} /
+								</c:forEach>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr height="1" bgcolor="#dddddd">
+							<td colspan="4"></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td align="center">가입시설</td>
+							<td>
+								<c:forEach items="${facilityMaterialTypes}" var="oneFacilityMaterialType" varStatus = "status">
+									<input type="radio" class="toBeCalculated" checked="checked"
+									 name="facilityMaterialType" value="${oneFacilityMaterialType.name()}">${oneFacilityMaterialType.name()} /
+								</c:forEach>
+							</td>
+							<td>&nbsp;</td>
+						</tr>
+						
+						<tr height="1" bgcolor="#dddddd">
+							<td colspan="4"></td>
+						</tr>
+						
+						<tr>
+							<td>&nbsp;</td>
+							<td align="center">매매가</td>
+							<td><input name="bargainPrice" size="50" maxlength="50"></td>
+							<td>&nbsp;</td>
+						</tr>
+						
+						<tr height="1" bgcolor="#dddddd">
+							<td colspan="4"></td>
+						</tr>
+						
 						<tr height="1" bgcolor="#dddddd">
 							<td colspan="4"></td>
 						</tr>

@@ -9,10 +9,10 @@ package com.test.dto;
 public class Counsel {
 
 	private int customerID;
-	private int conselID;
-	private String conselDate;
-	private String conselContent;
-	private String conselTopic;
+	private int counselID;
+	private String counselDate;
+	private String counselContent;
+	private String counselTopic;
 	
 	public int getCustomerID() {
 		return customerID;
@@ -20,29 +20,29 @@ public class Counsel {
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
-	public int getConselID() {
-		return conselID;
+	public int getCounselID() {
+		return counselID;
 	}
-	public void setConselID(int conselID) {
-		this.conselID = conselID;
+	public void setCounselID(int counselID) {
+		this.counselID = counselID;
 	}
-	public String getConselDate() {
-		return conselDate;
+	public String getCounselDate() {
+		return counselDate;
 	}
-	public void setConselDate(String conselDate) {
-		this.conselDate = conselDate;
+	public void setCounselDate(String counselDate) {
+		this.counselDate = counselDate;
 	}
-	public String getConselContent() {
-		return conselContent;
+	public String getCounselContent() {
+		return counselContent;
 	}
-	public void setConselContent(String conselContent) {
-		this.conselContent = conselContent;
+	public void setCounselContent(String counselContent) {
+		this.counselContent = counselContent;
 	}
-	public String getConselTopic() {
-		return conselTopic;
+	public String getCounselTopic() {
+		return counselTopic;
 	}
-	public void setConselTopic(String conselTopic) {
-		this.conselTopic = conselTopic;
+	public void setCounselTopic(String counselTopic) {
+		this.counselTopic = counselTopic;
 	}
 
 }

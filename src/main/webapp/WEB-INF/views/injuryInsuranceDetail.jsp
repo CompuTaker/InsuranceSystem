@@ -6,24 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>보험상품 개발</title>
 <script type="text/javascript">
-
-   function tempSave() {
-      alert('임시저장되었습니다.');
-      var propForm = document.getElementById('injuryProposal')
-      propForm.action = "tempSave"
-      propForm.submit()
-   }
-   function submitProposal() {
-      alert('제안서 작성이 완료되었습니다.');
-      var propForm = document.getElementById('injuryProposal')
-      propForm.action = "writeProposal"
-      propForm.submit()
-   }
+	function requestCounsel() {
+		alert('상담요청합니다.');
+		var propForm = document.getElementById('requestCounsel')
+		propForm.action = "requestCounsel"
+		propForm.submit()
+	}
 </script>
 </head>
 <body>
    <!--       보험상품 이름 입력하기, 보장상해범위 입력하기, 성별에 따른 위험률 입력하기, 자신의 병력에 따른 상수 입력하기, 직업에 따른 위험률 입력하기, 나이에 따른 위험률 입력하기-->
-   <form action="writeInjuryProposal" id="injuryProposal" method="post">
+   <form  id="requestCounsel" method="post">
       <table>
          <tr>
             <td>
@@ -39,7 +32,7 @@
                   </tr>
                </table>
 
-               <table>
+              <table>
                   <tr>
                      <td>&nbsp;</td>
                      <td align="center">보험상품명</td>
@@ -53,11 +46,23 @@
                      <td colspan="4"></td>
                   </tr>
                   
+                    <tr>
+                     <td>&nbsp;</td>
+                     <td align="center">보험소개</td>
+                     <td>
+                        ${ Proposal.proposalContent }
+                     </td>
+                     <td>&nbsp;</td>
+                  </tr>
+                  <tr height="1" bgcolor="#dddddd">
+                     <td colspan="4"></td>
+                  </tr>
+                  
                   <tr>
                      <td>&nbsp;</td>
                      <td align="center">보장상해범위</td>
                      <td>
-                        <input name="injuryCoverage" size="50" maxlength="100"></input>
+                         ${ Proposal.injuryCoverage }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -69,7 +74,7 @@
                      <td>&nbsp;</td>
                      <td align="center">보장질병범위</td>
                      <td>
-                        <input name="illCoverage" size="50" maxlength="100"></input>
+                        ${ Proposal.illCoverage }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -81,7 +86,7 @@
                      <td>&nbsp;</td>
                      <td align="center">뇌질병 가족력에 대한 위험률</td>
                      <td>
-                     <input name="familyBrainRate" size="50" maxlength="100"></input>
+                   		   ${ Proposal.familyBrainRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -92,8 +97,8 @@
                   <tr>
                      <td>&nbsp;</td>
                      <td align="center">심장질병 가족력에 대한 위험률</td>
-                     <td>
-                     <input name="familyHeartRate" size="50" maxlength="100"></input>
+                     <td> 
+                   		  ${ Proposal.familyHeartRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -105,7 +110,7 @@
                      <td>&nbsp;</td>
                      <td align="center">암질병 가족력에 대한 위험률</td>
                      <td>
-                     <input name="familyCancerRate" size="50" maxlength="100"></input>
+                     		${ Proposal.familyCancerRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -117,7 +122,7 @@
                      <td>&nbsp;</td>
                      <td align="center">뇌질병 병력에 대한 위험률</td>
                      <td>
-                     <input name="brainRate" size="50" maxlength="100"></input>
+                    		${ Proposal.brainRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -129,7 +134,7 @@
                      <td>&nbsp;</td>
                      <td align="center">심장질병 병력에 대한 위험률</td>
                      <td>
-                     <input name="heartRate" size="50" maxlength="100"></input>
+                     		${ Proposal.heartRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -141,7 +146,7 @@
                      <td>&nbsp;</td>
                      <td align="center">암질병 병력에 대한 위험률</td>
                      <td>
-                     <input name="cancerRate" size="50" maxlength="100"></input>
+                   			 ${ Proposal.cancerRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -153,7 +158,7 @@
                      <td>&nbsp;</td>
                      <td align="center">남성인 경우에 대한 위험률</td>
                      <td>
-                     <input name="manRate" size="50" maxlength="100"></input>
+                     		${ Proposal.manRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -165,7 +170,7 @@
                      <td>&nbsp;</td>
                      <td align="center">여성인 경우에 대한 위험률</td>
                      <td>
-                     <input name="womanRate" size="50" maxlength="100"></input>
+                     		${ Proposal.womanRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -177,7 +182,7 @@
                      <td>&nbsp;</td>
                      <td align="center">산업직을 가진 경우의 위험률</td>
                      <td>
-                     <input name="fieldJobRate" size="50" maxlength="100"></input>
+                     		${ Proposal.fieldJobRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -189,7 +194,7 @@
                      <td>&nbsp;</td>
                      <td align="center">사무직을 가진 경우의 위험률</td>
                      <td>
-                     <input name="officeJobRate" size="50" maxlength="100"></input>
+                     		${ Proposal.officeJobRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -201,7 +206,7 @@
                      <td>&nbsp;</td>
                      <td align="center">무직인 경우의 위험률</td>
                      <td>
-                     <input name="noJobRate" size="50" maxlength="100"></input>
+                     		${ Proposal.noJobRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -214,7 +219,7 @@
                      <td>&nbsp;</td>
                      <td align="center">위험직인 경우의 위험률</td>
                      <td>
-                        <input name="dangerousJobRate" size="50" maxlength="50">
+                      		 ${ Proposal.dangerousJobRate }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -225,9 +230,9 @@
                   
                   <tr>
                      <td>&nbsp;</td>
-                     <td align="center">서류</td>
+                     <td align="center">공시 서류 아이디</td>
                      <td>
-                        <input type=file name="verificationDocuments" size="50" maxlength="50">
+                         ${ Insurance.officialDocumentsID }
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -240,7 +245,7 @@
                      <td>&nbsp;</td>
                      <td align="center">기타사항</td>
                      <td>
-                        <input name="proposalContent" size="50" maxlength="50">
+                        	추가 사항이 있을 시, 추가 공시하겠습니다.
                      </td>
                      <td>&nbsp;</td>
                   </tr>
@@ -254,9 +259,10 @@
                   <tr align="center">
                      <td>&nbsp;</td>
                      <td colspan="2">
-                        <input type="hidden" name="whichProposal" value="injury">
-                        <button onclick="javascript:tempSave()">임시저장</button>
-                        <button onclick="javascript:submitProposal()">제안서 제출</button>
+                      	<input type="hidden" name="insuranceID" value=${ Insurance.insuranceID }>
+                        <input type="hidden" name="whichInsuranceDetail" value="injury">
+                        <input type="button" value="뒤로가기" onclick="history.back(-1);">
+                        <button onclick="javascript:requestCounsel()">상담요청하기</button>
                      <td>&nbsp;</td>
                   </tr>
                </table>

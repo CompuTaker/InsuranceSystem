@@ -27,5 +27,9 @@ public class RecipientDAOimpl implements RecipientDAO {
 		
 		return result;
 	}
+	
+	public String showDetailRecipientName(int recipientID) {
+		return sqlSession.selectOne("getRecipientrName", recipientID);
+	}
 
 }

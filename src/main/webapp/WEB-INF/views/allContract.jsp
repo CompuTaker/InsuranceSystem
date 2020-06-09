@@ -11,8 +11,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
+  	var contractID;
+  	function setContractID(button) {
+  		contractID = button.value;
+  	}
+  
   	function showContractDetail() {
-  		
+  		var theForm = document.getElementById("contractDetailID");
+		theForm.action = "contractDetailID?contractID=" + contractID;
+		theForm.submit()
   	}
   </script>
 
@@ -34,15 +41,14 @@
                <div class="panel-heading">계약 목록</div>
                <div class="panel-body">
                
-            <form action="checkedProposal" id="checkedAfterExternalApproved" method="post">
+            <form action="contractDetailID" id="contractDetailID" method="post">
                
                   <table class="table table-hover">
                      <thead>
 					 <tr><th>${customerName}님의 계약</th></tr>
                         <tr>
+                           <th></th>
                            <th>보험이름</th>
-                           <th>계약일</th>
-                           <th>만기일</th>
                            <th>매니저</th>
                            <th>수령인</th>
                         </tr>
@@ -50,11 +56,10 @@
                      <tbody>
                         <c:forEach items="${contract}" var="contract" varStatus="status">
                            <tr>
-                             <td><input type="radio" name="insurance" value="${contract.contractID}"/>
+                             <td><input type="radio" name="insurance" value="${contract.contractID}"
+                             		onclick ="setContractID(this)"/>
 							  </td>
                            	  <td>${insuranceName[status.index]}</td>
-                              <td>${contract.contractRemainingPeriod}</td>
-                              <td>${contract.contractExpirationDate}</td>
                               <td>${contractManager[status.index]}</td>
                               <td>${recipientName[status.index]}</td>
                            </tr>

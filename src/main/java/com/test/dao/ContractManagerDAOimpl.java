@@ -19,6 +19,11 @@ public class ContractManagerDAOimpl implements ContractManagerDAO {
 	}
 	
 	@Override
+	public String showDetailContractManagerName(int contractManagerID) {
+		return sqlSession.selectOne("getcustomerContractManagerName", contractManagerID);
+	}
+	
+	@Override
 	public List<String> showCustomerContractManager(List<Integer> allContractManager) {
 		
 		List<String> result = new ArrayList<String>();

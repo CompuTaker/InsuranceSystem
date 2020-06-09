@@ -1,8 +1,10 @@
 package com.test.dao;
 
-import java.util.List; 
+import java.util.List;
 
 import com.test.dto.Contract;
+import com.test.dto.InsurancePayment;
+import com.test.dto.InsurancePaymentList;
 
 /**
  * @author Administrator
@@ -12,5 +14,9 @@ import com.test.dto.Contract;
 public interface ContractDAO {
 	
 	public List<Contract> showAllContract(int customerID);
+	public Contract showContractDetail(int contractID);
+	public InsurancePaymentList showPaymentList(int insurancePaymentListID);
+	public List<InsurancePayment> showPayment(int insurancePaymentListID);
+	public int destroyContract(int contractID);
 	
 }

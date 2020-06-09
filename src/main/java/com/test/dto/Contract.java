@@ -12,24 +12,20 @@ public class Contract { // exetends Insruance
 	private int contractID;
 	private int contractManagerID;
 	private Date contractExpirationDate;
-	private int insuranceID;
-	private String insuranceType;
-	private int customerID;
+	private int insuranceMoneyLimit;
 	private float lossRate;
 	private String profitabilityRating;
-	private int salesmanID;
 	private int remainingExpectedMoney;
 	private int compensationHistory;
+	private String insuranceType;
+	private int insuranceID;
+	private int customerID;
+	private int salesmanID;
 	private int insurancePayment;
 	private float discountRate;
 	private float extraChargeRate;
 	private Date contractRemainingPeriod;
 	
-//	private Recipient recipient;
-//	private PaymentType paymentType;
-//	private CompensationType compensationType;
-//	private InsurancePaymentList insurancePaymentList;
-//	private Bank bank;
 	private int recipientID;
 	private String paymentType;
 	private String compensationType;
@@ -163,5 +159,13 @@ public class Contract { // exetends Insruance
 	public void setInsuranceDocuments(byte[] insuranceDocuments) {
 		this.insuranceDocuments = insuranceDocuments;
 	}
+	public int getInsuranceMoneyLimit() {
+		return insuranceMoneyLimit;
+	}
+	public void setInsuranceMoneyLimit(int insuranceMoneyLimit) {
+		this.insuranceMoneyLimit = insuranceMoneyLimit;
+	}
+	
+	
 	
 }

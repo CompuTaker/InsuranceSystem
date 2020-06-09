@@ -8,6 +8,8 @@ public interface ContractManagerDAO {
 	
 	abstract public List<String> getContractManagerName(int contractManagerID);
 	
-	public List<String> showCustomerContractManager(List<Integer> allContractManager);
+	abstract public List<String> showCustomerContractManager(List<Integer> allContractManager);
+	
+	abstract public String showDetailContractManagerName(int contractManagerID);
 
 }

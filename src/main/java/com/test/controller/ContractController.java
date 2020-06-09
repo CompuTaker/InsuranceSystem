@@ -1,5 +1,6 @@
 package com.test.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ import com.test.dao.RecipientDAO;
 import com.test.dao.VehicleInsuranceDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
 import com.test.dto.Contract;
+import com.test.dto.InsurancePayment;
+import com.test.dto.InsurancePaymentList;
 
 
 @Controller
@@ -104,27 +107,6 @@ public class ContractController {
 
 		}
 		
-//		System.out.println(customerName + "고객이름");
-//		for(Contract contract : allContract) {
-//			System.out.println(contract.getCustomerID() + "고객아이디");
-//			System.out.println(contract.getBank() + "고객은행");
-//			System.out.println(contract.getRecipientID() + "수취인아이디");
-//			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
-//
-//		}
-//		
-//		for(int i = 0; i < allContractManager.size(); i++) {
-//			System.out.println(allContractManager + "매니져이름드으으을");
-//			System.out.println(recipientName + "수취인이름드으응ㄹ");
-//			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
-//		}
-//		
-//		
-//		for(String name : insuranceName) {
-//			System.out.println(name + "보험이르으으음");
-//			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
-//		}
-		
 		model.addAttribute("insuranceName", insuranceName);
 		model.addAttribute("customerName", customerName);
 		model.addAttribute("contract", allContract);
@@ -134,5 +116,99 @@ public class ContractController {
 		return "allContract";
 		
 		}
+	
+	@RequestMapping("/contractDetailID")
+	public String showContractDetail(Model model, int contractID) {
+
+		int customerID = 1;
+		
+		//고객이름
+		String customerName = customerDAOimpl.showCustomerName(customerID);
+		
+		//상세보기 계약  받아오기
+		Contract contract = contractDAOimpl.showContractDetail(contractID);
+		
+		//계약관리자 이름 받아오기
+		String contractManagerName = contractManagerDAOimpl.showDetailContractManagerName(contract.getContractManagerID());
+		
+		//수령인 이름 받아오기
+		String recipientName = recipientDAOimpl.showDetailRecipientName(contract.getRecipientID());
+		
+		
+		
+		String insuranceName = new String();
+			switch(contract.getInsuranceType()) {
+			case "FireInsurance":
+				insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+				break;
+			case "InjuryInsurance": 
+				insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+				break;
+			case "VehicleInsurance":
+				insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+				break;
+			}
+			
+		String startDate = new SimpleDateFormat("yyyy-MM-dd").format(contract.getContractRemainingPeriod());
+		String endDate = new SimpleDateFormat("yyyy-MM-dd").format(contract.getContractExpirationDate());
+
+		model.addAttribute("customerName", customerName);
+		model.addAttribute("contract", contract);
+		model.addAttribute("contractManagerName", contractManagerName);
+		model.addAttribute("recipientName", recipientName);
+		model.addAttribute("insuranceName", insuranceName);
+		
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
+		
+		return "contractDetail";
+	}
+	
+	@RequestMapping("/checkInsuranceMoney")
+	public String checkInsuranceMoney(Model model, int contractID) {
+		
+		int customerID = 1;
+		
+		//고객이름
+		String customerName = customerDAOimpl.showCustomerName(customerID);
+		
+		//상세보기 계약  받아오기
+		Contract contract = contractDAOimpl.showContractDetail(contractID);
+		InsurancePaymentList paymentList = contractDAOimpl.showPaymentList(contract.getInsurancePaymentListID());
+		List<InsurancePayment> payment = contractDAOimpl.showPayment(paymentList.getInsurancePaymentListID());
+		
+		String insuranceName = new String();
+		switch(contract.getInsuranceType()) {
+		case "FireInsurance":
+			insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+			break;
+		case "InjuryInsurance": 
+			insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+			break;
+		case "VehicleInsurance":
+			insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+			break;
+		}
+		
+		List<String> date = new ArrayList<String>();
+		
+		for(InsurancePayment insurancePayment: payment) {
+			date.add(new SimpleDateFormat("yyyy-MM-dd").format(insurancePayment.getInsurancePaymentDate()));
+		}
+		
+		model.addAttribute("customerName", customerName);
+		model.addAttribute("insuranceName", insuranceName);
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("payment", payment);
+		model.addAttribute("date", date);
+		
+		return "checkInsuranceMoney";
+	}
+
+	@RequestMapping("/destroyContract")
+	public String destroyContract(Model model, int contractID) {
+		contractDAOimpl.destroyContract(contractID);
+		return "allContract";
+	}
 		
 }

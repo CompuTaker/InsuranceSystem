@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.test.dto.Contract;
 import com.test.dto.ContractManager;
 import com.test.dto.ContractStatistics;
+import com.test.dto.InsurancePayment;
+import com.test.dto.InsurancePaymentList;
 
 /**
  * @author Administrator
@@ -24,16 +26,29 @@ public class ContractDAOimpl implements ContractDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	@Override
 	public List<Contract> showAllContract(int customerID) {
 		return sqlSession.selectList("showCustomerContract", customerID);
 	}
 
-	/**
-	 * 
-	 * @param ���ID
-	 */
+	@Override
+	public InsurancePaymentList showPaymentList(int insurancePaymentListID) {
+		return sqlSession.selectOne("showPaymentList", insurancePaymentListID);
+	}
+	
+	@Override
+	public List<InsurancePayment> showPayment(int insurancePaymentListID) {
+		return sqlSession.selectList("showPayment", insurancePaymentListID);
+	}
+	
+	@Override
 	public Contract showContractDetail(int contractID){
-		return null;
+		return sqlSession.selectOne("showContractDetail", contractID);
+	}
+	
+	@Override
+	public int destroyContract(int contractID) {
+		return sqlSession.update("destroyContract", contractID);
 	}
 
 	/**
@@ -77,5 +92,6 @@ public class ContractDAOimpl implements ContractDAO {
 	public void provideExpectedMoney(int expectedMoney, int contractID){
 
 	}
+
 
 }

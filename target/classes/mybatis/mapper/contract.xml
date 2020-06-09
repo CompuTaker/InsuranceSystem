@@ -16,7 +16,7 @@
 		resultType="com.test.dto.Contract">
 		select * 
       	from Contract
-      	where customerID = #{customerID};
+      	where customerID = #{customerID} AND destroyed = 1;
 	</select>
 	
 	<select id="getcustomerContractManagerName" parameterType="java.lang.Integer"
@@ -25,5 +25,31 @@
 		from ContractManager
 		where contractManagerID = #{contractManagerID}
 	</select>
+	
+	<select id="showContractDetail" parameterType="java.lang.Integer"
+		resultType="com.test.dto.Contract">
+		select * 
+      	from Contract
+      	where contractID = #{contractID};
+	</select>
+	
+	<select id="showPaymentList" parameterType="java.lang.Integer"
+		resultType="com.test.dto.InsurancePaymentList">
+		select * 
+      	from InsurancePaymentList
+      	where insurancePaymentListID = #{insurancePaymentListID};
+	</select>
+		
+	<select id="showPayment" parameterType="java.lang.Integer"
+		resultType="com.test.dto.InsurancePayment">
+		select * 
+      	from InsurancePayment
+      	where insurancePaymentListID = #{insurancePaymentListID};
+	</select>
+	
+	<update id="destroyContract" parameterType="java.lang.Integer">
+		UPDATE Contract SET destroyed = -1
+		where contractID = #{contractID};
+	</update>
 	
 </mapper>

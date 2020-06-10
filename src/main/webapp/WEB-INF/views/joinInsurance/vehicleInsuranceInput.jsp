@@ -73,9 +73,9 @@
 							<td align="center">고객 성명</td>
 							<td>
 								<input name="customerForSalesName" size="50" maxlength="100">
-								<input type="hidden" id="whichInsurance" name="whichInsurance" value="injury">
+								<input type="hidden" id="whichInsurance" name="whichInsurance" value="vehicle">
 								<input type="hidden" id="insuranceID" name="insuranceID" value="${insurance.insuranceID}">
-								<input type="hidden" id="proposalID" name="proposalID" value="${proposal.injuryProposalID}">
+								<input type="hidden" id="proposalID" name="proposalID" value="${proposal.vehicleProposalID}">
 								<input type="hidden" id="extraChargeRate" name="extraChargeRate" value="-3">
 							</td>
 							<td>&nbsp;</td>
@@ -151,14 +151,13 @@
 							<td colspan="4"></td>
 						</tr>
 						
-						
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">병력</td>
+							<td align="center">차량용도</td>
 							<td>
-								<c:forEach items="${illHistories}" var="oneIllHistory" varStatus = "status">
+								<c:forEach items="${vehiclePurposes}" var="oneVehiclePurpose" varStatus = "status">
 									<input type="radio" class="toBeCalculated" checked="checked"
-									name="illHistory" value="${oneIllHistory.name()}">${oneIllHistory.name()} /
+									name="oneVehiclePurpose" value="${oneVehiclePurpose.name()}">${oneVehiclePurpose.name()} /
 								</c:forEach>
 							</td>
 							<td>&nbsp;</td>
@@ -169,27 +168,17 @@
 						
 						<tr>
 							<td>&nbsp;</td>
-							<td align="center">가족력</td>
+							<td align="center">차량종류</td>
 							<td>
-								<c:forEach items="${familyIllHistories}" var="oneFamilyIllHistory" varStatus = "status">
+								<c:forEach items="${vehicleTypes}" var="oneVehicleType" varStatus = "status">
 									<input type="radio" class="toBeCalculated" checked="checked"
-									name="familyIllHistory" value="${oneFamilyIllHistory.name()}">${oneFamilyIllHistory.name()} /
+									name="oneVehicleType" value="${oneVehicleType.name()}">${oneVehicleType.name()} /
 								</c:forEach>
 							</td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr height="1" bgcolor="#dddddd">
 							<td colspan="4"></td>
-						</tr>
-						
-						<tr>
-							<td>&nbsp;</td>
-							<td align="center">성별</td>
-							<td>
-								<input type="radio" name="gender" value="man" checked="checked">남자 /
-								<input type="radio" name="gender" value="woman">여자
-							</td>
-							<td>&nbsp;</td>
 						</tr>
 						
 						<tr height="1" bgcolor="#dddddd">

@@ -203,7 +203,7 @@ public class SalesController {
 		if(whichInsurance.equals("fire")) {
 			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(proposalID);
 			proposal = fp;
-		}else if(whichInsurance.equals("fire")) {
+		}else if(whichInsurance.equals("injury")) {
 			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(proposalID);
 			proposal = ip;
 		}else if(whichInsurance.equals("vehicle")) {
@@ -222,7 +222,7 @@ public class SalesController {
 		return rate; // Ajax
 	}
 	
-	@RequestMapping(value = "/saveCustomerForSales") // 보험상품 상세보기
+	@RequestMapping(value = "/saveCustomerForSales")
 	public String saveCustomerForSales(Model model, HttpSession session, @RequestParam HashMap<String, Object> rmap) {
 		
 		rmap.put("salesmanID", 1); // forced login
@@ -254,6 +254,7 @@ public class SalesController {
 		// int insuranceID = Integer.parseInt((String) rmap.get("insuranceID"));
 		int recipientID = 1; rmap.put("recipientID", recipientID);
 		int contractManagerID = 1; rmap.put("contractManagerID", contractManagerID);
+		
 		int insurancePaymentListID = 1; rmap.put("insurancePaymentListID", insurancePaymentListID);
 		
 		int salesmanID = 1;

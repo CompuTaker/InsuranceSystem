@@ -39,6 +39,16 @@ public class ContractDAOimpl implements ContractDAO {
 		sqlSession.update("payCardList", payment);
 		return sqlSession.insert("payCard", payment);
 	}
+	
+	@Override
+	public int makePaymentList(int payment) {
+		Map<String, Object> paymentList = new HashMap<>();
+		Date date = new Date();
+		paymentList.put("completedPayment", 0); 
+		paymentList.put("uncompletedPayment", payment); 
+		paymentList.put("insurancePaymentPeriod", date); 
+		return sqlSession.insert("makePaymentList", paymentList);
+	}
 
 	@Override
 	public List<Contract> showAllContract(int customerID) {

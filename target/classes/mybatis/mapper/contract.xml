@@ -64,6 +64,23 @@
 		)
 	</insert>
 	
+	<insert id = "makePaymentList" parameterType="java.util.Map">
+		insert into
+		InsurancePaymentList (
+			completedPayment, uncompletedPayment, insurancePaymentPeriod
+		)
+		values(
+			#{completedPayment},
+			#{uncompletedPayment},
+			#{insurancePaymentPeriod}
+		)
+		
+	  <selectKey keyProperty="insurancePaymentListID" resultType="int">
+         SELECT last_insert_id()
+      </selectKey>
+      
+	</insert>
+	
 	<update id="payCardList" parameterType="java.util.Map">
 		UPDATE InsurancePaymentList
 		SET completedPayment = completedPayment + #{oneTimeInsurancePayment},

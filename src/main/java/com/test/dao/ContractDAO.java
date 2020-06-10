@@ -18,5 +18,6 @@ public interface ContractDAO {
 	public InsurancePaymentList showPaymentList(int insurancePaymentListID);
 	public List<InsurancePayment> showPayment(int insurancePaymentListID);
 	public int destroyContract(int contractID);
+	public int payCard(int paymentAmount, int paymentListID);
 	
 }

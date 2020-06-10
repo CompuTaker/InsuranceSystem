@@ -1,5 +1,6 @@
 package com.test.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public interface CustomerDAO {
 	
 	//고객ID에 맞는 고객이름 가져오기
 	public String showCustomerName(int customerID);
+	public int signUp(HashMap<String, Object> pmap);
 	
 	
 	

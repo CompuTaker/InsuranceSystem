@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -20,6 +21,7 @@ import com.test.dao.SalesmanDAO;
 import com.test.dto.Customer;
 import com.test.dto.InsuranceInternalApprover;
 import com.test.dto.Salesman;
+import com.test.enumeration.Job;
 
 @Controller
 @SessionAttributes({"customer", "salesman", "insuranceInteralApprover"})
@@ -86,6 +88,18 @@ public class HomeController {
 	public String logout(Model model, SessionStatus status) {
 		status.setComplete(); // sessionAttribute를 초기화해준다.
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/signUp")
+	public String signUp(Model model) {
+		model.addAttribute("jobs", Job.values());
+		return "signUp";
+	}
+	
+	@RequestMapping(value = "/signUpComplete")
+	public String signUpComplete(@RequestParam HashMap<String, Object> pmap) {
+		customerDAO.signUp(pmap);
+		return "redirect:login";
 	}
 	
 }

@@ -20,4 +20,22 @@
 		select customerName from Customer where customerID = #{customerID}
 	</select>
 	
+	<insert id="signUp" parameterType="java.util.Map">
+		insert into
+		Customer(
+			loginID, loginPassword, customerName, gender, socialSecurityNumber,	age, job, email, address
+		)
+		values(
+			#{loginID},
+			#{loginPassword},
+			#{customerName},
+			#{gender},
+			#{socialSecurityNumber},
+			#{age},
+			#{job},
+			#{email},
+			#{address}
+		)
+	</insert>
+	
 </mapper>

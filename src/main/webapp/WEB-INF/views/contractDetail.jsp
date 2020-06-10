@@ -20,7 +20,7 @@
 		theForm.submit()
   	}
   	function destroyContract() {
-  		var theForm = document.getElementById("payInsuranceMoney");
+  		var theForm = document.getElementById("checkInsuranceMoney");
   		var contractID = document.getElementById("contractID").childNodes[0].nodeValue;
 		theForm.action = "destroyContract?contractID=" + contractID;
 		theForm.submit()
@@ -106,8 +106,8 @@
 				onclick="destroyContract()">
 				<i class="fa fa-edit fa-fw"></i> 계약 파기하기
 			</button>
-			<button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
-            <i class="fa fa-edit fa-fw"></i> 처음으로
+			<button type="button" class="btn btn-outline btn-primary" onclick="history.back(-1);">
+            <i class="fa fa-edit fa-fw"></i> 뒤로가기
          </button>
 		</div>
 	</div>

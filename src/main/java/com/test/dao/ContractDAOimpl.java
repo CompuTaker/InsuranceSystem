@@ -1,6 +1,9 @@
 package com.test.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,17 @@ public class ContractDAOimpl implements ContractDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public int payCard(int paymentAmount, int paymentListID) {
+		Map<String, Object> payment = new HashMap<>();
+		payment.put("insurancePaymentListID", paymentListID);
+		payment.put("oneTimeInsurancePayment", paymentAmount);
+		Date date = new Date();
+		payment.put("insurancePaymentDate", date);
+		sqlSession.update("payCardList", payment);
+		return sqlSession.insert("payCard", payment);
+	}
 
 	@Override
 	public List<Contract> showAllContract(int customerID) {
@@ -92,6 +106,8 @@ public class ContractDAOimpl implements ContractDAO {
 	public void provideExpectedMoney(int expectedMoney, int contractID){
 
 	}
+
+
 
 
 }

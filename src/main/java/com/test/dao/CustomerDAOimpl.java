@@ -1,5 +1,6 @@
 package com.test.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,10 +25,16 @@ public class CustomerDAOimpl implements CustomerDAO {
 	
 	
 	//고객ID에 맞는 고객이름 가져오기
+	@Override
 	public String showCustomerName(int customerID) {
 		return sqlSession.selectOne("getCustomerName", customerID);
 	}
 	
+	
+	@Override
+	public int signUp(HashMap<String, Object> pmap) {
+		return sqlSession.insert("signUp", pmap);
+	}
 	
 	
 	public void finalize() throws Throwable {

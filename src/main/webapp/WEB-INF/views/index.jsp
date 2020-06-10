@@ -35,12 +35,19 @@
 		location.href = "insuranceList";
 	}
 	
+	function allContract(){
+		location.href = "allContract";
+	}
+	
 	function login(){
 		location.href = "login";
 	}
 	
 	function logout(){
 		location.href = "logout";
+	}
+	function signUp(){
+		location.href = "signUp";
 	}
 </script>
 </head>
@@ -68,9 +75,13 @@
 		<button onclick="joinInsurance()">보험상품 영업하기 (가입시키기)</button>
 	</div>
 	<div>
+		<button onclick="allContract()">계약확인하기</button>
+	</div>
+	<div>
 		<c:choose>
 			<c:when test="${who == 'anon'}">
 				<button onclick="login()">로그인</button>
+				<button onclick="signUp()">회원가입</button>
 			</c:when>
 			<c:otherwise>
 				<button onclick="logout()">로그아웃</button>

@@ -52,4 +52,23 @@
 		where contractID = #{contractID};
 	</update>
 	
+	<insert id = "payCard" parameterType="java.util.Map">
+		insert into
+		InsurancePayment (
+		insurancePaymentListID, oneTimeInsurancePayment, insurancePaymentDate
+		)
+		values(
+		#{insurancePaymentListID},
+		#{oneTimeInsurancePayment},
+		#{insurancePaymentDate}
+		)
+	</insert>
+	
+	<update id="payCardList" parameterType="java.util.Map">
+		UPDATE InsurancePaymentList
+		SET completedPayment = completedPayment + #{oneTimeInsurancePayment},
+		uncompletedPayment = uncompletedPayment - #{oneTimeInsurancePayment}
+		where insurancePaymentListID = #{insurancePaymentListID};
+	</update>
+	
 </mapper>

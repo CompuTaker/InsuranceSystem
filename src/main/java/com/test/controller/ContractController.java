@@ -22,6 +22,8 @@ import com.test.dao.VehicleProposalDAOimpl;
 import com.test.dto.Contract;
 import com.test.dto.InsurancePayment;
 import com.test.dto.InsurancePaymentList;
+import com.test.enumeration.Bank;
+import com.test.enumeration.Job;
 
 
 @Controller
@@ -201,14 +203,79 @@ public class ContractController {
 		model.addAttribute("paymentList", paymentList);
 		model.addAttribute("payment", payment);
 		model.addAttribute("date", date);
+		model.addAttribute("banks", Bank.values());
 		
 		return "checkInsuranceMoney";
 	}
+	
+
 
 	@RequestMapping("/destroyContract")
 	public String destroyContract(Model model, int contractID) {
 		contractDAOimpl.destroyContract(contractID);
+
+		int customerID = 1;
+		
+		//고객이름
+		String customerName = customerDAOimpl.showCustomerName(customerID);
+		
+		//고객의 계약 전체 받아오기
+		List<Contract> allContract = contractDAOimpl.showAllContract(customerID);
+		
+		// ID만 빼오기
+		List<Integer> allContractManagerID = new ArrayList<Integer>();
+		List<Integer> recipientID = new ArrayList<Integer>();
+		List<Integer> insuranceID = new ArrayList<Integer>();
+		List<String> insuranceType = new ArrayList<String>();
+		for(Contract contract : allContract) {
+			allContractManagerID.add(contract.getContractManagerID());
+			recipientID.add(contract.getRecipientID());
+			insuranceID.add(contract.getInsuranceID());
+			insuranceType.add(contract.getInsuranceType());
+		}
+
+		
+		//계약관리자 ID로 이름 다 받아오기
+		List<String> allContractManager = contractManagerDAOimpl.showCustomerContractManager(allContractManagerID);
+		
+		//수취인 ID로 이름 다 받아오기
+		List<String> recipientName = recipientDAOimpl.showRecipientName(recipientID);
+		
+		List<String> insuranceName = new ArrayList<String>();
+		for(int i = 0; i < insuranceID.size(); i++) {
+			int proposalID = 0;
+			switch(insuranceType.get(i)) {
+			case "FireInsurance":
+				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
+				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
+				break;
+			case "InjuryInsurance": 
+				proposalID = injuryInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
+				insuranceName.add(injuryProposalDAOimpl.getProprosalName(proposalID));
+				break;
+			case "VehicleInsurance":
+				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
+				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
+				break;
+			}
+
+		}
+		
+		model.addAttribute("insuranceName", insuranceName);
+		model.addAttribute("customerName", customerName);
+		model.addAttribute("contract", allContract);
+		model.addAttribute("contractManager", allContractManager);
+		model.addAttribute("recipientName", recipientName);
+		
 		return "allContract";
 	}
 		
+	@RequestMapping("/payCard")
+	public String payCard(Model model, int paymentAmount, int paymentListID) {
+		
+		contractDAOimpl.payCard(paymentAmount, paymentListID);
+		
+		return "redirect:index";
+	}
+	
 }

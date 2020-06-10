@@ -159,14 +159,14 @@ public class InsuranceController {
 	
 	@RequestMapping(value = "/requestCounsel") // 상담요청하기
 	public String requestConsel(Model model, HttpSession session, int insuranceID, String whichInsuranceDetail) {
-		
+
 		Customer customer = (Customer) session.getAttribute("customer");
-		if(customer == null ) {
+		if (customer == null) {
 			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			return "login";
-			
-		}else {
-			String loginID = customer.getLoginID(); 
+
+		} else {
+			String loginID = customer.getLoginID();
 			model.addAttribute("loginID", loginID);
 			model.addAttribute("insuranceID", insuranceID);
 			model.addAttribute("insuranceType", whichInsuranceDetail);

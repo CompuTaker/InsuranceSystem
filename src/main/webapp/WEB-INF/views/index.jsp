@@ -34,6 +34,9 @@
 	function joinInsurance(){
 		location.href = "insuranceList";
 	}
+	function showCustomerForSales(){
+		location.href = "showCustomerForSales";
+	}
 	
 	function login(){
 		location.href = "login";
@@ -66,6 +69,9 @@
 	</div>
 	<div>
 		<button onclick="joinInsurance()">보험상품 영업하기 (가입시키기)</button>
+	</div>
+	<div>
+		<button onclick="showCustomerForSales()">영업고객 조회하기</button>
 	</div>
 	<div>
 		<c:choose>

@@ -8,34 +8,35 @@ package com.test.dto;
  */
 public class Salesman {
 
-	private int team;
 	private int salesmanID;
-	private int name;
-	private int jobPosition;
-	
-	public int getTeam() {
-		return team;
-	}
-	public void setTeam(int team) {
-		this.team = team;
-	}
+	private String team;
+	private String name;
+	private String jobPosition;
 	public int getSalesmanID() {
 		return salesmanID;
 	}
 	public void setSalesmanID(int salesmanID) {
 		this.salesmanID = salesmanID;
 	}
-	public int getName() {
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
+	}
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	public int getJobPosition() {
+	public String getJobPosition() {
 		return jobPosition;
 	}
-	public void setJobPosition(int jobPosition) {
+	public void setJobPosition(String jobPosition) {
 		this.jobPosition = jobPosition;
 	}
+	
+	
 
 }

@@ -21,12 +21,15 @@ import com.test.dao.InjuryInsuranceDAOimpl;
 import com.test.dao.InjuryProposalDAOimpl;
 import com.test.dao.VehicleInsuranceDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
+import com.test.dto.Customer;
+import com.test.dto.CustomerForSales;
 import com.test.dto.FireInsurance;
 import com.test.dto.FireProposal;
 import com.test.dto.InjuryInsurance;
 import com.test.dto.InjuryProposal;
 import com.test.dto.Insurance;
 import com.test.dto.Proposal;
+import com.test.dto.Salesman;
 import com.test.dto.VehicleInsurance;
 import com.test.dto.VehicleProposal;
 import com.test.enumeration.Bank;
@@ -67,7 +70,15 @@ public class SalesController {
 	private CustomerForSalesDAO customerForSalesDAO;
 	
 	@RequestMapping({ "/insuranceList" }) // 모든 보험 상품 보기
-	public String showAllInsurnace(Model model) {
+	public String showAllInsurnace(Model model, HttpSession session) {
+		Salesman salesman = (Salesman) session.getAttribute("salesman");
+		
+		if (salesman == null) {
+			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			return "login";
+
+		} else {
+		
 		List<Proposal> fireProposalList = new ArrayList<Proposal>();
 		List<Proposal> injuryProposalList = new ArrayList<Proposal>();
 		List<Proposal> vehicleProposalList = new ArrayList<Proposal>();
@@ -123,6 +134,7 @@ public class SalesController {
 		model.addAttribute("vehicleProposalList", vehicleProposalList);
 		
 		return "joinInsurance/insuranceList";
+		}
 	}
 	
 	@RequestMapping(value = "/insuranceSalesInput") // 보험상품 상세보기
@@ -230,6 +242,29 @@ public class SalesController {
 		// insurancePaymentListID
 		
 		return "joinInsurance/aggreement";
+	}
+	
+	
+	@RequestMapping(value = "/showCustomerForSales") // 영업고객 조회하기
+	public String showCustomerForSales(Model model, HttpSession session) {
+		
+		Salesman salesman = (Salesman) session.getAttribute("salesman");
+		
+		if (salesman == null) {
+			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			return "login";
+
+		} else {
+			int salesmanID = salesman.getSalesmanID();
+			List<CustomerForSales> customerForSalesList = null;
+			customerForSalesList= this.customerForSalesDAO.listCustomerForSalesBySalesmanID(salesmanID);
+			
+			model.addAttribute("customerForSalesList", customerForSalesList);
+			
+			
+			
+		return "showCustomerForSales";
+		}
 	}
 	
 }

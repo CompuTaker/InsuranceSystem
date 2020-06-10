@@ -239,7 +239,6 @@ public class ContractController {
 			insuranceID.add(contract.getInsuranceID());
 			insuranceType.add(contract.getInsuranceType());
 		}
-
 		
 		//계약관리자 ID로 이름 다 받아오기
 		List<String> allContractManager = contractManagerDAO.showCustomerContractManager(allContractManagerID);
@@ -295,10 +294,13 @@ public class ContractController {
 		int insurancePayment = underwritingTestStub.calculateInsurancePayment(
 					Float.parseFloat(cmap.get("extraChargeRate") + ""));
 		
+		int insurancePaymentListID = contractDAO.makePaymentList(insurancePayment);
+		
 		cmap.put("contractExpirationDate", contractExpirationDate);
 		cmap.put("contractRemainingPeriod", contractRemainingPeriod);
 		cmap.put("insurancePayment", insurancePayment);
-	
+		cmap.put("insurancePaymentListID", insurancePaymentListID);
+		
 		int res = this.contractDAO.insertContract(cmap);
 		System.out.println("insertContract res : " + res);
 		

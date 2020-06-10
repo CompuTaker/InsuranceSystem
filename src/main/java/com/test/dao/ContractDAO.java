@@ -20,7 +20,7 @@ public interface ContractDAO {
 	public List<InsurancePayment> showPayment(int insurancePaymentListID);
 	public int destroyContract(int contractID);
 	public int payCard(int paymentAmount, int paymentListID);
-	public int makePaymentList(int payment);
+	public int makePaymentList(int insurancePayment);
 	public int insertContract(Map<String, Object> rmap);
 	
 }

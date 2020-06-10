@@ -31,7 +31,7 @@ public class ContractDAOimpl implements ContractDAO {
 	
 	@Override
 	public int payCard(int paymentAmount, int paymentListID) {
-		Map<String, Object> payment = new HashMap<>();
+		Map<String, Object> payment = new HashMap<String, Object>();
 		payment.put("insurancePaymentListID", paymentListID);
 		payment.put("oneTimeInsurancePayment", paymentAmount);
 		Date date = new Date();
@@ -41,13 +41,16 @@ public class ContractDAOimpl implements ContractDAO {
 	}
 	
 	@Override
-	public int makePaymentList(int payment) {
-		Map<String, Object> paymentList = new HashMap<>();
+	public int makePaymentList(int insurancePayment) {
+		Map<String, Object> paymentList = new HashMap<String, Object>();
 		Date date = new Date();
 		paymentList.put("completedPayment", 0); 
-		paymentList.put("uncompletedPayment", payment); 
+		paymentList.put("uncompletedPayment", insurancePayment); 
 		paymentList.put("insurancePaymentPeriod", date); 
-		return sqlSession.insert("makePaymentList", paymentList);
+		int res = this.sqlSession.insert("makePaymentList", paymentList);
+		System.out.println("makePaymentList res : " + res);
+		int insurancePaymentListID = (int) paymentList.get("insurancePaymentListID");
+		return insurancePaymentListID;
 	}
 
 	@Override

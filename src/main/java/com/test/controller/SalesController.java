@@ -252,10 +252,14 @@ public class SalesController {
 		String insuranceType = (String) rmap.get("whichInsurance");
 		rmap.put("insuranceType", insuranceType);
 		// int insuranceID = Integer.parseInt((String) rmap.get("insuranceID"));
-		int recipientID = 1; rmap.put("recipientID", recipientID);
-		int contractManagerID = 1; rmap.put("contractManagerID", contractManagerID);
+		int recipientID = 1;
+		rmap.put("recipientID", recipientID);
 		
-		int insurancePaymentListID = 1; rmap.put("insurancePaymentListID", insurancePaymentListID);
+		int contractManagerID = 1;
+		rmap.put("contractManagerID", contractManagerID);
+		
+		int insurancePaymentListID = 1;
+		rmap.put("insurancePaymentListID", insurancePaymentListID);
 		
 		int salesmanID = 1;
 		Salesman salesman = (Salesman) session.getAttribute("salesman");

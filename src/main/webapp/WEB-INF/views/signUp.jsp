@@ -12,9 +12,40 @@
    
 	<script type="text/javascript">
 	function signUp() {
-		var theForm = document.getElementById("signUp");
-		theForm.action = "signUpComplete";
-		theForm.submit()
+		
+		var loginID = document.getElementById("loginID").value;
+		var loginPassword = document.getElementById("loginPassword").value;
+		var customerName = document.getElementById("customerName").value;
+		var gender = document.getElementsByName("gender").value;
+		var socialSecurityNumber = document.getElementById("socialSecurityNumber").value;
+		var age = document.getElementById("age").value;
+		var job = document.getElementsByName("job").value;
+		var email = document.getElementById("email").value;
+		var address = document.getElementById("address").value;
+		
+		if(loginID == "") {
+			alert('아이디를 입력해주세요');
+		} else if(loginPassword ==  "") {
+			alert('패스워드를 입력해주세요');
+		} else if(customerName ==  "") {
+			alert('이름을 입력해주세요');
+		} else if(gender ==  "") {
+			alert('성별을 선택해주세요');
+		} else if(socialSecurityNumber ==  "") {
+			alert('주민번호를 입력해주세요');
+		} else if(age ==  "") {
+			alert('나이를 입력해주세요');
+		} else if(job ==  "") {
+			alert('직업을 선택해주세요');
+		} else if(email ==  "") {
+			alert('이메일을 입력해주세요');
+		} else if(address ==  "") {
+			alert('주소를 입력해주세요');
+		} else {
+			var theForm = document.getElementById("signUp");
+			theForm.action = "signUpComplete";
+			theForm.submit()
+		}
 	}
 	
 	var httpRequestID;

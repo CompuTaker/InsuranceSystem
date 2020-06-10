@@ -11,66 +11,50 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
 	<script type="text/javascript">
+	
+	var httpRequest;
+	var isAvailable = false;
+	
+	function isDuplicateCheck() {
+		httpRequest = new XMLHttpRequest();
+		if (!httpRequest) {
+			alert('중복확인 XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
+			return false;
+		}
+		httpRequest.onreadystatechange = duplicateCheckCallBack;
+
+		var loginIDtag = document.getElementById("loginID");
+		var socialSecurityNumberTag = document.getElementById("socialSecurityNumber");
+		
+		console.log(loginIDtag.value);
+		console.log(socialSecurityNumberTag.value);
+		
+		httpRequest.open('GET', 'checkDuplicate?id=' + loginIDtag.value + "&ssn=" + socialSecurityNumberTag.value);
+		httpRequest.send();
+	}
+	
+	function duplicateCheckCallBack() {
+		if (httpRequest.readyState === XMLHttpRequest.DONE) {
+			if (httpRequest.status === 200) {
+				var res = httpRequest.responseText;
+				var strs = res.split(" ");
+				if(res == ""){
+					alert("사용가능합니다!");
+					isAvailable = true;
+				}else{
+					alert(res + "중복!");
+				}
+			} else {
+				alert('request에 뭔가 문제가 있어요. ID/주민등록번호 중복확인 콜백');
+			}
+		}
+	}
+	
 	function signUp() {
 		var theForm = document.getElementById("signUp");
-		theForm.action = "signUpComplete";
-		theForm.submit()
-	}
-	
-	var httpRequestID;
-	var httpRequestSSN;
-	
-	function idCheck() {
-		httpRequestID = new XMLHttpRequest();
-		if (!httpRequestID) {
-			alert('ID중복확인 XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
-			return false;
-		}
-		httpRequestID.onreadystatechange = idCheckCallBack;
-
-		var toBeCalculated = document.getElementsByClassName("toBeCalculated");
-		
-		httpRequestID.open('GET', 'calculateRate?' + params); // calculateRate // 언더라이팅 대용
-		httpRequestID.send();
-	}
-	
-	function ssnCheck() {
-		httpRequestSSN = new XMLHttpRequest();
-		if (!httpRequestSSN) {
-			alert('주민등록번호중복확인 XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
-			return false;
-		}
-		httpRequestSSN.onreadystatechange = ssnCheckCallBack;
-
-		var toBeCalculated = document.getElementsByClassName("toBeCalculated");
-		
-		httpRequestSSN.open('GET', 'calculateRate?' + params); // calculateRate // 언더라이팅 대용
-		httpRequestSSN.send();
-	}
-	
-	function idCheckCallBack() {
-		if (httpRequestID.readyState === XMLHttpRequest.DONE) {
-			if (httpRequestID.status === 200) {
-				var res = httpRequestID.responseText;
-				alert(res);
-				var idCheckedTag = document.getElementById("idChecked");
-				idCheckedTag.innerHTML = "계산된 위험률 => " + res;
-			} else {
-				alert('request에 뭔가 문제가 있어요. ID중복확인 콜백');
-			}
-		}
-	}
-	
-	function ssnCheckCallBack() {
-		if (httpRequestSSN.readyState === XMLHttpRequest.DONE) {
-			if (httpRequestSSN.status === 200) {
-				var res = httpRequestSSN.responseText;
-				alert(res);
-				var socialSecurityNumberCheckedTag = document.getElementById("socialSecurityNumberChecked");
-				socialSecurityNumberChecked.innerHTML = res;
-			} else {
-				alert('request에 뭔가 문제가 있어요. SSN중복확인 콜백');
-			}
+		if(isAvailable){
+			theForm.action = "signUpComplete";
+			theForm.submit();
 		}
 	}
 	</script>
@@ -107,10 +91,6 @@
 					<td>
 						<input type="text" class="form-control" name="loginID" id="loginID" placeholder="ID">
 					</td>
-					<td>
-						<button onclick="idCheck()">ID 중복 확인</button>
-						<span id="idChecked"></span>
-					</td>
 				</tr>
 				<tr>
 					<td>password</td>
@@ -135,10 +115,6 @@
 					<td>주민번호</td>
 					<td>
 						<input type="text" class="form-control" name="socialSecurityNumber" id="socialSecurityNumber" placeholder="주민번호">
-					</td>
-					<td>
-						<button onclick="ssnCheck()">주민등록번호 중복 확인</button>
-						<span id="socialSecurityNumberChecked"></span>
 					</td>
 				</tr>
 				<tr>
@@ -178,6 +154,7 @@
 				onclick="signUp()">
 				<i class="fa fa-edit fa-fw"></i> 회원가입
 			</button>
+			<button onclick="isDuplicateCheck()">중복 확인 (ID, 주민등록번호)</button>
 			<button type="button" class="btn btn-outline btn-primary" onclick="history.back(-1);">
             <i class="fa fa-edit fa-fw"></i> 뒤로가기
          </button>

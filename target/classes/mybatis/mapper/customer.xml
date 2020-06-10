@@ -43,4 +43,9 @@
 		select * from Customer where socialSecurityNumber = #{socialSecurityNumber}
 	</select>
 	
+	<select id="showCustomerByLoginID" parameterType="java.lang.String"
+		resultType="com.test.dto.Customer">
+		select * from Customer where loginID = #{id}
+	</select>
+	
 </mapper>

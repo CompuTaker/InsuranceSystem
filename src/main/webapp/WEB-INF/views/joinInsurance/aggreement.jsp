@@ -14,6 +14,16 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+	function insertContract(){
+		var theForm = document.getElementById("theForm");
+		var aggreeTag = document.getElementById("aggree");
+		if(aggreeTag.checked){
+			alert("해당 고객을 가입시킵니다!");
+			theForm.submit();
+		}else{
+			alert("약관에 동의하지 않아서 가입시킬 수 없습니다!");
+		}
+	}
 </script>
 
 <title>보험사 시스템</title>
@@ -28,10 +38,16 @@
 				</div>
 				<hr/>
 				<p>약관 내용 blah blah blah ~~</p>
-				<form>
-					동의합니다!<input type="radio" name="agreeOrNot" value="agree" checked="checked"/>
+				<form id="theForm" action="insertContract">
+					<c:forEach items="${rmap}" var="one" varStatus="status">
+						<input type="hidden" name="${one.key}" value="${one.value}">
+					</c:forEach>
+					계약 만료일 지정하기<input type="date" name="contractExpirationDate"/>
 					<br/>
-					동의하지않습니다!<input type="radio" name="agreeOrNot" value="not"/>
+					동의합니다!<input type="radio" id="aggree" name="agreeOrNot" value="agree" checked="checked"/>
+					<br/>
+					동의하지않습니다!<input type="radio" id="no" name="agreeOrNot" value="not"/>
+					<button onclick="insertContract()">보험 가입시키기</button>
 				</form>
 			</div>
 		</div>

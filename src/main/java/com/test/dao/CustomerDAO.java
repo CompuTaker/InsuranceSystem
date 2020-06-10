@@ -18,7 +18,7 @@ public interface CustomerDAO {
 	public String showCustomerName(int customerID);
 	
 	
-	
+	public Customer showCustomerBySocialSecurityNumber(String socialSecurityNumber);
 	
 
 	public List<Customer> showAllCustomer();

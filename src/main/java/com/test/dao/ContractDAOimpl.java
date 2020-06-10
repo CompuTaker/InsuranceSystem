@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,8 +91,13 @@ public class ContractDAOimpl implements ContractDAO {
 	 * @param ���ID
 	 */
 	public void provideExpectedMoney(int expectedMoney, int contractID){
-
+		
 	}
-
+	
+	@Override
+	public int insertContract(Map<String, Object> rmap) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.insert("insertContract", rmap);
+	}
 
 }

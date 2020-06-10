@@ -1,13 +1,18 @@
 package com.test.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.dao.ContractDAO;
 import com.test.dao.ContractManagerDAO;
@@ -28,16 +33,16 @@ import com.test.dto.InsurancePaymentList;
 public class ContractController {
 	
 	@Autowired
-	private CustomerDAO customerDAOimpl;
+	private CustomerDAO customerDAO;
 	
 	@Autowired
-	private ContractDAO contractDAOimpl;
+	private ContractDAO contractDAO;
 
 	@Autowired
-	private ContractManagerDAO contractManagerDAOimpl;
+	private ContractManagerDAO contractManagerDAO;
 	
 	@Autowired
-	private RecipientDAO recipientDAOimpl;
+	private RecipientDAO recipientDAO;
 
 	@Autowired
 	private FireInsuranceDAOimpl fireInsuranceDAOimpl;
@@ -63,10 +68,10 @@ public class ContractController {
 		int customerID = 1;
 		
 		//고객이름
-		String customerName = customerDAOimpl.showCustomerName(customerID);
+		String customerName = customerDAO.showCustomerName(customerID);
 		
 		//고객의 계약 전체 받아오기
-		List<Contract> allContract = contractDAOimpl.showAllContract(customerID);
+		List<Contract> allContract = contractDAO.showAllContract(customerID);
 		
 		// ID만 빼오기
 		List<Integer> allContractManagerID = new ArrayList<Integer>();
@@ -82,10 +87,10 @@ public class ContractController {
 
 		
 		//계약관리자 ID로 이름 다 받아오기
-		List<String> allContractManager = contractManagerDAOimpl.showCustomerContractManager(allContractManagerID);
+		List<String> allContractManager = contractManagerDAO.showCustomerContractManager(allContractManagerID);
 		
 		//수취인 ID로 이름 다 받아오기
-		List<String> recipientName = recipientDAOimpl.showRecipientName(recipientID);
+		List<String> recipientName = recipientDAO.showRecipientName(recipientID);
 		
 		List<String> insuranceName = new ArrayList<String>();
 		for(int i = 0; i < insuranceID.size(); i++) {
@@ -123,16 +128,16 @@ public class ContractController {
 		int customerID = 1;
 		
 		//고객이름
-		String customerName = customerDAOimpl.showCustomerName(customerID);
+		String customerName = customerDAO.showCustomerName(customerID);
 		
 		//상세보기 계약  받아오기
-		Contract contract = contractDAOimpl.showContractDetail(contractID);
+		Contract contract = contractDAO.showContractDetail(contractID);
 		
 		//계약관리자 이름 받아오기
-		String contractManagerName = contractManagerDAOimpl.showDetailContractManagerName(contract.getContractManagerID());
+		String contractManagerName = contractManagerDAO.showDetailContractManagerName(contract.getContractManagerID());
 		
 		//수령인 이름 받아오기
-		String recipientName = recipientDAOimpl.showDetailRecipientName(contract.getRecipientID());
+		String recipientName = recipientDAO.showDetailRecipientName(contract.getRecipientID());
 		
 		
 		
@@ -170,12 +175,12 @@ public class ContractController {
 		int customerID = 1;
 		
 		//고객이름
-		String customerName = customerDAOimpl.showCustomerName(customerID);
+		String customerName = customerDAO.showCustomerName(customerID);
 		
 		//상세보기 계약  받아오기
-		Contract contract = contractDAOimpl.showContractDetail(contractID);
-		InsurancePaymentList paymentList = contractDAOimpl.showPaymentList(contract.getInsurancePaymentListID());
-		List<InsurancePayment> payment = contractDAOimpl.showPayment(paymentList.getInsurancePaymentListID());
+		Contract contract = contractDAO.showContractDetail(contractID);
+		InsurancePaymentList paymentList = contractDAO.showPaymentList(contract.getInsurancePaymentListID());
+		List<InsurancePayment> payment = contractDAO.showPayment(paymentList.getInsurancePaymentListID());
 		
 		String insuranceName = new String();
 		switch(contract.getInsuranceType()) {
@@ -207,8 +212,37 @@ public class ContractController {
 
 	@RequestMapping("/destroyContract")
 	public String destroyContract(Model model, int contractID) {
-		contractDAOimpl.destroyContract(contractID);
+		contractDAO.destroyContract(contractID);
 		return "allContract";
 	}
+	
+	@RequestMapping("/insertContract")
+	public String insertContract(Model model, @RequestParam HashMap<String, Object> cmap) {
 		
+		Date contractExpirationDate = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+		String contractExpirationDateString = cmap.get("contractExpirationDate") + "";
+		try {
+			contractExpirationDate = format.parse(contractExpirationDateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			System.out.println("~DateParsingProblem~");
+		}
+		Date contractRemainingPeriod = new Date();
+		
+		UnderwritingTestStub underwritingTestStub = new UnderwritingTestStub();
+		int insurancePayment = underwritingTestStub.calculateInsurancePayment(
+					Float.parseFloat(cmap.get("extraChargeRate") + ""));
+		
+		cmap.put("contractExpirationDate", contractExpirationDate);
+		cmap.put("contractRemainingPeriod", contractRemainingPeriod);
+		cmap.put("insurancePayment", insurancePayment);
+		
+		int res = this.contractDAO.insertContract(cmap);
+		System.out.println("insertContract res : " + res);
+		
+		return "redirect:/";
+	}
+	
 }

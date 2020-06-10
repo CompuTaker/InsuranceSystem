@@ -31,4 +31,10 @@ public class CustomerForSalesDAOimpl implements CustomerForSalesDAO {
 		return lastInsertedCustomerForSalesID;
 	}
 
+	@Override
+	public CustomerForSales showCustomerForSalesById(int lastInsertedCustomerForSalesID) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("showCustomerForSalesById", lastInsertedCustomerForSalesID);
+	}
+
 }

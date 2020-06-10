@@ -10,7 +10,15 @@ import com.test.dto.Proposal;
 import com.test.dto.VehicleProposal;
 
 public class UnderwritingTestStub {
-
+	
+	public int calculateInsurancePayment(float extraChargeRate) {
+		float insurancePayment = 100;
+		if(extraChargeRate > 0) {
+			insurancePayment = 1000 * extraChargeRate;
+		}
+		return (int) insurancePayment;
+	}
+	
 	public float calculateRate(Proposal proposal, String whichInsurance, HashMap<String, Object> rmap) throws ClassNotFoundException {
 		// TODO Auto-generated method stub
 		float rate = 1;

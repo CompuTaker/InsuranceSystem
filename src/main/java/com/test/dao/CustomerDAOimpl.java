@@ -28,12 +28,20 @@ public class CustomerDAOimpl implements CustomerDAO {
 		return sqlSession.selectOne("getCustomerName", customerID);
 	}
 	
-	
-	
-	public void finalize() throws Throwable {
-
+	@Override
+	public Customer showCustomerBySocialSecurityNumber(String socialSecurityNumber) {
+		// TODO Auto-generated method stub
+		Customer customer = new Customer();
+		try {
+			customer = this.sqlSession.selectOne("showCustomerBySocialSecurityNumber", socialSecurityNumber);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("주민등록번호 중복 -- socialSecurityNumber");
+			customer.setCustomerID(-1);
+		}
+		return customer;
 	}
-
+	
 	@Override
 	public List<Customer> showAllCustomer() {
 		// TODO Auto-generated method stub

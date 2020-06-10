@@ -8,6 +8,15 @@
 	<select id="listAllCustomerForSales" resultType="com.test.dto.CustomerForSales">
 		select * from CustomerForSales
 	</select>
+	
+	<insert id="insertCustomerForSales" parameterType="java.util.Map">
+		insert into CustomerForSales (customerForSalesName, customerForSalesSocialSecurityNumber, salesmanID)
+		values (#{customerForSalesName}, #{customerForSalesSocialSecurityNumber}, #{salesmanID})
+		<selectKey keyProperty="customerForSalesID" resultType="int" >
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 	
 </mapper>

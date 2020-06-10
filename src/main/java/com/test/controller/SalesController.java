@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.test.dao.CustomerForSalesDAO;
 import com.test.dao.FireInsuranceDAOimpl;
 import com.test.dao.FireProposalDAOimpl;
 import com.test.dao.InjuryInsuranceDAOimpl;
@@ -59,6 +62,9 @@ public class SalesController {
 
 	@Autowired
 	private VehicleProposalDAOimpl vehicleProposalDAOimpl;
+	
+	@Autowired
+	private CustomerForSalesDAO customerForSalesDAO;
 	
 	@RequestMapping({ "/insuranceList" }) // 모든 보험 상품 보기
 	public String showAllInsurnace(Model model) {
@@ -200,6 +206,30 @@ public class SalesController {
 		}
 		
 		return rate; // Ajax
+	}
+	
+	@RequestMapping(value = "/saveCustomerForSales") // 보험상품 상세보기
+	public String saveCustomerForSales(Model model, HttpSession session, @RequestParam HashMap<String, Object> rmap) {
+		
+		rmap.put("salesmanID", 1); // forced login
+		int lastInsertedCustomerForSalesID = this.customerForSalesDAO.insertCustomerForSales(rmap);
+		System.out.println("^^^^" + lastInsertedCustomerForSalesID);
+		
+		String whichInsurance = (String) rmap.get("whichInsurance");
+		int insuranceID = Integer.parseInt((String) rmap.get("insuranceID"));
+		
+		
+		
+		// insuranceType
+		// insuranceID // FireInsurance, InjuryInsurance, VehicleInsurance
+		// -- multiple foreign key
+		// salesmanID
+		// customerID --- 비회원이면 -1이 아니라, 방금 생성한 영업고객에서라도 특정!
+		// recipientID
+		// contractManagerID
+		// insurancePaymentListID
+		
+		return "joinInsurance/aggreement";
 	}
 	
 }

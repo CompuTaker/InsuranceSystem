@@ -13,7 +13,8 @@
 </script>
 </head>
 <body>
-	<button id="ajaxButton" type="button" onclick="makeRequest()">Make a request</button>
+	<button id="ajaxButton" type="button" onclick="makeRequest()">위험률 계산하기 (언더라이팅)</button>
+	<span id="calculatedRate"></span>
 	<script>
 		var httpRequest;
 		
@@ -45,7 +46,10 @@
 		function alertContents() {
 			if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				if (httpRequest.status === 200) {
-					alert(httpRequest.responseText);
+					var res = httpRequest.responseText;
+					alert(res);
+					var calculatedRateTag = document.getElementById("calculatedRate");
+					calculatedRateTag.innerHTML = "계산된 위험률 => " + res;
 				} else {
 					alert('request에 뭔가 문제가 있어요.');
 				}
@@ -60,14 +64,16 @@
 						<td>화재보험 가입하기</td>
 					</tr>
 				</table>
-				<form>
+				<form action="saveCustomerForSales" method="post">
 					<table>
 						<tr>
 							<td>&nbsp;</td>
 							<td align="center">고객 성명</td>
-							<td><input name="customerName" size="50" maxlength="100">
-							<input type="hidden" id="whichInsurance" name="whichInsurance" value="fire">
-							<input type="hidden" id="proposalID" name="proposalID" value="${proposal.fireProposalID}">
+							<td>
+								<input name="customerForSalesName" size="50" maxlength="100">
+								<input type="hidden" id="whichInsurance" name="whichInsurance" value="fire">
+								<input type="hidden" id="insuranceID" name="insuranceID" value="${insurance.insuranceID}">
+								<input type="hidden" id="proposalID" name="proposalID" value="${proposal.fireProposalID}">
 							</td>
 							<td>&nbsp;</td>
 						</tr>
@@ -78,7 +84,7 @@
 						<tr>
 							<td>&nbsp;</td>
 							<td align="center">주민번호</td>
-							<td><input name="socialSecurityNumber" size="50" maxlength="100"></td>
+							<td><input name="customerForSalesSocialSecurityNumber" size="50" maxlength="100"></td>
 							<td>&nbsp;</td>
 						</tr>
 						<tr height="1" bgcolor="#dddddd">

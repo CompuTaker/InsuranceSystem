@@ -4,6 +4,7 @@ public class CustomerForSales {
 	
 	private int customerForSalesID;
 	private String customerForSalesName;
+	private String customerForSalesSocialSecurityNumber;
 	private int salesmanID;
 	
 	public int getCustomerForSalesID() {
@@ -17,6 +18,12 @@ public class CustomerForSales {
 	}
 	public void setCustomerForSalesName(String customerForSalesName) {
 		this.customerForSalesName = customerForSalesName;
+	}
+	public String getCustomerForSalesSocialSecurityNumber() {
+		return customerForSalesSocialSecurityNumber;
+	}
+	public void setCustomerForSalesSocialSecurityNumber(String customerForSalesSocialSecurityNumber) {
+		this.customerForSalesSocialSecurityNumber = customerForSalesSocialSecurityNumber;
 	}
 	public int getSalesmanID() {
 		return salesmanID;

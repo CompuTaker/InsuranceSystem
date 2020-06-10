@@ -9,7 +9,9 @@
 	
 	<select id="salesmanLogin" parameterType="java.util.Map"
 		resultType="com.test.dto.Salesman">
-		select * from Salesman where salesmanID = CAST(#{id} AS UNSIGNED) and salesmanName = #{pw}
+		select * from Salesman 
+		where salesmanID = CAST(#{id} AS UNSIGNED) 
+		and pw = #{pw}
 	</select>
 	
 </mapper>

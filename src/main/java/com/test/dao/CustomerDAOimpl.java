@@ -36,17 +36,9 @@ public class CustomerDAOimpl implements CustomerDAO {
 	}
 	
 	@Override
-	public Customer showCustomerBySocialSecurityNumber(String socialSecurityNumber) {
+	public List<Customer> showCustomerBySocialSecurityNumber(String socialSecurityNumber) {
 		// TODO Auto-generated method stub
-		Customer customer = new Customer();
-		try {
-			customer = this.sqlSession.selectOne("showCustomerBySocialSecurityNumber", socialSecurityNumber);
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("주민등록번호 중복 -- socialSecurityNumber");
-			customer.setCustomerID(-1);
-		}
-		return customer;
+		return this.sqlSession.selectList("showCustomerBySocialSecurityNumber", socialSecurityNumber);
 	}
 	
 	@Override
@@ -101,6 +93,12 @@ public class CustomerDAOimpl implements CustomerDAO {
 	public int signup(Customer customer) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Customer> showCustomerByLoginID(String id) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectList("showCustomerByLoginID", id);
 	}
 	
 }

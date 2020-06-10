@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -19,8 +20,12 @@ import com.test.dao.CustomerDAO;
 import com.test.dao.InsuranceInternalApproverDAO;
 import com.test.dao.SalesmanDAO;
 import com.test.dto.Customer;
+import com.test.dto.FireProposal;
+import com.test.dto.InjuryProposal;
 import com.test.dto.InsuranceInternalApprover;
+import com.test.dto.Proposal;
 import com.test.dto.Salesman;
+import com.test.dto.VehicleProposal;
 import com.test.enumeration.Job;
 
 @Controller
@@ -100,6 +105,25 @@ public class HomeController {
 	public String signUpComplete(@RequestParam HashMap<String, Object> pmap) {
 		customerDAO.signUp(pmap);
 		return "redirect:login";
+	}
+	
+	@RequestMapping(value = "/checkDuplicate") // 중복확인 (ID, 주민등록번호)
+	@ResponseBody
+	public String checkDuplicate(Model model, @RequestParam HashMap<String, Object> amap) {
+		String res = "";
+		String id = (String) amap.get("id");
+		String ssn = (String) amap.get("ssn");
+		System.out.println("id ajax => " + id);
+		System.out.println("ssn ajax => " + ssn);
+		List<Customer> customersByID = this.customerDAO.showCustomerByLoginID(id);
+		List<Customer> customersBySSN = this.customerDAO.showCustomerBySocialSecurityNumber(ssn);
+		if(customersByID.size() > 0) {
+			res = res + "id ";
+		}
+		if(customersBySSN.size() > 0) {
+			res = res + "ssn ";
+		}
+		return res; // Ajax
 	}
 	
 }

@@ -243,14 +243,14 @@ public class SalesController {
 		int customerID = 0;
 		
 		// 주민등록번호로, 미리 가입되어있는 사람인지 확인해보기
-		Customer customer = this.customerDAO.showCustomerBySocialSecurityNumber(customerForSales.getCustomerForSalesSocialSecurityNumber());
-		if(customer != null) {
+		List<Customer> customers = this.customerDAO.showCustomerBySocialSecurityNumber(customerForSales.getCustomerForSalesSocialSecurityNumber());
+		if(customers != null) {
 			// 회원인 경우
-			if(customer.getCustomerID() == -1) {
+			if(customers.size() > 1) { // 2명 이상
 				System.out.println("~~ duplicate socialSecurityNumber ~~");
 				return "redirect:/";
 			}
-			customerID = customer.getCustomerID();
+			customerID = customers.get(0).getCustomerID();
 		}else {
 			// 비회원인 경우
 			customerID = customerForSales.getCustomerForSalesID();
@@ -315,6 +315,7 @@ public class SalesController {
 		return "showCustomerForSales";
 		}
 	}
+	
 	@RequestMapping(value = "/customerForSalesSearchResult") // 영업고객 조회하기
 	public String customerForSalesSearchResult(Model model, HttpSession session, String opt, String term) {
 		

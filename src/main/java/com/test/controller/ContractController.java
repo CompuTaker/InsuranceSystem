@@ -8,11 +8,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.test.dao.ContractDAO;
 import com.test.dao.ContractManagerDAO;
@@ -25,13 +28,14 @@ import com.test.dao.RecipientDAO;
 import com.test.dao.VehicleInsuranceDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
 import com.test.dto.Contract;
+import com.test.dto.Customer;
 import com.test.dto.InsurancePayment;
 import com.test.dto.InsurancePaymentList;
 import com.test.enumeration.Bank;
-import com.test.enumeration.Job;
 
 
 @Controller
+@SessionAttributes({"customer"})
 public class ContractController {
 	
 	@Autowired
@@ -65,9 +69,15 @@ public class ContractController {
     private VehicleProposalDAOimpl vehicleProposalDAOimpl;
 	
 	@RequestMapping("/allContract")
-	public String showContract(Model model) {
-		
-		int customerID = 1;
+	public String showContract(Model model, HttpSession session) {
+//		HttpSession session
+		Customer customer = (Customer) session.getAttribute("customer");
+		int customerID = 0;
+		if(customer != null) {
+			customerID = customer.getCustomerID();
+		} else {
+			return "login";
+		}
 		
 		//고객이름
 		String customerName = customerDAO.showCustomerName(customerID);
@@ -86,7 +96,6 @@ public class ContractController {
 			insuranceID.add(contract.getInsuranceID());
 			insuranceType.add(contract.getInsuranceType());
 		}
-
 		
 		//계약관리자 ID로 이름 다 받아오기
 		List<String> allContractManager = contractManagerDAO.showCustomerContractManager(allContractManagerID);
@@ -98,22 +107,22 @@ public class ContractController {
 		for(int i = 0; i < insuranceID.size(); i++) {
 			int proposalID = 0;
 			switch(insuranceType.get(i)) {
-			case "FireInsurance":
+			case "fire":
 				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
 				break;
-			case "InjuryInsurance": 
+			case "injury": 
 				proposalID = injuryInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(injuryProposalDAOimpl.getProprosalName(proposalID));
 				break;
-			case "VehicleInsurance":
+			case "vehicle":
 				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
 				break;
 			}
 
 		}
-		
+				
 		model.addAttribute("insuranceName", insuranceName);
 		model.addAttribute("customerName", customerName);
 		model.addAttribute("contract", allContract);
@@ -145,13 +154,13 @@ public class ContractController {
 		
 		String insuranceName = new String();
 			switch(contract.getInsuranceType()) {
-			case "FireInsurance":
+			case "fire":
 				insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 				break;
-			case "InjuryInsurance": 
+			case "injury": 
 				insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 				break;
-			case "VehicleInsurance":
+			case "vehicle":
 				insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 				break;
 			}
@@ -186,13 +195,13 @@ public class ContractController {
 		
 		String insuranceName = new String();
 		switch(contract.getInsuranceType()) {
-		case "FireInsurance":
+		case "fire":
 			insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 			break;
-		case "InjuryInsurance": 
+		case "injury": 
 			insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 			break;
-		case "VehicleInsurance":
+		case "vehicle":
 			insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
 			break;
 		}
@@ -250,15 +259,15 @@ public class ContractController {
 		for(int i = 0; i < insuranceID.size(); i++) {
 			int proposalID = 0;
 			switch(insuranceType.get(i)) {
-			case "FireInsurance":
+			case "fire":
 				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
 				break;
-			case "InjuryInsurance": 
+			case "injury": 
 				proposalID = injuryInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(injuryProposalDAOimpl.getProprosalName(proposalID));
 				break;
-			case "VehicleInsurance":
+			case "vehicle":
 				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
 				break;

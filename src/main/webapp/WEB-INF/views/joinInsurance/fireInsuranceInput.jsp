@@ -49,7 +49,9 @@
 					var res = httpRequest.responseText;
 					alert(res);
 					var calculatedRateTag = document.getElementById("calculatedRate");
+					var extraChargeRateTag = document.getElementById("extraChargeRate");
 					calculatedRateTag.innerHTML = "계산된 위험률 => " + res;
+					extraChargeRateTag.value = res;
 				} else {
 					alert('request에 뭔가 문제가 있어요.');
 				}
@@ -74,6 +76,7 @@
 								<input type="hidden" id="whichInsurance" name="whichInsurance" value="fire">
 								<input type="hidden" id="insuranceID" name="insuranceID" value="${insurance.insuranceID}">
 								<input type="hidden" id="proposalID" name="proposalID" value="${proposal.fireProposalID}">
+								<input type="hidden" id="extraChargeRate" name="extraChargeRate" value="-3">
 							</td>
 							<td>&nbsp;</td>
 						</tr>

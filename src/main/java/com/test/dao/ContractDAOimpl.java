@@ -114,10 +114,13 @@ public class ContractDAOimpl implements ContractDAO {
 	 * @param ���ID
 	 */
 	public void provideExpectedMoney(int expectedMoney, int contractID){
-
+		
 	}
-
-
-
-
+	
+	@Override
+	public int insertContract(Map<String, Object> rmap) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.insert("insertContract", rmap);
+	}
+	
 }

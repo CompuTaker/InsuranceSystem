@@ -88,4 +88,63 @@
 		where insurancePaymentListID = #{insurancePaymentListID};
 	</update>
 	
+	<insert id="insertContract" parameterType="java.util.Map">
+		insert into Contract (
+			contractExpirationDate,
+			contractRemainingPeriod,
+			extraChargeRate,
+			insurancePayment,
+			bank,
+			paymentType,
+			compensationType,
+			salesmanID,
+			recipientID,
+			contractManagerID,
+			insurancePaymentListID,
+			customerID,
+			insuranceID,
+			insuranceType
+		)values (
+			#{contractExpirationDate},
+			#{contractRemainingPeriod},
+			#{extraChargeRate},
+			#{insurancePayment},
+			#{bank},
+			#{paymentType},
+			#{compensationType},
+			#{salesmanID},
+			#{recipientID},
+			#{contractManagerID},
+			#{insurancePaymentListID},
+			#{customerID},
+			#{insuranceID},
+			#{insuranceType}
+		)
+	</insert>
+	
+	<!--
+insuranceType	varchar(32)	YES			
+remainingExpectedMoney	int(11)	YES			
+profitabilityRating	varchar(32)	YES			
+paymentType	varchar(32)	YES			
+lossRate	float	YES			
+insurancePayment	int(11)	YES			
+insuranceMoneyLimit	int(48) unsigned	YES			
+insuranceDocuments	blob	YES			
+contractExpirationDate	date	YES			
+compensationType	varchar(32)	YES			
+compensationHistory	int(11)	YES			
+bank	varchar(16)	YES			
+discountRate	float	YES		
+extraChargeRate	float	YES				
+contractRemainingPeriod	date	YES		
+insurancePaymentListID	int(11) unsigned	YES	MUL			
+insuranceID	int(11) unsigned	YES	MUL		
+customerID	int(11) unsigned	YES	MUL		
+recipientID	int(11) unsigned	YES	MUL		
+contractManagerID	int(11) unsigned	YES	MUL		
+salesmanID	int(11) unsigned	YES	MUL		
+destroyed	int(11)	YES			
+	-->
+	
 </mapper>

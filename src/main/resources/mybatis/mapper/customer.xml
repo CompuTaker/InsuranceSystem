@@ -38,4 +38,9 @@
 		)
 	</insert>
 	
+	<select id="showCustomerBySocialSecurityNumber" parameterType="java.lang.String"
+		resultType="com.test.dto.Customer">
+		select * from Customer where socialSecurityNumber = #{socialSecurityNumber}
+	</select>
+	
 </mapper>

@@ -10,5 +10,7 @@ public interface CustomerForSalesDAO {
 	public List<CustomerForSales> listAllCustomerForSales();
 
 	public int insertCustomerForSales(HashMap<String, Object> rmap);
+
+	public CustomerForSales showCustomerForSalesById(int lastInsertedCustomerForSalesID);
 	
 }

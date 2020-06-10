@@ -20,7 +20,7 @@ public interface CustomerDAO {
 	public int signUp(HashMap<String, Object> pmap);
 	
 	
-	
+	public Customer showCustomerBySocialSecurityNumber(String socialSecurityNumber);
 	
 
 	public List<Customer> showAllCustomer();

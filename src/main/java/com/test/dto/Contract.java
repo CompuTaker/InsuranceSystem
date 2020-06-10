@@ -24,7 +24,7 @@ public class Contract { // exetends Insruance
 	private int insurancePayment;
 	private float discountRate;
 	private float extraChargeRate;
-	private Date contractRemainingPeriod;
+	private Date contractRemainingPeriod; // 시작날짜
 	
 	private int recipientID;
 	private String paymentType;

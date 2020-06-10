@@ -27,9 +27,6 @@
       theForm.action = "insuranceSalesInput?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
       theForm.submit();
    }
-   function requestCounsel(){
-      alert("Not Yet!");
-   }
 </script>
 
 <title>보험사 시스템</title>
@@ -127,10 +124,6 @@
          <button class="btn btn-outline btn-primary"
             onclick="showInsuranceDetail()">
             <i class="fa fa-edit fa-fw"></i> 보험상품 상세보기
-         </button>
-         <button class="btn btn-outline btn-primary"
-            onclick="requestCounsel()">
-            <i class="fa fa-edit fa-fw"></i> 상담 요청하기
          </button>
       </div>
    </div>

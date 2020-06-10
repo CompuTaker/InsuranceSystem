@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.test.dao.CustomerDAO;
 import com.test.dao.CustomerForSalesDAO;
 import com.test.dao.FireInsuranceDAOimpl;
 import com.test.dao.FireProposalDAOimpl;
@@ -21,20 +22,26 @@ import com.test.dao.InjuryInsuranceDAOimpl;
 import com.test.dao.InjuryProposalDAOimpl;
 import com.test.dao.VehicleInsuranceDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
+import com.test.dto.Customer;
+import com.test.dto.CustomerForSales;
 import com.test.dto.FireInsurance;
 import com.test.dto.FireProposal;
 import com.test.dto.InjuryInsurance;
 import com.test.dto.InjuryProposal;
 import com.test.dto.Insurance;
 import com.test.dto.Proposal;
+import com.test.dto.Salesman;
 import com.test.dto.VehicleInsurance;
 import com.test.dto.VehicleProposal;
 import com.test.enumeration.Bank;
 import com.test.enumeration.CompensationType;
 import com.test.enumeration.FacilityBusinessType;
 import com.test.enumeration.FacilityMaterialType;
+import com.test.enumeration.IllHistory;
 import com.test.enumeration.Job;
 import com.test.enumeration.PaymentType;
+import com.test.enumeration.VehiclePurpose;
+import com.test.enumeration.VehicleType;
 
 /**
  * @author Administrator
@@ -65,6 +72,9 @@ public class SalesController {
 	
 	@Autowired
 	private CustomerForSalesDAO customerForSalesDAO;
+	
+	@Autowired
+	private CustomerDAO customerDAO;
 	
 	@RequestMapping({ "/insuranceList" }) // 모든 보험 상품 보기
 	public String showAllInsurnace(Model model) {
@@ -143,11 +153,15 @@ public class SalesController {
 			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(iinsurance.getInjuryProposalID());
 			model.addAttribute("proposal", ip);
 			model.addAttribute("insurance", iinsurance);
+			model.addAttribute("illHistories", IllHistory.values());
+			model.addAttribute("familyIllHistories", IllHistory.values());
 		}else if(whichInsurance.equals("vehicle")) {
 			vinsurance = (VehicleInsurance) this.vehicleInsuranceDAOimpl.showInsuranceDetail(insuranceID);
 			VehicleProposal vp = (VehicleProposal) this.vehicleProposalDAOimpl.showSpecificProposal(vinsurance.getVehicleProposalID());
 			model.addAttribute("proposal", vp);
 			model.addAttribute("insurance", vinsurance);
+			model.addAttribute("vehiclePurposes", VehiclePurpose.values());
+			model.addAttribute("vehicleTypes", VehicleType.values());
 		}else {
 			System.out.println("~~NONE_insuranceDetail~~");
 			return "redirect:/";
@@ -189,7 +203,7 @@ public class SalesController {
 		if(whichInsurance.equals("fire")) {
 			FireProposal fp = (FireProposal) this.fireProposalDAOimpl.showSpecificProposal(proposalID);
 			proposal = fp;
-		}else if(whichInsurance.equals("fire")) {
+		}else if(whichInsurance.equals("injury")) {
 			InjuryProposal ip = (InjuryProposal) this.injuryProposalDAOimpl.showSpecificProposal(proposalID);
 			proposal = ip;
 		}else if(whichInsurance.equals("vehicle")) {
@@ -208,26 +222,60 @@ public class SalesController {
 		return rate; // Ajax
 	}
 	
-	@RequestMapping(value = "/saveCustomerForSales") // 보험상품 상세보기
+	@RequestMapping(value = "/saveCustomerForSales")
 	public String saveCustomerForSales(Model model, HttpSession session, @RequestParam HashMap<String, Object> rmap) {
 		
 		rmap.put("salesmanID", 1); // forced login
 		int lastInsertedCustomerForSalesID = this.customerForSalesDAO.insertCustomerForSales(rmap);
 		System.out.println("^^^^" + lastInsertedCustomerForSalesID);
 		
-		String whichInsurance = (String) rmap.get("whichInsurance");
-		int insuranceID = Integer.parseInt((String) rmap.get("insuranceID"));
+		CustomerForSales customerForSales = this.customerForSalesDAO.showCustomerForSalesById(lastInsertedCustomerForSalesID);
 		
+		int customerID = 0;
 		
+		// 주민등록번호로, 미리 가입되어있는 사람인지 확인해보기
+		Customer customer = this.customerDAO.showCustomerBySocialSecurityNumber(customerForSales.getCustomerForSalesSocialSecurityNumber());
+		if(customer != null) {
+			// 회원인 경우
+			if(customer.getCustomerID() == -1) {
+				System.out.println("~~ duplicate socialSecurityNumber ~~");
+				return "redirect:/";
+			}
+			customerID = customer.getCustomerID();
+		}else {
+			// 비회원인 경우
+			customerID = customerForSales.getCustomerForSalesID();
+			System.out.println("~~~*비회원*~~~");
+			return "signup";
+		}
+		
+		String insuranceType = (String) rmap.get("whichInsurance");
+		rmap.put("insuranceType", insuranceType);
+		// int insuranceID = Integer.parseInt((String) rmap.get("insuranceID"));
+		int recipientID = 1; rmap.put("recipientID", recipientID);
+		int contractManagerID = 1; rmap.put("contractManagerID", contractManagerID);
+		
+		int insurancePaymentListID = 1; rmap.put("insurancePaymentListID", insurancePaymentListID);
+		
+		int salesmanID = 1;
+		Salesman salesman = (Salesman) session.getAttribute("salesman");
+		if(salesman != null) {
+			salesmanID = salesman.getSalesmanID();
+		}
+		rmap.put("salesmanID", salesmanID);
+		rmap.put("customerID", customerID);
 		
 		// insuranceType
 		// insuranceID // FireInsurance, InjuryInsurance, VehicleInsurance
 		// -- multiple foreign key
 		// salesmanID
 		// customerID --- 비회원이면 -1이 아니라, 방금 생성한 영업고객에서라도 특정!
+		// -- should be multiple foreign key
 		// recipientID
 		// contractManagerID
 		// insurancePaymentListID
+		
+		model.addAttribute("rmap", rmap);
 		
 		return "joinInsurance/aggreement";
 	}

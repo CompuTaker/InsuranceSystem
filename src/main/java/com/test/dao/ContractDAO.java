@@ -1,6 +1,7 @@
 package com.test.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.test.dto.Contract;
 import com.test.dto.InsurancePayment;
@@ -20,5 +21,6 @@ public interface ContractDAO {
 	public int destroyContract(int contractID);
 	public int payCard(int paymentAmount, int paymentListID);
 	public int makePaymentList(int payment);
+	public int insertContract(Map<String, Object> rmap);
 	
 }

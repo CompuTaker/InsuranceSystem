@@ -34,6 +34,9 @@
 	function joinInsurance(){
 		location.href = "insuranceList";
 	}
+	function showCustomerForSales(){
+		location.href = "showCustomerForSales";
+	}
 	
 	function allContract(){
 		location.href = "allContract";
@@ -76,6 +79,9 @@
 	</div>
 	<div>
 		<button onclick="allContract()">계약확인하기</button>
+	</div>
+	<div>
+		<button onclick="showCustomerForSales()">영업고객 조회하기</button>
 	</div>
 	<div>
 		<c:choose>

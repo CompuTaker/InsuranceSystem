@@ -27,7 +27,14 @@
       theForm.submit();
    }
    function requestCounsel(){
-      alert("Not Yet!");
+	   var whichInsuranceDetail = whichInsurance;
+	   if(whichInsurance != null){
+		   theForm.action = "requestCounsel?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID;
+		      theForm.submit();
+	   }else{
+		   alert("상담을 원하는 보험을 선택하고, 상담을 요청해주세요!");
+	   }
+      
    }
 </script>
 

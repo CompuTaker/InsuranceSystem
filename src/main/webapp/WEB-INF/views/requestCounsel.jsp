@@ -79,7 +79,7 @@
                      <td>&nbsp;</td>
                      <td align="center">상담내용</td>
                      <td>
-                        <input name="counselContent" size="50" maxlength="50">
+                     	<textarea name="counselContent" rows="20" cols="50"></textarea>
                      </td>
                      <td>&nbsp;</td>
                   </tr>

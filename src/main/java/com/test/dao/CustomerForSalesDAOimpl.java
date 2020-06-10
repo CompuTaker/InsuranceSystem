@@ -20,6 +20,12 @@ public class CustomerForSalesDAOimpl implements CustomerForSalesDAO {
 		// TODO Auto-generated method stub
 		return this.sqlSession.selectList("listAllCustomerForSales");
 	}
+	
+	@Override
+	public List<CustomerForSales> listCustomerForSalesBySalesmanID(int salesmanID){
+		
+		return this.sqlSession.selectList("listCustomerForSalesBySalesmanID", salesmanID);
+	}
 
 	@Override
 	public int insertCustomerForSales(HashMap<String, Object> rmap) {

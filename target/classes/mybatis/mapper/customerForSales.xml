@@ -30,6 +30,28 @@
 		where salesmanID = #{salesmanID};
 	</select>
 	
+	
+	<!-- 영업고객정보로 영업고객 검색하기 -->
+	<!-- 고객이름으로 영업고객 정보 가져오기 -->
+	<select id="listCustomerForSalesByCustomerName" 
+		parameterType="java.util.Map"	
+		resultType="com.test.dto.CustomerForSales">
+		select * 
+		from CustomerForSales 
+		where customerForSalesName = #{term}
+		and salesmanID = #{salesmanID};
+	</select>
+	
+	<!-- 주민번호로 영업고객 정보 가져오기 -->
+	<select id="listCustomerForSalesBySalesSocialSecurityNumber" 
+		parameterType="java.util.Map"	
+		resultType="com.test.dto.CustomerForSales">
+		select * 
+		from CustomerForSales 
+		where customerForSalesSocialSecurityNumber = #{term}
+		and salesmanID = #{salesmanID};
+	</select>
+	
 	<!-- 세미콜론 없이 쿼리문 작성! -->
 	
 </mapper>

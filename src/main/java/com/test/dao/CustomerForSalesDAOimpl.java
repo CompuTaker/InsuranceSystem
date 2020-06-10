@@ -43,4 +43,16 @@ public class CustomerForSalesDAOimpl implements CustomerForSalesDAO {
 		return this.sqlSession.selectOne("showCustomerForSalesById", lastInsertedCustomerForSalesID);
 	}
 
+	@Override
+	public List<CustomerForSales> listCustomerForSalesByCustomerName(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("listCustomerForSalesByCustomerName", searchMap);
+		
+	}
+
+	@Override
+	public List<CustomerForSales> listCustomerForSalesBySalesSocialSecurityNumber(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("listCustomerForSalesBySalesSocialSecurityNumber", searchMap);
+		
+	}
+
 }

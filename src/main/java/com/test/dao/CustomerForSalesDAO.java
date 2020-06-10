@@ -14,5 +14,9 @@ public interface CustomerForSalesDAO {
 	public int insertCustomerForSales(HashMap<String, Object> rmap);
 
 	public CustomerForSales showCustomerForSalesById(int lastInsertedCustomerForSalesID);
+
+	public List<CustomerForSales> listCustomerForSalesByCustomerName(HashMap<String, Object> searchMap);
+
+	public List<CustomerForSales> listCustomerForSalesBySalesSocialSecurityNumber(HashMap<String, Object> searchMap);
 	
 }

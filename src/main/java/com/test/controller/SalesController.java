@@ -306,13 +306,48 @@ public class SalesController {
 		} else {
 			int salesmanID = salesman.getSalesmanID();
 			List<CustomerForSales> customerForSalesList = null;
-			customerForSalesList= this.customerForSalesDAO.listCustomerForSalesBySalesmanID(salesmanID);
+			customerForSalesList = this.customerForSalesDAO.listCustomerForSalesBySalesmanID(salesmanID);
 			
 			model.addAttribute("customerForSalesList", customerForSalesList);
 			
 			
 			
 		return "showCustomerForSales";
+		}
+	}
+	@RequestMapping(value = "/customerForSalesSearchResult") // 영업고객 조회하기
+	public String customerForSalesSearchResult(Model model, HttpSession session, String opt, String term) {
+		
+		Salesman salesman = (Salesman) session.getAttribute("salesman");
+		
+		if (salesman == null) {
+			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			return "login";
+			
+		} else {
+			int salesmanID = salesman.getSalesmanID();
+		
+			HashMap<String, Object> searchMap = new HashMap<String, Object>();
+			searchMap.put("salesmanID", salesmanID);
+			searchMap.put("term", term);
+			
+			List<CustomerForSales> customerForSalesList = null;
+			
+			if(opt.equals("0")) {// 고객명으로 검색한 경우
+				System.out.println("이거슨 고객명이여~~~~~~~~~~~~~~~~~`");
+				customerForSalesList= this.customerForSalesDAO.listCustomerForSalesByCustomerName(searchMap);
+				
+			}else if(opt.equals("1")){// 주민번호로 검색한 경우
+				System.out.println("이거는 주민번호지롱~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				customerForSalesList= this.customerForSalesDAO.listCustomerForSalesBySalesSocialSecurityNumber(searchMap);
+				
+			}else {
+				System.out.println("무엇으로 검색할지 선택을 안햇다능~");
+				return "showCustomerForSales";
+			}
+			model.addAttribute("customerForSalesList", customerForSalesList);
+			
+			return "customerForSalesSearchResult";
 		}
 	}
 	

@@ -26,35 +26,15 @@
 }
 </style>
 
-<script type="text/javascript">
-	function search() {
-		var searchForm = document.getElementById("searchForm");
 
-		var typ = document.getElementById("opt");
-		var tpo = typ.options[typ.selectedIndex].value;
-
-		var ter = document.getElementById("term").value;
-		console.log(tpo);
-		searchForm.action = "customerForSalesSearchResult?opt=" + tpo + "&term=" + ter;
-		searchForm.submit();
-	}
-</script>
 
 </head>
 <body>
 
 	<div id="wrap">
-		<br> <br>
-		<div>
-			<form id="searchForm" method="post">
-				<select id="opt">
-					<option value="0">영업 고객명</option>
-					<option value="1">주민번호</option>
-				</select> <input type="text" size="20" id="term" />&nbsp; <input
-					type="submit" onclick="search()" value="검색" />
-			</form>
-			<input type="button" value="뒤로가기" onclick="history.back(-1);">
-		</div>
+		<br> 
+		<input type="button" value="뒤로가기" onclick="history.back(-1);">
+
 		<!-- 게시글 목록 부분 -->
 		<br> <br> <br>
 		<div id="board">
@@ -82,6 +62,3 @@
 
 </body>
 </html>
-
-
-

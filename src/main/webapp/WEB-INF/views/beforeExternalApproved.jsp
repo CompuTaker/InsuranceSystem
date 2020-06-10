@@ -21,9 +21,13 @@
 	
 	function requestExternal() {
 		// alert("show! => " + whichProposal + " / " + proposalID);
-		var theForm = document.getElementById("checkedBeforeExternalApproved");
-		theForm.action = "checkedBeforeExternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-		theForm.submit()
+		if(proposalID == -1) {
+			alert('제안서를 선택해주세요');
+		} else {
+			var theForm = document.getElementById("checkedBeforeExternalApproved");
+			theForm.action = "checkedBeforeExternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+			theForm.submit()
+		}
 	}
   </script>
 

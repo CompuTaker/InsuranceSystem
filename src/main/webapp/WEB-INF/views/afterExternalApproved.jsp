@@ -21,16 +21,24 @@
 	
 	function externalApprove() {
 		// alert("show! => " + whichProposal + " / " + proposalID);
-		var theForm = document.getElementById("checkedAfterExternalApproved");
-		theForm.action = "checkedAfterExternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-		theForm.submit()
+		if(proposalID == -1) {
+			alert('제안서를 선택해주세요');
+		} else {
+			var theForm = document.getElementById("checkedAfterExternalApproved");
+			theForm.action = "checkedAfterExternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+			theForm.submit()
+		}
 	}
   
   	function externalReject() {
 		// alert("show! => " + whichProposal + " / " + proposalID);
-		var theForm = document.getElementById("checkedAfterExternalApproved");
-		theForm.action = "checkedAfterExternalRejected?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-		theForm.submit()
+		if(proposalID == -1) {
+			alert('제안서를 선택해주세요');
+		} else {
+			var theForm = document.getElementById("checkedAfterExternalApproved");
+			theForm.action = "checkedAfterExternalRejected?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+			theForm.submit()
+		}
   	}
   </script>
 

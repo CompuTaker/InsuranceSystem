@@ -3,6 +3,8 @@ package com.test.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.test.dao.FireProposalDAOimpl;
 import com.test.dao.InjuryProposalDAOimpl;
 import com.test.dao.VehicleProposalDAOimpl;
+import com.test.dto.InsuranceDeveloper;
+import com.test.dto.InsuranceInternalApprover;
 import com.test.dto.Proposal;
 
 @Controller
@@ -30,7 +34,12 @@ public class ProposalController {
 	private VehicleProposalDAOimpl vehicleProposalDAOimpl;
 
 	@RequestMapping({ "/proposalRequest" }) // 제안서 폼 요청버튼
-	public String requestProposal(Model model) {
+	public String requestProposal(Model model, HttpSession session) {
+//		HttpSession session
+		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("developer");
+		if(insuranceDeveloper == null) {
+			return "login";
+		}
 		return "proposalRequest";
 	}
 
@@ -97,7 +106,12 @@ public class ProposalController {
 
 	// 내부승인 요청하기 전 목록 출력
 	@RequestMapping({ "/beforeInternalApproved" })
-	public String beforeInternalApproved(Model model) {
+	public String beforeInternalApproved(Model model, HttpSession session) {
+//		HttpSession session
+		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("developer");
+		if(insuranceDeveloper == null) {
+			return "login";
+		}
 
 		List<Proposal> fireBeforeInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
 		List<Proposal> injuryBeforeInternalApprovedList = injuryProposalDAOimpl.beforeInternalApprovedProposal();
@@ -139,7 +153,12 @@ public class ProposalController {
 
 	// 내부승인 요청한 제안서 목록
 	@RequestMapping({ "/afterInternalApproved" })
-	public String requestInternalApproved(Model model) {
+	public String requestInternalApproved(Model model, HttpSession session) {
+//		HttpSession session
+		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
+		if(insuranceInternalApprover == null) {
+			return "login";
+		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterInternalApprovedProposal();
 		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterInternalApprovedProposal();
@@ -250,7 +269,12 @@ public class ProposalController {
 	
 	// 외부승인 요청된 제안서 목록 출력
 	@RequestMapping({ "/afterExternalApproved" })
-	public String requestExternalApproved(Model model) {
+	public String requestExternalApproved(Model model, HttpSession session) {
+//		, HttpSession session
+		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
+		if(insuranceInternalApprover == null) {
+			return "login";
+		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterExternalApprovedProposal();
 		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.afterExternalApprovedProposal();
@@ -318,7 +342,12 @@ public class ProposalController {
 
 	// 내부승인, 외부승인 둘 다 완료된 제안서 목록 출력
 	@RequestMapping({ "/makeInsurancePublicFromProposal" })
-	public String beforePublicFromProposal(Model model) {
+	public String beforePublicFromProposal(Model model, HttpSession session) {
+//		, HttpSession session
+		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
+		if(insuranceInternalApprover == null) {
+			return "login";
+		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforePublicFromProposal();
 		List<Proposal> injuryInternalApprovedList = injuryProposalDAOimpl.beforePublicFromProposal();

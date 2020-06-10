@@ -70,6 +70,7 @@ public class ContractController {
 	
 	@RequestMapping("/allContract")
 	public String showContract(Model model, HttpSession session) {
+//		HttpSession session
 		Customer customer = (Customer) session.getAttribute("customer");
 		int customerID = 0;
 		if(customer != null) {

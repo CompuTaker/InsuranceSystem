@@ -14,7 +14,7 @@
 		resultType="com.test.dto.InsuranceInternalApprover">
 		select * from InsuranceInternalApprover
 		where insuranceInternalApproverID = CAST(#{id} AS UNSIGNED)
-		and insuranceInternalApproverName = #{pw}
+		and pw = #{pw}
 	</select>
 	
 </mapper>

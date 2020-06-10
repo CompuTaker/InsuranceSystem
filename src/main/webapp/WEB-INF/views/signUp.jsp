@@ -11,52 +11,83 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
 	<script type="text/javascript">
+		var httpRequest;
+		var isAvailable = false;
+		
+		function isDuplicateCheck() {
+			httpRequest = new XMLHttpRequest();
+			if (!httpRequest) {
+				alert('중복확인 XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
+				return false;
+			}
+			httpRequest.onreadystatechange = duplicateCheckCallBack;
 	
-	var httpRequest;
-	var isAvailable = false;
-	
-	function isDuplicateCheck() {
-		httpRequest = new XMLHttpRequest();
-		if (!httpRequest) {
-			alert('중복확인 XMLHTTP 인스턴스를 만들 수가 없어요 ㅠㅠ');
-			return false;
+			var loginIDtag = document.getElementById("loginID");
+			var socialSecurityNumberTag = document.getElementById("socialSecurityNumber");
+			
+			console.log(loginIDtag.value);
+			console.log(socialSecurityNumberTag.value);
+			
+			httpRequest.open('GET', 'checkDuplicate?id=' + loginIDtag.value + "&ssn=" + socialSecurityNumberTag.value);
+			httpRequest.send();
 		}
-		httpRequest.onreadystatechange = duplicateCheckCallBack;
-
-		var loginIDtag = document.getElementById("loginID");
-		var socialSecurityNumberTag = document.getElementById("socialSecurityNumber");
 		
-		console.log(loginIDtag.value);
-		console.log(socialSecurityNumberTag.value);
-		
-		httpRequest.open('GET', 'checkDuplicate?id=' + loginIDtag.value + "&ssn=" + socialSecurityNumberTag.value);
-		httpRequest.send();
-	}
-	
-	function duplicateCheckCallBack() {
-		if (httpRequest.readyState === XMLHttpRequest.DONE) {
-			if (httpRequest.status === 200) {
-				var res = httpRequest.responseText;
-				var strs = res.split(" ");
-				if(res == ""){
-					alert("사용가능합니다!");
-					isAvailable = true;
-				}else{
-					alert(res + "중복!");
+		function duplicateCheckCallBack() {
+			if (httpRequest.readyState === XMLHttpRequest.DONE) {
+				if (httpRequest.status === 200) {
+					var res = httpRequest.responseText;
+					var strs = res.split(" ");
+					if(res == ""){
+						alert("사용가능합니다!");
+						isAvailable = true;
+					}else{
+						alert(res + "중복!");
+					}
+				} else {
+					alert('request에 뭔가 문제가 있어요. ID/주민등록번호 중복확인 콜백');
 				}
-			} else {
-				alert('request에 뭔가 문제가 있어요. ID/주민등록번호 중복확인 콜백');
 			}
 		}
-	}
-	
-	function signUp() {
-		var theForm = document.getElementById("signUp");
-		if(isAvailable){
-			theForm.action = "signUpComplete";
-			theForm.submit();
+		
+		function signUp() {
+			
+			var loginID = document.getElementById("loginID").value;
+			var loginPassword = document.getElementById("loginPassword").value;
+			var customerName = document.getElementById("customerName").value;
+			var gender = document.getElementsByName("gender").value;
+			var socialSecurityNumber = document.getElementById("socialSecurityNumber").value;
+			var age = document.getElementById("age").value;
+			var job = document.getElementsByName("job").value;
+			var email = document.getElementById("email").value;
+			var address = document.getElementById("address").value;
+			
+			if(loginID == "") {
+				alert('아이디를 입력해주세요');
+			} else if(loginPassword ==  "") {
+				alert('패스워드를 입력해주세요');
+			} else if(customerName ==  "") {
+				alert('이름을 입력해주세요');
+			} else if(gender ==  "") {
+				alert('성별을 선택해주세요');
+			} else if(socialSecurityNumber ==  "") {
+				alert('주민번호를 입력해주세요');
+			} else if(age ==  "") {
+				alert('나이를 입력해주세요');
+			} else if(job ==  "") {
+				alert('직업을 선택해주세요');
+			} else if(email ==  "") {
+				alert('이메일을 입력해주세요');
+			} else if(address ==  "") {
+				alert('주소를 입력해주세요');
+			} else {
+				var theForm = document.getElementById("signUp");
+				if(isAvailable){
+					theForm.action = "signUpComplete";
+					theForm.submit();
+				}
+			}
 		}
-	}
+	
 	</script>
   
 	<style>

@@ -40,7 +40,7 @@ public class UnderwritingTestStub {
 							Object [] argsnull = null;
 							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
-								float res = (float) result;
+								float res = Float.parseFloat(result + "");
 								rate = rate * res;
 								System.out.println("@@ => " + res);
 							}else {
@@ -73,7 +73,7 @@ public class UnderwritingTestStub {
 							Object [] argsnull = null;
 							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
-								float res = (float) result;
+								float res = Float.parseFloat(result + "");
 								rate = rate * res;
 							}
 						} catch (IllegalAccessException e) {
@@ -101,7 +101,7 @@ public class UnderwritingTestStub {
 							Object [] argsnull = null;
 							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
-								float res = (float) result;
+								float res = Float.parseFloat(result + "");
 								rate = rate * res;
 							}
 						} catch (IllegalAccessException e) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.test.dao.FireProposalDAOimpl;
 import com.test.dao.InjuryProposalDAOimpl;
@@ -40,7 +41,7 @@ public class ProposalController {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println(insuranceDeveloper + "!!!!!");
 		if(insuranceDeveloper == null) {
-			return "login";
+			return "redirect:logout";
 		}
 		return "proposalRequest";
 	}
@@ -112,7 +113,7 @@ public class ProposalController {
 //		HttpSession session
 		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("insuranceDeveloper");
 		if(insuranceDeveloper == null) {
-			return "login";
+			return "redirect:logout";
 		}
 
 		List<Proposal> fireBeforeInternalApprovedList = fireProposalDAOimpl.beforeInternalApprovedProposal();
@@ -155,11 +156,13 @@ public class ProposalController {
 
 	// 내부승인 요청한 제안서 목록
 	@RequestMapping({ "/afterInternalApproved" })
-	public String requestInternalApproved(Model model, HttpSession session) {
+	public String requestInternalApproved(Model model, HttpSession session, SessionStatus status) {
 //		HttpSession session
+		
 		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
+		
 		if(insuranceInternalApprover == null) {
-			return "login";
+			return "redirect:logout";
 		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterInternalApprovedProposal();
@@ -275,7 +278,7 @@ public class ProposalController {
 //		, HttpSession session
 		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
 		if(insuranceInternalApprover == null) {
-			return "login";
+			return "redirect:logout";
 		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.afterExternalApprovedProposal();
@@ -348,7 +351,7 @@ public class ProposalController {
 //		, HttpSession session
 		InsuranceInternalApprover insuranceInternalApprover = (InsuranceInternalApprover) session.getAttribute("insuranceInteralApprover");
 		if(insuranceInternalApprover == null) {
-			return "login";
+			return "redirect:logout";
 		}
 
 		List<Proposal> fireInternalApprovedList = fireProposalDAOimpl.beforePublicFromProposal();

@@ -82,7 +82,7 @@ public class SalesController {
 		
 		if (salesman == null) {
 			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			return "login";
+			return "redirect:logout";
 
 		} else {
 		
@@ -301,7 +301,7 @@ public class SalesController {
 		
 		if (salesman == null) {
 			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			return "login";
+			return "redirect:logout";
 
 		} else {
 			int salesmanID = salesman.getSalesmanID();
@@ -323,7 +323,7 @@ public class SalesController {
 		
 		if (salesman == null) {
 			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			return "login";
+			return "redirect:logout";
 			
 		} else {
 			int salesmanID = salesman.getSalesmanID();

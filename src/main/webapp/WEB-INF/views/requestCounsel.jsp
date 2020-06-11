@@ -12,6 +12,19 @@
       propForm.action = "requestCounsel_ok"
       propForm.submit()
    }
+   function back() {
+	   var isBack = document.getElementsByName("come").value;
+	   if(isBack == "allInsurance") {
+		   location.href = "allInsurance";
+	   } else if(isBack == "detail") {
+// 		   location.href = "allInsurance"; // 이제 여기서 디테일로 가자
+			var whichInsuranceDetail = getElementsByName("whichProposal").value;
+			var insuranceID = getElementsByName("insuranceID").value;
+			var propForm = document.getElementById('requestCounsel') // .submit();
+			propForm.action = "insuranceDetail?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID;
+			propForm.submit()
+	   }
+   }
 </script>
 </head>
 <body>
@@ -94,7 +107,9 @@
                   <tr align="center">
                      <td>&nbsp;</td>
                      <td colspan="2">
-                        <input type = "hidden" name ="whichProposal" value="fire">
+                        <input type = "hidden" name ="whichProposal" value="${insuranceType}">
+                        <input type = "hidden" name ="come" value = "${isBack}">
+                        <input type = "hidden" name ="insuranceID" value = "${insuranceID}">
                         <input type="button" value="뒤로가기" onclick="history.back(-1);">
                         <button onclick="javascript:submitCounsel()">상담요청</button>
                      <td>&nbsp;</td>

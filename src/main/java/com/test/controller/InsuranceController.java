@@ -158,24 +158,25 @@ public class InsuranceController {
 	
 	
 	@RequestMapping(value = "/requestCounsel") // 상담요청하기
-	public String requestConsel(Model model, HttpSession session, int insuranceID, String whichInsuranceDetail) {
+	public String requestConsel(Model model, HttpSession session, int insuranceID, String whichInsuranceDetail, String isBack) {
 
 		Customer customer = (Customer) session.getAttribute("customer");
 		if (customer == null) {
 			System.out.println("로그인을 해주세요~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			return "login";
+			return "redirect:logout";
 
 		} else {
 			String loginID = customer.getLoginID();
 			model.addAttribute("loginID", loginID);
 			model.addAttribute("insuranceID", insuranceID);
 			model.addAttribute("insuranceType", whichInsuranceDetail);
+			model.addAttribute("isBack", isBack);
 			return "requestCounsel";
 		}
 	}
 	
 	@RequestMapping(value = "/requestCounsel_ok") // 상담요청하기
-	public String requestConsel_ok(Model model, HttpSession session, @RequestParam HashMap<String, String> requestCounsel ) {
+	public String requestConsel_ok(Model model, HttpSession session, @RequestParam HashMap<String, String> requestCounsel) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		
 		// 날짜만들기

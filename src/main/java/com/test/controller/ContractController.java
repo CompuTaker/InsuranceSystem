@@ -76,7 +76,7 @@ public class ContractController {
 		if(customer != null) {
 			customerID = customer.getCustomerID();
 		} else {
-			return "login";
+			return "redirect:logout";
 		}
 		
 		//고객이름

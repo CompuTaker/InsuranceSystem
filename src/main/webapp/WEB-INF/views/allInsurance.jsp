@@ -22,14 +22,19 @@
    }
    function showInsuranceDetail() {
       // alert("show! => " + whichInsurance + " / " + insuranceID);
-      var theForm = document.getElementById("theForm");
-      theForm.action = "insuranceDetail?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
-      theForm.submit();
+      if(whichInsurance != null) {
+	      var theForm = document.getElementById("theForm");
+	      theForm.action = "insuranceDetail?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
+	      theForm.submit();
+      } else {
+    	  alert("상담을 원하는 보험을 선택하고, 상세보기 버튼을 클릭해주세요!");
+      }
    }
    function requestCounsel(){
 	   var whichInsuranceDetail = whichInsurance;
 	   if(whichInsurance != null){
-		   theForm.action = "requestCounsel?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID;
+		   var isBack = "allInsurance";
+		   theForm.action = "requestCounsel?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID + "&isBack=" + isBack;
 		      theForm.submit();
 	   }else{
 		   alert("상담을 원하는 보험을 선택하고, 상담을 요청해주세요!");

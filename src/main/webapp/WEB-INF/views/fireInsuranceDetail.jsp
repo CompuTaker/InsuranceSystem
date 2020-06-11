@@ -9,8 +9,12 @@
 	function requestCounsel() {
 		alert('상담요청합니다.');
 		var propForm = document.getElementById('requestCounsel')
-		propForm.action = "requestCounsel"
+		var isBack = "detail";
+		propForm.action = "requestCounsel?isBack=" + isBack;
 		propForm.submit()
+	}
+	function back() {
+		location.href = "allInsurance";
 	}
 </script>
 </head>
@@ -285,7 +289,7 @@
                      <td colspan="2">
                       	<input type="hidden" name="insuranceID" value=${ Insurance.insuranceID }>
                         <input type="hidden" name="whichInsuranceDetail" value="fire">
-                        <input type="button" value="뒤로가기" onclick="history.back(-1);">
+                        <input type="button" value="뒤로가기" onclick="javascript:back()">
                         <button onclick="javascript:requestCounsel()">상담요청하기</button>
                      <td>&nbsp;</td>
                   </tr>

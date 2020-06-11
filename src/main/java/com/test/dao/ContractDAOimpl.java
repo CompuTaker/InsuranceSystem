@@ -49,7 +49,7 @@ public class ContractDAOimpl implements ContractDAO {
 		paymentList.put("insurancePaymentPeriod", date); 
 		int res = this.sqlSession.insert("makePaymentList", paymentList);
 		System.out.println("makePaymentList res : " + res);
-		int insurancePaymentListID = (int) paymentList.get("insurancePaymentListID");
+		int insurancePaymentListID = Integer.parseInt(paymentList.get("insurancePaymentListID") + "");
 		return insurancePaymentListID;
 	}
 

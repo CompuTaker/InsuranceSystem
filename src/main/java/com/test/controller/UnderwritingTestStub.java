@@ -28,7 +28,7 @@ public class UnderwritingTestStub {
 			
 			FireProposal prop = (FireProposal) proposal;
 			
-			Class cls = prop.getClass();
+			Class<? extends FireProposal> cls = prop.getClass();
 			Method [] methodList = cls.getDeclaredMethods();
 			
 			for(Object oneAttribute : rmap.values()) {
@@ -62,7 +62,7 @@ public class UnderwritingTestStub {
 		}else if(whichInsurance.equals("injury")) {
 			InjuryProposal prop = (InjuryProposal) proposal;
 			
-			Class cls = prop.getClass();
+			Class<? extends InjuryProposal> cls = prop.getClass();
 			Method [] methodList = cls.getDeclaredMethods();
 			
 			for(Object oneAttribute : rmap.values()) {
@@ -89,7 +89,7 @@ public class UnderwritingTestStub {
 		}else if(whichInsurance.equals("vehicle")) {
 			VehicleProposal prop = (VehicleProposal) proposal;
 
-			Class cls = prop.getClass();
+			Class<? extends VehicleProposal> cls = prop.getClass();
 			Method [] methodList = cls.getDeclaredMethods();
 			
 			for(Object oneAttribute : rmap.values()) {

@@ -106,19 +106,15 @@ public class ContractController {
 		List<String> insuranceName = new ArrayList<String>();
 		for(int i = 0; i < insuranceID.size(); i++) {
 			int proposalID = 0;
-			switch(insuranceType.get(i)) {
-			case "fire":
+			if(insuranceType.get(i).equals("fire")) {
 				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
-				break;
-			case "injury": 
+			} else if(insuranceType.get(i).equals("injury")) {
 				proposalID = injuryInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(injuryProposalDAOimpl.getProprosalName(proposalID));
-				break;
-			case "vehicle":
+			} else if(insuranceType.get(i).equals("vehicle")) {
 				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
-				break;
 			}
 
 		}
@@ -250,7 +246,6 @@ public class ContractController {
 		List<String> insuranceName = new ArrayList<String>();
 		for(int i = 0; i < insuranceID.size(); i++) {
 			int proposalID = 0;
-			
 			if(insuranceType.get(i).equals("fire")) {
 				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
@@ -261,7 +256,6 @@ public class ContractController {
 				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
 			}
-
 		}
 		
 		model.addAttribute("insuranceName", insuranceName);

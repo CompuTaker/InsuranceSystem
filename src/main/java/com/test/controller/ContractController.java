@@ -153,17 +153,13 @@ public class ContractController {
 		
 		
 		String insuranceName = new String();
-			switch(contract.getInsuranceType()) {
-			case "fire":
-				insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-				break;
-			case "injury": 
-				insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-				break;
-			case "vehicle":
-				insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-				break;
-			}
+		if(contract.getInsuranceType().equals("fire")) {
+			insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+		} else if(contract.getInsuranceType().equals("injury")) {
+			insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+		} else if(contract.getInsuranceType().equals("vehicle")) {
+			insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
+		} 
 			
 		String startDate = new SimpleDateFormat("yyyy-MM-dd").format(contract.getContractRemainingPeriod());
 		String endDate = new SimpleDateFormat("yyyy-MM-dd").format(contract.getContractExpirationDate());
@@ -194,17 +190,13 @@ public class ContractController {
 		List<InsurancePayment> payment = contractDAO.showPayment(paymentList.getInsurancePaymentListID());
 		
 		String insuranceName = new String();
-		switch(contract.getInsuranceType()) {
-		case "fire":
+		if(contract.getInsuranceType().equals("fire")) {
 			insuranceName = fireProposalDAOimpl.getProprosalName(fireInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-			break;
-		case "injury": 
+		} else if(contract.getInsuranceType().equals("injury")) {
 			insuranceName = injuryProposalDAOimpl.getProprosalName(injuryInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-			break;
-		case "vehicle":
+		} else if(contract.getInsuranceType().equals("vehicle")) {
 			insuranceName = vehicleProposalDAOimpl.getProprosalName(vehicleInsuranceDAOimpl.getProprosalID(contract.getInsuranceID()));
-			break;
-		}
+		} 
 		
 		List<String> date = new ArrayList<String>();
 		
@@ -258,19 +250,16 @@ public class ContractController {
 		List<String> insuranceName = new ArrayList<String>();
 		for(int i = 0; i < insuranceID.size(); i++) {
 			int proposalID = 0;
-			switch(insuranceType.get(i)) {
-			case "fire":
+			
+			if(insuranceType.get(i).equals("fire")) {
 				proposalID = fireInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(fireProposalDAOimpl.getProprosalName(proposalID));
-				break;
-			case "injury": 
+			} else if(insuranceType.get(i).equals("injury")) {
 				proposalID = injuryInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(injuryProposalDAOimpl.getProprosalName(proposalID));
-				break;
-			case "vehicle":
+			} else if(insuranceType.get(i).equals("vehicle")) {
 				proposalID = vehicleInsuranceDAOimpl.getProprosalID(insuranceID.get(i));
 				insuranceName.add(vehicleProposalDAOimpl.getProprosalName(proposalID));
-				break;
 			}
 
 		}

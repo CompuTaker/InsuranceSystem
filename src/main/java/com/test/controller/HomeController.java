@@ -65,44 +65,29 @@ public class HomeController {
 	
 	@RequestMapping(value = "/loginDo", method = RequestMethod.POST)
 	public String loginDo(Model model, String id, String pw, String whoLogin, HttpSession session, SessionStatus status) {
-		//status.setComplete(); // sessionAttribute를 초기화해준다.
-		
 		Map<String, String> loginInfo = new HashMap<String, String>();
 		loginInfo.put("id", id); // Map객체에 Id값을 저장한다.
 		loginInfo.put("pw", pw); // Map객체에 PW값을 저장한다.
-		
 		
 		if(whoLogin.equals("고객")) {
 			List<Customer> customers = this.customerDAO.login(loginInfo);
 			if(customers.size() == 0) {
 				return "redirect:index";
 			}
-			session.removeAttribute("salesman");
-			session.removeAttribute("insuranceInteralApprover");
-			session.removeAttribute("insuranceDeveloper");
-//			 model.addAttribute("customer", customers.get(0));
-			 session.setAttribute("customer", customers.get(0));
-			
+//			model.addAttribute("customer", customers.get(0));
+			session.setAttribute("customer", customers.get(0));
 		} else if(whoLogin.equals("영업사원")) {
 			List<Salesman> salesmans = this.salesmanDAO.login(loginInfo);
 			if(salesmans.size() == 0) {
 				return "redirect:index";
-			} 
-			
-			
-//			session.removeAttribute("customer");
-//			session.removeAttribute("insuranceInteralApprover");
-//			session.removeAttribute("insuranceDeveloper");
-			// model.addAttribute("salesman", salesmans.get(0));
+			}
+//			model.addAttribute("salesman", salesmans.get(0));
 			session.setAttribute("salesman", salesmans.get(0));
 		} else if(whoLogin.equals("내부승인자")) {
 			List<InsuranceInternalApprover> insuranceInteralApprovers = this.insuranceInternalApproverDAO.login(loginInfo);
 			if(insuranceInteralApprovers.size() == 0) {
 				return "redirect:index";
 			}
-//			session.removeAttribute("customer");
-//			session.removeAttribute("salesman");
-//			session.removeAttribute("insuranceDeveloper");
 //			model.addAttribute("insuranceInteralApprover", insuranceInteralApprovers.get(0));
 			session.setAttribute("insuranceInteralApprover", insuranceInteralApprovers.get(0));
 		} else if(whoLogin.equals("보험개발자")) {
@@ -110,12 +95,6 @@ public class HomeController {
 			if(insuranceDevelopers.size() == 0) {
 				return "redirect:index";
 			} 
-			
-		
-			
-			session.removeAttribute("customer");
-			session.removeAttribute("salesman");
-			session.removeAttribute("insuranceInteralApprover");
 //			model.addAttribute("insuranceDeveloper", insuranceDevelopers.get(0));
 			session.setAttribute("insuranceDeveloper", insuranceDevelopers.get(0));
 		}

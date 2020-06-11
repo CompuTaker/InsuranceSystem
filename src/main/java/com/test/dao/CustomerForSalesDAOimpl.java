@@ -32,7 +32,7 @@ public class CustomerForSalesDAOimpl implements CustomerForSalesDAO {
 		// TODO Auto-generated method stub
 		int res = this.sqlSession.insert("insertCustomerForSales", rmap);
 		System.out.println("res : " + res);
-		int lastInsertedCustomerForSalesID = (int) rmap.get("customerForSalesID");
+		int lastInsertedCustomerForSalesID = Integer.parseInt(rmap.get("customerForSalesID") + "");
 		System.out.println("lastInsertedCustomerForSalesID : " + lastInsertedCustomerForSalesID);
 		return lastInsertedCustomerForSalesID;
 	}

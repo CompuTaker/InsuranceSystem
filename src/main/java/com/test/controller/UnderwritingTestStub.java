@@ -37,7 +37,8 @@ public class UnderwritingTestStub {
 					// System.out.println("!!!!" + oneAttribute.toString().toLowerCase());
 					if( ((oneMethod.getName()).toLowerCase()).contains("get" + (oneAttribute.toString()).toLowerCase() + "rate") ) {
 						try {
-							Object result = oneMethod.invoke(prop, null);
+							Object [] argsnull = null;
+							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
 								float res = (float) result;
 								rate = rate * res;
@@ -69,7 +70,8 @@ public class UnderwritingTestStub {
 				for(Method oneMethod : methodList) {
 					if( ((oneMethod.getName()).toLowerCase()).contains("get" + (oneAttribute.toString()).toLowerCase() + "rate") ) {
 						try {
-							Object result = oneMethod.invoke(prop, null);
+							Object [] argsnull = null;
+							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
 								float res = (float) result;
 								rate = rate * res;
@@ -96,7 +98,8 @@ public class UnderwritingTestStub {
 				for(Method oneMethod : methodList) {
 					if( ((oneMethod.getName()).toLowerCase()).contains("get" + (oneAttribute.toString()).toLowerCase() + "rate") ) {
 						try {
-							Object result = oneMethod.invoke(prop, null);
+							Object [] argsnull = null;
+							Object result = oneMethod.invoke(prop, argsnull);
 							if(result != null) {
 								float res = (float) result;
 								rate = rate * res;

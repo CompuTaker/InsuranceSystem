@@ -11,7 +11,8 @@ public class InsuranceDeveloper {
 	private int insuranceDeveloperID;
 	private int insuranceDeveloperTeamID;
 	private String insuranceDeveloperName;
-	private int jobPosition;
+	private String jobPosition;
+	private String pw;
 	
 	public int getInsuranceDeveloperID() {
 		return insuranceDeveloperID;
@@ -31,11 +32,17 @@ public class InsuranceDeveloper {
 	public void setInsuranceDeveloperName(String insuranceDeveloperName) {
 		this.insuranceDeveloperName = insuranceDeveloperName;
 	}
-	public int getJobPosition() {
+	public String getJobPosition() {
 		return jobPosition;
 	}
-	public void setJobPosition(int jobPosition) {
+	public void setJobPosition(String jobPosition) {
 		this.jobPosition = jobPosition;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	
 }

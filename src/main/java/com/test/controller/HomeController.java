@@ -17,19 +17,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.test.dao.CustomerDAO;
+import com.test.dao.InsuranceDeveloperDAO;
 import com.test.dao.InsuranceInternalApproverDAO;
 import com.test.dao.SalesmanDAO;
 import com.test.dto.Customer;
-import com.test.dto.FireProposal;
-import com.test.dto.InjuryProposal;
+import com.test.dto.InsuranceDeveloper;
 import com.test.dto.InsuranceInternalApprover;
-import com.test.dto.Proposal;
 import com.test.dto.Salesman;
-import com.test.dto.VehicleProposal;
 import com.test.enumeration.Job;
 
 @Controller
-@SessionAttributes({"customer", "salesman", "insuranceInteralApprover"})
+@SessionAttributes({"customer", "salesman", "insuranceInteralApprover", "insuranceDeveloper"})
 public class HomeController {
 	
 	@Autowired
@@ -41,15 +39,20 @@ public class HomeController {
 	@Autowired
 	private InsuranceInternalApproverDAO insuranceInternalApproverDAO;
 	
+	@Autowired
+	private InsuranceDeveloperDAO insuranceDeveloperDAO;
+	
 	@RequestMapping({"/index", "/"})
 	public String chat(Model model, HttpSession session) {
 		if(session.getAttribute("customer") != null) {
 			model.addAttribute("who", "customer");
-		}else if(session.getAttribute("salesman") != null) {
+		} else if(session.getAttribute("salesman") != null) {
 			model.addAttribute("who", "salesman");
-		}else if(session.getAttribute("insuranceInteralApprover") != null) {
+		} else if(session.getAttribute("insuranceInteralApprover") != null) {
 			model.addAttribute("who", "insuranceInteralApprover");
-		}else { // all null
+		} else if(session.getAttribute("insuranceDeveloper") != null) {
+			model.addAttribute("who", "insuranceDeveloper");
+		} else { // all null
 			model.addAttribute("who", "anon");
 		}
 		return "index"; // chat.jsp
@@ -72,18 +75,24 @@ public class HomeController {
 				return "redirect:index";
 			}
 			model.addAttribute("customer", customers.get(0));
-		}else if(whoLogin.equals("영업사원")) {
+		} else if(whoLogin.equals("영업사원")) {
 			List<Salesman> salesmans = this.salesmanDAO.login(loginInfo);
 			if(salesmans.size() == 0) {
 				return "redirect:index";
 			}
 			model.addAttribute("salesman", salesmans.get(0));
-		}else if(whoLogin.equals("내부승인자")) {
+		} else if(whoLogin.equals("내부승인자")) {
 			List<InsuranceInternalApprover> insuranceInteralApprovers = this.insuranceInternalApproverDAO.login(loginInfo);
 			if(insuranceInteralApprovers.size() == 0) {
 				return "redirect:index";
 			}
 			model.addAttribute("insuranceInteralApprover", insuranceInteralApprovers.get(0));
+		} else if(whoLogin.equals("보험개발자")) {
+			List<InsuranceDeveloper> insuranceDevelopers = this.insuranceDeveloperDAO.login(loginInfo);
+			if(insuranceDevelopers.size() == 0) {
+				return "redirect:index";
+			}
+			model.addAttribute("insuranceDeveloper", insuranceDevelopers.get(0));
 		}
 		return "redirect:index";
 	}

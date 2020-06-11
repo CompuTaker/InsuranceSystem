@@ -1,5 +1,10 @@
 package com.test.dao;
 
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.dto.InsuranceDeveloper;
@@ -14,6 +19,9 @@ import com.test.dto.InsuranceDeveloperTeam;
 public class InsuranceDeveloperDAOimpl implements InsuranceDeveloperDAO {
 
 	public InsuranceDeveloperTeam insuranceDeveloperTeam;
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 
 	public InsuranceDeveloperDAOimpl(){
 
@@ -21,6 +29,11 @@ public class InsuranceDeveloperDAOimpl implements InsuranceDeveloperDAO {
 
 	public void finalize() throws Throwable {
 
+	}
+	
+	@Override
+	public List<InsuranceDeveloper> login(Map<String, String> loginInfo) {
+		return this.sqlSession.selectList("developerLogin", loginInfo);
 	}
 
 	public int joinInsuranceDeveloper(InsuranceDeveloper insuranceDeveloper) {

@@ -15,5 +15,6 @@
 		<mapper resource="mybatis/mapper/contract.xml" />
 		<mapper resource="mybatis/mapper/recipient.xml" />
 		<mapper resource="mybatis/mapper/counsel.xml" />
+		<mapper resource="mybatis/mapper/insuranceDeveloper.xml" />
 	</mappers>
 </configuration>

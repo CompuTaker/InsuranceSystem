@@ -21,7 +21,7 @@ import com.test.dto.InsuranceInternalApprover;
 import com.test.dto.Proposal;
 
 @Controller
-@SessionAttributes({ "customer", "salesman" })
+@SessionAttributes({ "customer", "salesman", "insuranceInteralApprover", "insuranceDeveloper"})
 public class ProposalController {
 
 	@Autowired
@@ -36,7 +36,9 @@ public class ProposalController {
 	@RequestMapping({ "/proposalRequest" }) // 제안서 폼 요청버튼
 	public String requestProposal(Model model, HttpSession session) {
 //		HttpSession session
-		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("developer");
+		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("insuranceDeveloper");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println(insuranceDeveloper + "!!!!!");
 		if(insuranceDeveloper == null) {
 			return "login";
 		}
@@ -108,7 +110,7 @@ public class ProposalController {
 	@RequestMapping({ "/beforeInternalApproved" })
 	public String beforeInternalApproved(Model model, HttpSession session) {
 //		HttpSession session
-		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("developer");
+		InsuranceDeveloper insuranceDeveloper = (InsuranceDeveloper) session.getAttribute("insuranceDeveloper");
 		if(insuranceDeveloper == null) {
 			return "login";
 		}

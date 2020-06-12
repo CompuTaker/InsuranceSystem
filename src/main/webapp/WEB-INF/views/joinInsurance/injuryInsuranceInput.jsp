@@ -17,6 +17,25 @@
 	<span id="calculatedRate"></span>
 	<script>
 		var httpRequest;
+		var familyIllHistories = document.getElementsByName("familyIllHistory");
+		var illHistories = document.getElementsByName("illHistory");
+		var theForm = document.getElementById("theForm");
+		var familyIllHistoryParam = "";
+		var illHistoryParam = "";
+		
+		function arrayParams(){
+			for(var i=0 ; i < familyIllHistories.length ; i++) {
+				if(familyIllHistories[i].checked) {
+					 familyIllHistoryParam = familyIllHistoryParam + familyIllHistories[i] + ","
+				}
+			}
+			for(var i=0 ; i < illHistories.length ; i++) {
+				if(illHistories[i].checked) {
+					illHistoryParam = illHistoryParam + illHistories[i] + ","
+				}
+			}
+			return familyIllHistoryParam + "/" + illHistoryParam
+		}
 		
 		function makeRequest() {
 			httpRequest = new XMLHttpRequest();
@@ -28,16 +47,25 @@
 			
 			var toBeCalculated = document.getElementsByClassName("toBeCalculated");
 			var params = "";
+			// except for the checkBoxes
 			for(var i=0; i < toBeCalculated.length; i++){
 				var target = toBeCalculated[i];
-				if(target.checked){
+				if(target.checked){	
 					params = params + target.getAttribute("name") + "=" + target.getAttribute("value") + "&";
 				}
 			}
 			var whichInsurance = document.getElementById("whichInsurance").value;
 			var proposalID = document.getElementById("proposalID").value;
-			params = "whichInsurance=" + whichInsurance + "&proposalID=" + proposalID + "&" + params;
-			params = params.slice(0,-1);
+			
+			var checkboxParams = "";
+			console.log("fihp => " + familyIllHistoryParam);
+			console.log("ihp => " + illHistoryParam);
+			checkboxParams = checkboxParams + "familyIllHistory=" + familyIllHistoryParam + "&";
+			checkboxParams = checkboxParams + "illHistory=" + illHistoryParam;
+			
+			params = "whichInsurance=" + whichInsurance + "&proposalID=" + proposalID
+				+ "&" + params + checkboxParams;
+			// params = params.slice(0,-1); // no need here
 			
 			httpRequest.open('GET', 'calculateRate?' + params); // calculateRate // 언더라이팅 대용
 			httpRequest.send();
@@ -66,7 +94,7 @@
 						<td>화재보험 가입하기</td>
 					</tr>
 				</table>
-				<form action="saveCustomerForSales" method="post">
+				<form id="theForm" action="saveCustomerForSales" method="post">
 					<table>
 						<tr>
 							<td>&nbsp;</td>
@@ -157,7 +185,7 @@
 							<td align="center">병력</td>
 							<td>
 								<c:forEach items="${illHistories}" var="oneIllHistory" varStatus = "status">
-									<input type="radio" class="toBeCalculated" checked="checked"
+									<input type="checkbox"
 									name="illHistory" value="${oneIllHistory.name()}">${oneIllHistory.name()} /
 								</c:forEach>
 							</td>
@@ -172,7 +200,7 @@
 							<td align="center">가족력</td>
 							<td>
 								<c:forEach items="${familyIllHistories}" var="oneFamilyIllHistory" varStatus = "status">
-									<input type="radio" class="toBeCalculated" checked="checked"
+									<input type="checkbox"
 									name="familyIllHistory" value="${oneFamilyIllHistory.name()}">${oneFamilyIllHistory.name()} /
 								</c:forEach>
 							</td>

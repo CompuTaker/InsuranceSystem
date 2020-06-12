@@ -85,62 +85,61 @@ public class SalesController {
 			return "redirect:logout";
 
 		} else {
-		
-		List<Proposal> fireProposalList = new ArrayList<Proposal>();
-		List<Proposal> injuryProposalList = new ArrayList<Proposal>();
-		List<Proposal> vehicleProposalList = new ArrayList<Proposal>();
-		
-		List<Insurance> fireInsuranceList = this.fireInsuranceDAOimpl.showAllInsurance();
-		for(Insurance fi : fireInsuranceList) {
-			FireInsurance castFi = (FireInsurance) fi;
-			Proposal prop = this.fireProposalDAOimpl.showSpecificProposal(castFi.getFireProposalID());
-			if(prop != null) { // prop != null
-				fireProposalList.add(prop);
-			}else {
-				FireProposal emptyProp = new FireProposal();
-				emptyProp.setFireProposalID(-1);
-				emptyProp.setProposalName("없음_오류_화재보험제안서");
-				fireProposalList.add(emptyProp);
+			List<Proposal> fireProposalList = new ArrayList<Proposal>();
+			List<Proposal> injuryProposalList = new ArrayList<Proposal>();
+			List<Proposal> vehicleProposalList = new ArrayList<Proposal>();
+			
+			List<Insurance> fireInsuranceList = this.fireInsuranceDAOimpl.showAllInsurance();
+			for(Insurance fi : fireInsuranceList) {
+				FireInsurance castFi = (FireInsurance) fi;
+				Proposal prop = this.fireProposalDAOimpl.showSpecificProposal(castFi.getFireProposalID());
+				if(prop != null) { // prop != null
+					fireProposalList.add(prop);
+				}else {
+					FireProposal emptyProp = new FireProposal();
+					emptyProp.setFireProposalID(-1);
+					emptyProp.setProposalName("없음_오류_화재보험제안서");
+					fireProposalList.add(emptyProp);
+				}
 			}
-		}
-		
-		List<Insurance> injuryInsuranceList = this.injuryInsuranceDAOimpl.showAllInsurance();
-		for(Insurance ii : injuryInsuranceList) {
-			InjuryInsurance castIi = (InjuryInsurance) ii;
-			Proposal prop = this.injuryProposalDAOimpl.showSpecificProposal(castIi.getInjuryProposalID());
-			if(prop != null) { // prop != null
-				injuryProposalList.add(prop);
-			}else {
-				InjuryProposal emptyProp = new InjuryProposal();
-				emptyProp.setInjuryProposalID(-1);
-				emptyProp.setProposalName("없음_오류_상해보험제안서");
-				injuryProposalList.add(emptyProp);
+			
+			List<Insurance> injuryInsuranceList = this.injuryInsuranceDAOimpl.showAllInsurance();
+			for(Insurance ii : injuryInsuranceList) {
+				InjuryInsurance castIi = (InjuryInsurance) ii;
+				Proposal prop = this.injuryProposalDAOimpl.showSpecificProposal(castIi.getInjuryProposalID());
+				if(prop != null) { // prop != null
+					injuryProposalList.add(prop);
+				}else {
+					InjuryProposal emptyProp = new InjuryProposal();
+					emptyProp.setInjuryProposalID(-1);
+					emptyProp.setProposalName("없음_오류_상해보험제안서");
+					injuryProposalList.add(emptyProp);
+				}
 			}
-		}
-		
-		List<Insurance> vehicleInsuranceList = this.vehicleInsuranceDAOimpl.showAllInsurance();
-		for(Insurance vi : vehicleInsuranceList) {
-			VehicleInsurance castVi = (VehicleInsurance) vi;
-			Proposal prop = this.vehicleProposalDAOimpl.showSpecificProposal(castVi.getVehicleProposalID());
-			if(prop != null) { // prop != null
-				vehicleProposalList.add(prop);
-			}else {
-				VehicleProposal emptyProp = new VehicleProposal();
-				emptyProp.setVehicleProposalID(-1);
-				emptyProp.setProposalName("없음_오류_상해보험제안서");
-				vehicleProposalList.add(emptyProp);
+			
+			List<Insurance> vehicleInsuranceList = this.vehicleInsuranceDAOimpl.showAllInsurance();
+			for(Insurance vi : vehicleInsuranceList) {
+				VehicleInsurance castVi = (VehicleInsurance) vi;
+				Proposal prop = this.vehicleProposalDAOimpl.showSpecificProposal(castVi.getVehicleProposalID());
+				if(prop != null) { // prop != null
+					vehicleProposalList.add(prop);
+				}else {
+					VehicleProposal emptyProp = new VehicleProposal();
+					emptyProp.setVehicleProposalID(-1);
+					emptyProp.setProposalName("없음_오류_상해보험제안서");
+					vehicleProposalList.add(emptyProp);
+				}
 			}
-		}
-		
-		model.addAttribute("fireInsuranceList", fireInsuranceList);
-		model.addAttribute("injuryInsuranceList", injuryInsuranceList);
-		model.addAttribute("vehicleInsuranceList", vehicleInsuranceList);
-		
-		model.addAttribute("fireProposalList", fireProposalList);
-		model.addAttribute("injuryProposalList", injuryProposalList);
-		model.addAttribute("vehicleProposalList", vehicleProposalList);
-		
-		return "joinInsurance/insuranceList";
+			
+			model.addAttribute("fireInsuranceList", fireInsuranceList);
+			model.addAttribute("injuryInsuranceList", injuryInsuranceList);
+			model.addAttribute("vehicleInsuranceList", vehicleInsuranceList);
+			
+			model.addAttribute("fireProposalList", fireProposalList);
+			model.addAttribute("injuryProposalList", injuryProposalList);
+			model.addAttribute("vehicleProposalList", vehicleProposalList);
+			
+			return "joinInsurance/insuranceList";
 		}
 	}
 	

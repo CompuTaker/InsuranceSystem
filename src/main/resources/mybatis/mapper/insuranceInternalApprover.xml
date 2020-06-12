@@ -5,11 +5,6 @@
 
 <mapper namespace="com.test.dto.InsuranceInternalApprover">
 	
-	<select id="listAllChatRoom" resultType="com.test.dto.ChatRoomDTO">
-		select * from ChatRoom
-	</select>
-	<!-- 세미콜론 없이 쿼리문 작성! -->
-	
 	<select id="insurnaceInternalApproverLogin" parameterType="java.util.Map"
 		resultType="com.test.dto.InsuranceInternalApprover">
 		select * from InsuranceInternalApprover

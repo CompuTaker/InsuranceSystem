@@ -22,8 +22,11 @@
   	function destroyContract() {
   		var theForm = document.getElementById("checkInsuranceMoney");
   		var contractID = document.getElementById("contractID").childNodes[0].nodeValue;
-		theForm.action = "destroyContract?contractID=" + contractID;
-		theForm.submit()
+  		if( confirm("이 계약을 파기하시겠습니까?") ){
+  			theForm.action = "destroyContract?contractID=" + contractID;
+  			theForm.submit()
+  		}
+  		return false;
   	}
   </script>
 
@@ -50,7 +53,7 @@
 		<table width="100%" cellpadding="0" cellspacing="0" border="0">
 		
 		
-		<tr style="background: url('img/table_mid.gif') repeat-x; text-align: center;">
+		<tr style="text-align: center;">
 		<td style="text-align: center;">
 			<thead>
 				<tr>

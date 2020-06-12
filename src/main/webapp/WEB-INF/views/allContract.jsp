@@ -18,6 +18,10 @@
   
   	function showContractDetail() {
   		var theForm = document.getElementById("contractDetailID");
+  		if( !contractID ){
+  			alert("상세보기할 계약을 선택해주십시오!");
+  			return false;
+  		}
 		theForm.action = "contractDetailID?contractID=" + contractID;
 		theForm.submit()
   	}

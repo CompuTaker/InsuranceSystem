@@ -5,9 +5,29 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>보험사 시스템로그인</title>
+	<script type="text/javascript">
+		function loginFunction(){
+			var loginForm = document.getElementById("loginForm");
+			var id = document.getElementById("userid");
+			var pw = document.getElementById("password");
+			if( !id.value ){
+				alert("id를 입력하세요!");
+				return false;
+			}
+			if( !pw.value ){
+				alert("pw를 입력하세요!");
+				return false;
+			}
+			loginForm.submit();
+		}
+		
+		function homeFunction(){
+			location.href = "index"
+		}
+	</script>
 </head>
 <body>
-	<form action="loginDo" name="loginform" method="post">
+	<form action="loginDo" name="loginform" method="post" id="loginForm">
 		<input type="radio" name="whoLogin" value="고객" checked/>고객 /
 		<input type="radio" name="whoLogin" value="영업사원"/>영업사원 /
 		<input type="radio" name="whoLogin" value="내부승인자"/>내부승인자/
@@ -21,7 +41,10 @@
 				placeholder="PASSWORD">
 		</div>
 		<div class="logindiv">
-			<button type="submit" id="btn-login" name="login">로그인</button>
+			<input type="button" onclick="loginFunction()" value="로그인" id="btn-login" name="login">
+		</div>
+		<div class="homediv">
+			<input type="button" onclick="homeFunction()" value="처음으로" id="btn-home" name="home">
 		</div>
 	</form>
 </body>

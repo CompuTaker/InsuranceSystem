@@ -24,6 +24,20 @@
 	
 			var loginIDtag = document.getElementById("loginID");
 			var socialSecurityNumberTag = document.getElementById("socialSecurityNumber");
+			var loginPasswordTag = document.getElementById("loginPassword");
+			
+			if( !loginIDtag.value ){
+				alert("id를 입력해주세요!");
+				return false;
+			}
+			if( !loginPasswordTag.value ){
+				alert("비밀번호를 입력해주세요!");
+				return false;
+			}
+			if( !socialSecurityNumberTag.value ){
+				alert("주민등록번호를 입력해주세요!");
+				return false;
+			}
 			
 			console.log(loginIDtag.value);
 			console.log(socialSecurityNumberTag.value);
@@ -84,6 +98,8 @@
 				if(isAvailable){
 					theForm.action = "signUpComplete";
 					theForm.submit();
+				}else{
+					alert("중복확인을 하지 않았습니다! 중복확인을 해주세요!");
 				}
 			}
 		}

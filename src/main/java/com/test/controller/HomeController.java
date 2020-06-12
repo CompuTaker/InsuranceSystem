@@ -68,7 +68,6 @@ public class HomeController {
 		Map<String, String> loginInfo = new HashMap<String, String>();
 		loginInfo.put("id", id); // Map객체에 Id값을 저장한다.
 		loginInfo.put("pw", pw); // Map객체에 PW값을 저장한다.
-		
 		if(whoLogin.equals("고객")) {
 			List<Customer> customers = this.customerDAO.login(loginInfo);
 			if(customers.size() == 0) {

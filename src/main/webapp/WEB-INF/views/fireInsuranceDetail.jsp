@@ -5,13 +5,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>보험상품 개발</title>
+<%
+	String currentLogin = "";
+	if(session.getAttribute("customer") != null){
+		currentLogin = "customer";
+	}else if(session.getAttribute("salesman") != null){
+		currentLogin = "salesman";
+	}else if(session.getAttribute("insuranceInteralApprover") != null){
+		currentLogin = "insuranceInteralApprover";
+	}else if(session.getAttribute("insuranceDeveloper") != null){
+		currentLogin = "insuranceDeveloper";
+	}
+	System.out.println("현재 로그인 : " + currentLogin);
+%>
 <script type="text/javascript">
 	function requestCounsel() {
-		alert('상담요청합니다.');
-		var propForm = document.getElementById('requestCounsel')
-		var isBack = "detail";
-		propForm.action = "requestCounsel?isBack=" + isBack;
-		propForm.submit()
+		if(<%= currentLogin.equals("customer") %>){
+			alert('상담요청합니다.');
+			var propForm = document.getElementById('requestCounsel')
+			var isBack = "detail";
+			propForm.action = "requestCounsel?isBack=" + isBack;
+			propForm.submit()
+	   	}else{
+		   alert("고객으로 로그인해주세요!");
+	   	}
 	}
 	function back() {
 		location.href = "allInsurance";

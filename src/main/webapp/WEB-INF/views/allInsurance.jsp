@@ -11,7 +11,19 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<%
+	String currentLogin = "";
+	if(session.getAttribute("customer") != null){
+		currentLogin = "customer";
+	}else if(session.getAttribute("salesman") != null){
+		currentLogin = "salesman";
+	}else if(session.getAttribute("insuranceInteralApprover") != null){
+		currentLogin = "insuranceInteralApprover";
+	}else if(session.getAttribute("insuranceDeveloper") != null){
+		currentLogin = "insuranceDeveloper";
+	}
+	System.out.println("현재 로그인 : " + currentLogin);
+%>
 <script type="text/javascript">
    var whichInsurance;
    var insuranceID = -1;
@@ -33,9 +45,13 @@
    function requestCounsel(){
 	   var whichInsuranceDetail = whichInsurance;
 	   if(whichInsurance != null){
-		   var isBack = "allInsurance";
-		   theForm.action = "requestCounsel?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID + "&isBack=" + isBack;
-		      theForm.submit();
+		   if(<%= currentLogin.equals("customer") %>){
+			   var isBack = "allInsurance";
+			   theForm.action = "requestCounsel?whichInsuranceDetail=" + whichInsuranceDetail + "&insuranceID=" + insuranceID + "&isBack=" + isBack;
+			   theForm.submit();
+		   }else{
+			   alert("고객으로 로그인해주세요!");
+		   }
 	   }else{
 		   alert("상담을 원하는 보험을 선택하고, 상담을 요청해주세요!");
 	   }

@@ -14,19 +14,24 @@
    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-   var whichInsurance;
-   var insuranceID = -1;
-   function setWhichInsurance( insuranceButton, setVal ){
-      insuranceID = insuranceButton.value;
-      // alert(insuranceID);
-      whichInsurance = setVal;
-   }
-   function showInsuranceDetail() {
-      // alert("show! => " + whichInsurance + " / " + insuranceID);
-      var theForm = document.getElementById("theForm");
-      theForm.action = "insuranceSalesInput?whichInsurance=" + whichInsurance + "&insuranceID=" + insuranceID;
-      theForm.submit();
-   }
+	var whichInsurance;
+	var insuranceID = -1;
+	function setWhichInsurance(insuranceButton, setVal) {
+		insuranceID = insuranceButton.value;
+		// alert(insuranceID);
+		whichInsurance = setVal;
+	}
+	function showInsuranceDetail() {
+		// alert("show! => " + whichInsurance + " / " + insuranceID);
+		if (insuranceID == -1) {
+			alert('제안서를 선택해주세요');
+		} else {
+			var theForm = document.getElementById("theForm");
+			theForm.action = "insuranceSalesInput?whichInsurance="
+					+ whichInsurance + "&insuranceID=" + insuranceID;
+			theForm.submit();
+		}
+	}
 </script>
 
 <title>보험사 시스템</title>
@@ -124,6 +129,9 @@
          <button class="btn btn-outline btn-primary"
             onclick="showInsuranceDetail()">
             <i class="fa fa-edit fa-fw"></i> 보험상품 상세보기
+         </button>
+          <button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
+            <i class="fa fa-edit fa-fw"></i> 처음으로
          </button>
       </div>
    </div>

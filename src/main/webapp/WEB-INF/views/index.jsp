@@ -105,12 +105,14 @@
 </head>
 <body>
 	<h1>MJU 보험사</h1>
-	<div>
-		<button onclick="pageChange()">제안서 개발하기</button>
-	</div>
-	<div>
-		<button onclick="requestInternalApprover()">제안서 내부승인 요청하기</button>
-	</div>
+
+		<div>
+			<button onclick="pageChange()">제안서 개발하기</button>
+		</div>
+		<div>
+			<button onclick="requestInternalApprover()">제안서 내부승인 요청하기</button>
+		</div>
+<br>
 	<div>
 		<button onclick="approveInternal()">제안서 내부승인하기(외부승인요청하기)</button>
 	</div>
@@ -120,18 +122,21 @@
 	<div>
 		<button onclick="makeInsurancePublicFromProposal()">제안서 공시하기</button>
 	</div>
-	<div>
-		<button onclick="showAllInsurance()">보험상품 조회하기</button>
-	</div>
+<br>
 	<div>
 		<button onclick="joinInsurance()">보험상품 영업하기 (가입시키기)</button>
 	</div>
 	<div>
 		<button onclick="showCustomerForSales()">영업고객 조회하기</button>
 	</div>
+<br>
+	<div>
+		<button onclick="showAllInsurance()">보험상품 조회하기</button>
+	</div>
 	<div>
 		<button onclick="allContract()">계약확인하기</button>
 	</div>
+	<br><br>
 	<div>
 		<c:choose>
 			<c:when test="${who == 'anon'}">

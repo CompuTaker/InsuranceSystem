@@ -29,6 +29,7 @@
 		} else {
 			var theForm = document.getElementById("checkedBeforeInternalApproved");
 			theForm.action = "checkedBeforeInternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+			alert('선택한 보험상품 제안서의 승인요청이 완료되었습니다.');
 			theForm.submit()
 		}
 	}
@@ -140,9 +141,9 @@
 			<button type="button" class="btn btn-outline btn-primary" onclick="requestInternal()">
 				<i class="fa fa-edit fa-fw"></i> 내부승인 요청하기
 			</button>
-			<button type="button" class="btn btn-outline btn-primary" onclick="uploadFile()">
+			<!-- <button type="button" class="btn btn-outline btn-primary" onclick="uploadFile()">
 				<i class="fa fa-edit fa-fw"></i> 파일 업로드하기
-			</button>
+			</button> -->
 			<button type="button" class="btn btn-outline btn-primary" onclick="location.href='index'">
 				<i class="fa fa-edit fa-fw"></i> 처음으로
 			</button>

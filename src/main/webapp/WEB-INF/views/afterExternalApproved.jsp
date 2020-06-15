@@ -10,37 +10,52 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 	var whichProposal;
 	var proposalID = -1;
-	function setWhichProposal( proposalButton, setVal ){
+	function setWhichProposal(proposalButton, setVal) {
 		proposalID = proposalButton.value;
 		// alert(proposalID);
 		whichProposal = setVal;
 	}
-	
+
 	function externalApprove() {
 		// alert("show! => " + whichProposal + " / " + proposalID);
-		if(proposalID == -1) {
+		if (proposalID == -1) {
 			alert('제안서를 선택해주세요');
 		} else {
-			var theForm = document.getElementById("checkedAfterExternalApproved");
-			theForm.action = "checkedAfterExternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-			theForm.submit()
+			var theForm = document
+					.getElementById("checkedAfterExternalApproved");
+			theForm.action = "checkedAfterExternalApproved?whichProposal="
+					+ whichProposal + "&proposalID=" + proposalID;
+			var result = confirm('선택한 제안서를 외부승인 하시겠습니까?');
+			if (result) {
+				theForm.submit()
+			} else {
+
+			}
 		}
 	}
-  
-  	function externalReject() {
+
+	function externalReject() {
 		// alert("show! => " + whichProposal + " / " + proposalID);
-		if(proposalID == -1) {
+		if (proposalID == -1) {
 			alert('제안서를 선택해주세요');
 		} else {
-			var theForm = document.getElementById("checkedAfterExternalApproved");
-			theForm.action = "checkedAfterExternalRejected?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-			theForm.submit()
+			var theForm = document
+					.getElementById("checkedAfterExternalApproved");
+			theForm.action = "checkedAfterExternalRejected?whichProposal="
+					+ whichProposal + "&proposalID=" + proposalID;
+			var rresult = confirm('외부승인을 거절하겠습니까?');
+			if (rresult) {
+				theForm.submit()
+			} else {
+
+			}
+			
 		}
-  	}
-  </script>
+	}
+</script>
 
 <title>보험상품 외부승인하기</title>
 </head>

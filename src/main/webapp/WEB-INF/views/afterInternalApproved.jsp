@@ -26,6 +26,7 @@
 		} else {
 			var theForm = document.getElementById("checkedAfterInternalApproved");
 			theForm.action = "checkedAfterInternalApproved?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
+			alert('선택한 제안서가 내부승인 되었습니다.');
 			theForm.submit()
 		}
 	}
@@ -37,7 +38,12 @@
 		} else {
 			var theForm = document.getElementById("checkedAfterInternalApproved");
 			theForm.action = "checkedAfterInternalRejected?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-			theForm.submit()
+			var rresult = confirm('내부승인을 거절하겠습니까?');
+			if (rresult) {
+				theForm.submit()
+			} else {
+
+			}
 		}
   	}
   </script>
@@ -84,7 +90,6 @@
                               value="${proposalVO.fireProposalID}"></td>
                               <td>${proposalVO.fireProposalID}</td>
                               <td>${proposalVO.proposalName}</td>
-                              <td>${proposalVO.insuranceType}</td>
                               <td>${proposalVO.insuranceDeveloperTeamID}</td>
                               <td>${proposalVO.proposalContent}</td>
                            </tr>

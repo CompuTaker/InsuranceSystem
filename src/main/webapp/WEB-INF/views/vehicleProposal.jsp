@@ -191,7 +191,7 @@
                      <td>&nbsp;</td>
                      <td colspan="2">
                         <input type="hidden" name="whichProposal" value="vehicle">
-                        <button onclick="javascript:tempSave()">임시저장</button>
+                       <!-- <button onclick="javascript:tempSave()">임시저장</button> --> 
                         <button onclick="javascript:submitProposal()">제안서 제출</button>
                      <td>&nbsp;</td>
                   </tr>

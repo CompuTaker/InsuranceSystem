@@ -63,7 +63,7 @@
 			<td>
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 					<tr style="text-align: center;">
-						<td>화재보험 가입하기</td>
+						<td>자동차보험 가입하기</td>
 					</tr>
 				</table>
 				<form action="saveCustomerForSales" method="post">

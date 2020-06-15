@@ -26,7 +26,12 @@
 		} else {
 			var theForm = document.getElementById("checkedBeforePublicFromProposal");
 			theForm.action = "checkedBeforePublicFromProposal?whichProposal=" + whichProposal + "&proposalID=" + proposalID;
-			theForm.submit()
+			var result = confirm('제안서를 공시하시겠습니까?');
+			if (result) {
+				theForm.submit()
+			} else {
+
+			}
 		}
 	}
   </script>

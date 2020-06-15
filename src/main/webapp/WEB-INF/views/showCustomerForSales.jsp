@@ -53,7 +53,7 @@
 				</select> <input type="text" size="20" id="term" />&nbsp; <input
 					type="submit" onclick="search()" value="검색" />
 			</form>
-			<input type="button" value="뒤로가기" onclick="history.back(-1);">
+			<input type="button" value="처음으로" onclick="history.back(-1);">
 		</div>
 		<!-- 게시글 목록 부분 -->
 		<br> <br> <br>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dto.InsuranceInternalApprover">
+	
+	<select id="insurnaceInternalApproverLogin" parameterType="java.util.Map"
+		resultType="com.test.dto.InsuranceInternalApprover">
+		select * from InsuranceInternalApprover
+		where insuranceInternalApproverID = CAST(#{id} AS UNSIGNED)
+		and pw = #{pw}
+	</select>
+	
+</mapper>

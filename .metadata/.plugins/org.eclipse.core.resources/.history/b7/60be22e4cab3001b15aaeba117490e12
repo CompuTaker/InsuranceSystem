@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dto.Customer">
+
+	<select id="getId" parameterType="java.util.Map"
+		resultType="com.test.dto.Customer">
+		select * from Customer where customer_Id = #{customer_Id}
+	</select>
+	
+	<select id="customerLogin" parameterType="java.util.Map"
+		resultType="com.test.dto.Customer">
+		select * from Customer where loginID = #{id} and loginPassword = #{pw}
+	</select>
+	
+	<select id="getCustomerName" parameterType="java.lang.Integer"
+		resultType="String">
+		select customerName from Customer where customerID = #{customerID}
+	</select>
+	
+	<insert id="signUp" parameterType="java.util.Map">
+		insert into
+		Customer(
+			loginID, loginPassword, customerName, gender, socialSecurityNumber,	age, job, email, address
+		)
+		values(
+			#{loginID},
+			#{loginPassword},
+			#{customerName},
+			#{gender},
+			#{socialSecurityNumber},
+			#{age},
+			#{job},
+			#{email},
+			#{address}
+		)
+	</insert>
+	
+	<select id="showCustomerBySocialSecurityNumber" parameterType="java.lang.String"
+		resultType="com.test.dto.Customer">
+		select * from Customer where socialSecurityNumber = #{socialSecurityNumber}
+	</select>
+	
+	<select id="showCustomerByLoginID" parameterType="java.lang.String"
+		resultType="com.test.dto.Customer">
+		select * from Customer where loginID = #{id}
+	</select>
+	
+	<select id="checkCustomerByPw" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select loginPassword from Customer where loginID = #{pw};	
+	</select>	
+</mapper>

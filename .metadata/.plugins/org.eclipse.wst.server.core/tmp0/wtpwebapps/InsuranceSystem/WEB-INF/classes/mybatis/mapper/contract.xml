@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dto.Contract">
+
+	<!-- parameterType="java.lang.Integer" -->
+	<!-- where customerID = #{customerID} -->
+	<select id="getAllContract" resultType="com.test.dto.Contract">
+		select * from Contract;
+	</select>
+
+	<select id="showCustomerContract"
+		parameterType="java.lang.Integer" resultType="com.test.dto.Contract">
+		select *
+		from Contract
+		where customerID = #{customerID} AND destroyed = 1;
+	</select>
+
+	<select id="getcustomerContractManagerName"
+		parameterType="java.lang.Integer" resultType="String">
+		select contractManagerName
+		from ContractManager
+		where contractManagerID = #{contractManagerID}
+	</select>
+
+	<select id="showContractDetail"
+		parameterType="java.lang.Integer" resultType="com.test.dto.Contract">
+		select *
+		from Contract
+		where contractID = #{contractID};
+	</select>
+
+	<select id="showPaymentList" parameterType="java.lang.Integer"
+		resultType="com.test.dto.InsurancePaymentList">
+		select *
+		from InsurancePaymentList
+		where insurancePaymentListID = #{insurancePaymentListID};
+	</select>
+
+	<select id="showPayment" parameterType="java.lang.Integer"
+		resultType="com.test.dto.InsurancePayment">
+		select *
+		from InsurancePayment
+		where insurancePaymentListID = #{insurancePaymentListID};
+	</select>
+
+	<update id="destroyContract" parameterType="java.lang.Integer">
+		UPDATE Contract SET
+		destroyed = -1
+		where contractID = #{contractID};
+	</update>
+
+	<insert id="payCard" parameterType="java.util.Map">
+		insert into
+		InsurancePayment (
+			insurancePaymentListID, oneTimeInsurancePayment, insurancePaymentDate
+		)
+		values(
+			#{insurancePaymentListID},
+			#{oneTimeInsurancePayment},
+			#{insurancePaymentDate}
+		)
+	</insert>
+
+	<insert id="makePaymentList" parameterType="java.util.Map">
+		insert into
+		InsurancePaymentList (
+			completedPayment, uncompletedPayment, insurancePaymentPeriod
+		)
+		values(
+			#{completedPayment},
+			#{uncompletedPayment},
+			#{insurancePaymentPeriod}
+		)
+		<selectKey keyProperty="insurancePaymentListID"
+			resultType="int">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+
+	<update id="payCardList" parameterType="java.util.Map">
+		UPDATE InsurancePaymentList
+		SET completedPayment = completedPayment + #{oneTimeInsurancePayment},
+			uncompletedPayment = uncompletedPayment - #{oneTimeInsurancePayment}
+		where insurancePaymentListID = #{insurancePaymentListID};
+	</update>
+
+	<insert id="insertContract" parameterType="java.util.Map">
+		insert into Contract (
+			contractExpirationDate,
+			contractRemainingPeriod,
+			extraChargeRate,
+			insurancePayment,
+			bank,
+			paymentType,
+			compensationType,
+			salesmanID,
+			recipientID,
+			contractManagerID,
+			insurancePaymentListID,
+			customerID,
+			insuranceID,
+			insuranceType,
+			destroyed
+		)values (
+			#{contractExpirationDate},
+			#{contractRemainingPeriod},
+			#{extraChargeRate},
+			#{insurancePayment},
+			#{bank},
+			#{paymentType},
+			#{compensationType},
+			#{salesmanID},
+			#{recipientID},
+			#{contractManagerID},
+			#{insurancePaymentListID},
+			#{customerID},
+			#{insuranceID},
+			#{insuranceType},
+			1
+		)
+		<selectKey keyProperty="contractID"
+			resultType="int">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertContractInsurance" parameterType="java.util.Map">
+		insert into ContractInsurance (
+			insuranceType,
+			insuranceID,
+			contractID
+		)values (
+			#{insuranceType},
+			#{insuranceID},
+			#{contractID}
+		)
+	</insert>
+	
+</mapper>

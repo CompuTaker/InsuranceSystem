@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dto.Insurance">
+	
+	
+<!-- ===============   모든 보험 조회     ================================ -->
+	<select id="showFireInsurance" resultType="com.test.dto.FireInsurance">
+		select * from FireInsurance
+	</select>
+	<select id="showInjuryInsurance" resultType="com.test.dto.InjuryInsurance">
+		select * from InjuryInsurance
+	</select>
+	<select id="showVehicleInsurance" resultType="com.test.dto.VehicleInsurance">
+		select * from VehicleInsurance
+	</select>
+
+
+	
+	
+<!-- ===============  보험 상세 조회     ================================ -->
+	<select id="showFireInsuranceDetail" resultType="com.test.dto.FireInsurance">
+		select * from FireInsurance 
+		where insuranceID = #{ insuranceID }
+	</select>
+	<select id="showInjuryInsuranceDetail" resultType="com.test.dto.InjuryInsurance">
+		select * from InjuryInsurance 
+		where insuranceID = #{ insuranceID }
+	</select>
+	<select id="showVehicleInsuranceDetail" resultType="com.test.dto.VehicleInsurance">
+		select * from VehicleInsurance 
+		where insuranceID = #{ insuranceID }
+	</select>
+	
+	
+	<!-- ===============  InsuranceID -> proposalID  ================================ -->
+	<select id="getFireProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select fireProposalID
+		from FireInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+		<select id="getInjuryProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select injuryProposalID
+		from InjuryInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+		<select id="getVehicleProposalID" parameterType="java.lang.Integer"
+   		resultType="java.lang.Integer">
+		select vehicleProposalID
+		from VehicleInsurance
+		where insuranceID = #{ insuranceID }
+	</select>
+	
+	<!-- 세미콜론 없이 쿼리문 작성! -->
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dto.CustomerForSales">
+	
+	<select id="listAllCustomerForSales" resultType="com.test.dto.CustomerForSales">
+		select * from CustomerForSales
+	</select>
+	
+	<insert id="insertCustomerForSales" parameterType="java.util.Map">
+		insert into CustomerForSales (customerForSalesName, customerForSalesSocialSecurityNumber, salesmanID)
+		values (#{customerForSalesName}, #{customerForSalesSocialSecurityNumber}, #{salesmanID})
+		<selectKey keyProperty="customerForSalesID" resultType="int">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="showCustomerForSalesById" resultType="com.test.dto.CustomerForSales">
+		select * from CustomerForSales where customerForSalesID = #{lastInsertedCustomerForSalesID}
+	</select>
+	
+	<!-- 영업사원 아이디로 영업고객 정보 가져오기 -->
+	<select id="listCustomerForSalesBySalesmanID" 
+		parameterType="java.lang.Integer"	
+		resultType="com.test.dto.CustomerForSales">
+		select * 
+		from CustomerForSales 
+		where salesmanID = #{salesmanID};
+	</select>
+	
+	
+	<!-- 영업고객정보로 영업고객 검색하기 -->
+	<!-- 고객이름으로 영업고객 정보 가져오기 -->
+	<select id="listCustomerForSalesByCustomerName" 
+		parameterType="java.util.Map"	
+		resultType="com.test.dto.CustomerForSales">
+		select * 
+		from CustomerForSales 
+		where customerForSalesName = #{term}
+		and salesmanID = #{salesmanID};
+	</select>
+	
+	<!-- 주민번호로 영업고객 정보 가져오기 -->
+	<select id="listCustomerForSalesBySalesSocialSecurityNumber" 
+		parameterType="java.util.Map"	
+		resultType="com.test.dto.CustomerForSales">
+		select * 
+		from CustomerForSales 
+		where customerForSalesSocialSecurityNumber = #{term}
+		and salesmanID = #{salesmanID};
+	</select>
+	
+	<!-- 세미콜론 없이 쿼리문 작성! -->
+	
+</mapper>

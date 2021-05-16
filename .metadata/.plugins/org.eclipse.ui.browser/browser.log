@@ -1,0 +1,129 @@
+
+5월 21, 2020 23:40:21.16 NEW SESSION
+5월 21, 2020 23:40:21.16 [11348:10112:0521/234021.158:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 21, 2020 23:40:21.23 [11348:20284:0521/234021.236:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 21, 2020 23:42:22.70 [18556:6616:0521/234222.704:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 21, 2020 23:42:22.78 [18556:11932:0521/234222.781:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 22, 2020 01:01:45.23 [16780:12640:0522/010145.232:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 22, 2020 01:01:45.31 [16780:10012:0522/010145.314:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 22, 2020 03:40:06.41 [16780:16696:0522/034006.409:ERROR:socket_stream.cc(218)] Closing stream with result -2
+5월 22, 2020 04:28:39.55 [12736:18268:0522/042839.551:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 22, 2020 04:28:39.62 [12736:9916:0522/042839.623:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 22, 2020 04:30:08.08 [20700:220:0522/043008.081:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 22, 2020 04:30:08.15 [20700:16212:0522/043008.151:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 22, 2020 06:52:22.27 [20700:14036:0522/065222.271:ERROR:socket_stream.cc(218)] Closing stream with result -2
+5월 22, 2020 07:15:34.55 [20700:14036:0522/071534.551:ERROR:socket_stream.cc(218)] Closing stream with result -2
+5월 22, 2020 07:26:57.88 [20700:14036:0522/072657.886:ERROR:socket_stream.cc(218)] Closing stream with result -2
+5월 22, 2020 07:32:34.94 [20700:14036:0522/073234.939:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -105
+5월 22, 2020 07:35:16.35 [20700:14036:0522/073516.356:ERROR:socket_stream.cc(218)] Closing stream with result -2
+5월 22, 2020 08:17:11.73 [20700:14036:0522/081711.734:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -105
+
+5월 22, 2020 08:27:26.36 NEW SESSION
+5월 22, 2020 08:27:26.36 [3244:14664:0522/082726.334:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 22, 2020 08:27:26.57 [3244:14628:0522/082726.579:ERROR:browser_switcher_service.cc(238)] XXX Init()
+
+5월 26, 2020 01:29:44.15 NEW SESSION
+5월 26, 2020 01:29:44.15 [12268:4888:0526/012944.152:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 26, 2020 01:29:44.23 [12268:2120:0526/012944.233:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 26, 2020 01:56:42.67 [8292:16488:0526/015642.673:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 26, 2020 01:56:42.75 [8292:11516:0526/015642.752:ERROR:browser_switcher_service.cc(238)] XXX Init()
+
+5월 26, 2020 20:04:38.07 NEW SESSION
+5월 26, 2020 20:04:38.07 [12920:13608:0526/200438.020:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 26, 2020 20:04:38.09 [12920:15272:0526/200438.093:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 26, 2020 20:07:40.53 [12520:14564:0526/200740.538:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 26, 2020 20:07:40.61 [12520:19936:0526/200740.610:ERROR:browser_switcher_service.cc(238)] XXX Init()
+
+5월 27, 2020 12:30:56.68 NEW SESSION
+5월 27, 2020 12:30:56.68 [16316:2840:0527/123056.652:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 27, 2020 12:30:56.76 [16316:14836:0527/123056.768:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 27, 2020 17:03:01.44 [13204:18404:0527/170301.446:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 27, 2020 17:03:01.51 [13204:7556:0527/170301.516:ERROR:browser_switcher_service.cc(238)] XXX Init()
+
+5월 28, 2020 24:46:07.16 NEW SESSION
+5월 28, 2020 24:46:07.16 [9508:19740:0528/004607.130:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 28, 2020 24:46:07.30 [9508:16676:0528/004607.303:ERROR:browser_switcher_service.cc(238)] XXX Init()
+5월 28, 2020 01:19:06.08 [10460:3332:0528/011906.078:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+5월 28, 2020 01:19:06.15 [10460:7648:0528/011906.151:ERROR:browser_switcher_service.cc(238)] XXX Init()
+
+5월 29, 2020 24:11:51.00 NEW SESSION
+5월 29, 2020 24:11:51.00 [17340:18668:0529/001151.004:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+5월 29, 2020 02:20:46.30 NEW SESSION
+5월 29, 2020 02:20:46.30 [13028:16880:0529/022046.297:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 05, 2020 09:01:43.35 NEW SESSION
+6월 05, 2020 09:01:43.35 [16528:12904:0605/090143.320:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 05, 2020 18:31:27.16 NEW SESSION
+6월 05, 2020 18:31:27.16 [13840:9612:0605/183127.128:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 05, 2020 18:38:40.92 [8976:14224:0605/183840.920:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 05, 2020 18:39:06.92 [24352:7232:0605/183906.924:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 05, 2020 18:54:50.79 NEW SESSION
+6월 05, 2020 18:54:50.79 [9808:18788:0605/185450.788:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 05, 2020 18:58:33.93 [24200:7240:0605/185833.929:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 05, 2020 19:31:25.27 [252:3256:0605/193125.275:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 05, 2020 21:25:29.34 NEW SESSION
+6월 05, 2020 21:25:29.34 [16492:9252:0605/212529.337:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 05, 2020 23:24:34.73 [8444:4556:0605/232434.738:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 09, 2020 15:11:02.47 NEW SESSION
+6월 09, 2020 15:11:02.47 [26772:21732:0609/151102.443:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 09, 2020 15:11:11.55 [26772:17536:0609/151111.550:ERROR:mcs_client.cc(706)]   Error code: 500  Error message: Cannot parse data.
+6월 09, 2020 15:11:11.56 [26772:17536:0609/151111.550:ERROR:mcs_client.cc(708)] Failed to log in to GCM, resetting connection.
+6월 09, 2020 16:47:43.80 [26772:17536:0609/164743.804:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 09, 2020 16:48:33.32 [26772:17536:0609/164833.320:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 09, 2020 17:00:05.84 [26772:17536:0609/170005.843:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -105
+6월 09, 2020 17:00:13.65 [26772:17536:0609/170013.655:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -331
+6월 09, 2020 17:12:52.41 [10756:26960:0609/171252.418:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 09, 2020 17:43:36.13 [10756:13956:0609/174336.138:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 09, 2020 18:30:43.93 [10756:13956:0609/183043.938:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 09, 2020 18:33:08.84 [10756:13956:0609/183308.844:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 09, 2020 18:34:13.77 [10756:13956:0609/183413.774:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -105
+6월 09, 2020 18:34:47.06 [10756:13956:0609/183447.065:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:35:28.95 [10756:13956:0609/183528.958:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:46:12.51 [10756:13956:0609/184612.510:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:48:21.41 [10756:13956:0609/184821.413:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:48:51.29 [10756:13956:0609/184851.291:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:49:31.65 [10756:13956:0609/184931.652:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:53:40.92 [10756:13956:0609/185340.920:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:54:09.86 [10756:13956:0609/185409.868:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+6월 09, 2020 18:54:55.10 [10756:13956:0609/185455.102:ERROR:connection_factory_impl.cc(420)] Failed to connect to MCS endpoint with error -106
+
+6월 10, 2020 18:18:20.88 NEW SESSION
+6월 10, 2020 18:18:20.88 [27340:14396:0610/181820.853:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 18:23:06.25 [18624:26840:0610/182306.253:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 18:28:22.74 [12136:13972:0610/182822.747:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 18:36:49.67 [14160:8216:0610/183649.671:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 18:39:52.06 [5560:21948:0610/183952.064:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 19:26:23.07 [22308:5708:0610/192623.077:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 20:17:07.10 [16704:13456:0610/201707.107:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 20:40:30.61 [23400:22580:0610/204030.612:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 10, 2020 20:43:48.26 [23400:20164:0610/204348.265:ERROR:database.cc(1632)] Passwords sqlite error 2067, errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm, sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, preferred, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, date_synced, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id, date_last_used) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+6월 10, 2020 20:50:56.91 [9744:21640:0610/205056.916:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 11, 2020 03:45:02.08 NEW SESSION
+6월 11, 2020 03:45:02.08 [15716:3324:0611/034502.051:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 11, 2020 23:22:24.66 NEW SESSION
+6월 11, 2020 23:22:24.66 [11336:20256:0611/232224.636:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 11, 2020 23:53:40.54 [11336:12536:0611/235340.542:ERROR:socket_stream.cc(218)] Closing stream with result -2
+6월 12, 2020 24:02:29.17 [16308:15248:0612/000229.172:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 12, 2020 01:26:16.49 [4616:2732:0612/012616.493:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 12, 2020 01:41:51.65 [4272:9188:0612/014151.650:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 15, 2020 16:21:53.76 NEW SESSION
+6월 15, 2020 16:21:53.76 [6556:9988:0615/162153.749:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 15, 2020 18:19:20.76 NEW SESSION
+6월 15, 2020 18:19:20.76 [1600:20012:0615/181920.758:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 15, 2020 18:35:49.10 [6528:8348:0615/183549.101:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+6월 15, 2020 18:54:10.03 [15528:3604:0615/185410.036:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+6월 16, 2020 01:15:56.16 NEW SESSION
+6월 16, 2020 01:15:56.16 [2876:1684:0616/011556.141:ERROR:data_pack.cc(120)] Could not open pak file for writing: 요청한 작업은, 사용자가 매핑한 구역이 열려 있는 상태인 파일에서 수행할 수 없습니다. (0x4C8)
+
+5월 12, 2021 15:13:21.51 NEW SESSION
+5월 12, 2021 15:13:21.51 [8652:13724:0512/151321.486:ERROR:device_event_log_impl.cc(214)] [15:13:21.485] USB: usb_device_handle_win.cc:1054 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)

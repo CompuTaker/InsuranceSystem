@@ -1,0 +1,293 @@
+
+-- create database insurancedb;
+-- use insurancedb;
+
+CREATE TABLE OfficialDocuments (
+  officialDocumentsID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  businessMethodReport BLOB,
+  productSummaryReport BLOB,
+  insuranceCondition BLOB,
+  PRIMARY KEY (officialDocumentsID)
+);
+
+CREATE TABLE FireInsurance (
+  insuranceID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  fireProposalID INT(11) unsigned,
+  officialDocumentsID INT(11) unsigned,
+  PRIMARY KEY (insuranceID),
+  foreign key(officialDocumentsID) references OfficialDocuments (officialDocumentsID)
+  on delete cascade on update cascade,
+  foreign key(fireProposalID) references FireProposal (fireProposalID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE InjuryInsurance (
+  insuranceID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  injuryProposalID INT(11) unsigned,
+  officialDocumentsID INT(11) unsigned,
+  PRIMARY KEY (insuranceID),
+  foreign key(officialDocumentsID) references OfficialDocuments (officialDocumentsID)
+  on delete cascade on update cascade,
+  foreign key(injuryProposalID) references InjuryProposal (injuryProposalID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE VehicleInsurance (
+  insuranceID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  vehicleProposalID INT(11) unsigned,
+  officialDocumentsID INT(11) unsigned,
+  PRIMARY KEY (insuranceID),
+  foreign key(officialDocumentsID) references OfficialDocuments (officialDocumentsID)
+  on delete cascade on update cascade,
+  foreign key(vehicleProposalID) references VehicleProposal (vehicleProposalID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE InsurancePaymentList (
+  insurancePaymentListID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  completedPayment INT(11) unsigned,
+  uncompletedPayment INT(11) unsigned,
+  insurancePaymentPeriod date,
+  PRIMARY KEY (InsurancePaymentListID)
+);
+
+CREATE TABLE InsurancePayment (
+  insurancePaymentID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  insurancePaymentListID INT(11) unsigned,
+  oneTimeInsurancePayment INT(11) unsigned,
+  insurancePaymentDate date,
+  PRIMARY KEY (insurancePaymentID),
+  foreign key(insurancePaymentListID) references InsurancePaymentList (insurancePaymentListID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE ContractManager (
+  contractManagerID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  team varchar(16),
+  contractManagerName varchar(16),
+  jobPosition varchar(16),
+  PRIMARY KEY (contractManagerID)
+);
+
+CREATE TABLE AccidentHistory (
+  accidentHistoryID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  accidentCount INT(11),
+  PRIMARY KEY (accidentHistoryID)
+);
+
+-- SalesMan
+CREATE TABLE Salesman (
+  salesmanID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  team varchar(16),
+  salesmanName varchar(16),
+  jobPosition varchar(16),
+  PRIMARY KEY (salesmanID)
+);
+
+CREATE TABLE Customer (
+  customerID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  loginID varchar(16),
+  loginPassword varchar(16),
+  familyIllHistory varchar(32),
+  illHistory varchar(32),
+  customerName varchar(16),
+  gender INT(4),
+  age INT(8),
+  job varchar(16),
+  email varchar(32),
+  address varchar(16),
+  socialSecurityNumber varchar(16),
+  property INT(32),
+  advertisementAcceptance boolean,
+  accidentHistoryID INT(11) unsigned,
+  salesmanID INT(11) unsigned,
+  PRIMARY KEY (customerID),
+  foreign key(accidentHistoryID) references AccidentHistory (accidentHistoryID) on delete cascade on update cascade,
+  foreign key(salesmanID) references Salesman (salesmanID) on delete cascade on update cascade
+);
+
+CREATE TABLE AccidentManager (
+  accidentManagerID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  workPlace varchar(16),
+  team varchar(16),
+  accidentManagerName varchar(16),
+  phoneNumber varchar(16),
+  jobPosition varchar(16),
+  PRIMARY KEY (accidentManagerID)
+);
+
+CREATE TABLE ClaimAdjuster (
+  claimAdjusterID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  workPlace varchar(16),
+  team varchar(16),
+  claimAdjusterName varchar(16),
+  phoneNumber varchar(16),
+  jobPosition varchar(16),
+  schedules varchar(16),
+  claimAdjustingHistory varchar(32),
+  satisfactionLevel float,
+  PRIMARY KEY (claimAdjusterID)
+);
+
+CREATE TABLE Accident (
+  accidentID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  customerID INT(11) unsigned,
+  accidentHistoryID INT(11) unsigned,
+  claimAdjusterID INT(11) unsigned,
+  accidentManagerID INT(11) unsigned,
+  accidentCause varchar(32),
+  accidentPeopleInformation varchar(32),
+  accidentDate date,
+  accidentLocation varchar(32),
+  accidentType varchar(32),
+  accidentPhoto blob,
+  PRIMARY KEY (accidentID),
+  foreign key(customerID) references Customer (customerID) on delete cascade on update cascade,
+  foreign key(accidentHistoryID) references AccidentHistory (accidentHistoryID) on delete cascade on update cascade,
+  foreign key(claimAdjusterID) references ClaimAdjuster (claimAdjusterID) on delete cascade on update cascade,
+  foreign key(accidentManagerID) references AccidentManager (accidentManagerID) on delete cascade on update cascade
+);
+
+-- Recipient
+CREATE TABLE Recipient (
+  recipientID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  recipientName varchar(16),
+  recipientSocialSecurityNumber varchar(16),
+  PRIMARY KEY (recipientID)
+);
+
+CREATE TABLE Contract (
+  contractID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  insuranceMoneyLimit INT(48) unsigned,
+  lossRate float,
+  profitabilityRating varchar(32),
+  remainingExpectedMoney INT(11),
+  compensationHistory INT(11),
+  insurancePayment INT(11),
+  discountRate float,
+  extraChargeRate float,
+  paymentType varchar(32),
+  compensationType varchar(32),
+  bank varchar(16),
+  contractRemainingPeriod date,
+  contractExpirationDate date,
+  insuranceDocuments blob,
+  customerID INT(11) unsigned,
+  salesmanID INT(11) unsigned,
+  recipientID INT(11) unsigned,
+  contractManagerID INT(11) unsigned,
+  insurancePaymentListID INT(11) unsigned,
+  PRIMARY KEY (contractID),
+  foreign key(customerID) references Customer (customerID) on delete cascade on update cascade,
+  foreign key(salesmanID) references Salesman (salesmanID) on delete cascade on update cascade,
+  foreign key(recipientID) references Recipient (recipientID) on delete cascade on update cascade,
+  foreign key(insurancePaymentListID) references InsurancePaymentList (insurancePaymentListID) on delete cascade on update cascade,
+  foreign key(contractManagerID) references ContractManager (contractManagerID) on delete cascade on update cascade
+);
+
+CREATE TABLE InsuranceDeveloperTeam (
+  insuranceDeveloperTeamID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  insuranceDeveloperTeamName varchar(32),
+  insuranceDeveloperTeamExplanation varchar(32),
+  PRIMARY KEY (insuranceDeveloperTeamID)
+);
+
+CREATE TABLE InsuranceDeveloper (
+  insuranceDeveloperID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  insuranceDeveloperTeamID INT(11) unsigned,
+  insuranceDeveloperName varchar(16),
+  jobPosition varchar(16),
+  PRIMARY KEY (insuranceDeveloperID),
+  foreign key(insuranceDeveloperTeamID) references InsuranceDeveloperTeam (insuranceDeveloperTeamID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE FireProposal (
+  fireProposalID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  proposalContent varchar(32),
+  isInternalApproved int(8),
+  isExternalApproved int(8),
+  proposalName varchar(32),
+  insuranceType varchar(32),
+  verificationDocuments blob,
+  insuranceDeveloperTeamID INT(11) unsigned,
+  housingRate float,
+  pubRate float,
+  restaurantRate float,
+  sportFacilityRate float,
+  PCRoomRate float,
+  swimmingPoolRate float,
+  researchFacilityRate float,
+  industryFacilityRate float,
+  agriculturalFacilityRate float,
+  chemistryFacilityRate float,
+  woodenHouseRate float,
+  westernHouseRate float,
+  koreanHouseRate float,
+  firePreventionFacilityRate float,
+  vinylHouseRate float,
+  PRIMARY KEY (fireProposalID),
+  foreign key(insuranceDeveloperTeamID) references InsuranceDeveloperTeam (insuranceDeveloperTeamID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE InjuryProposal (
+  injuryProposalID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  proposalContent varchar(32),
+  isInternalApproved int(8),
+  isExternalApproved int(8),
+  proposalName varchar(32),
+  insuranceType varchar(32),
+  verificationDocuments blob,
+  insuranceDeveloperTeamID INT(11) unsigned,
+  injuryCoverage int(24),
+  illCoverage int(24),
+  familyBrainRate float,
+  familyHeartRate float,
+  familyCancerRate float,
+  brainRate float,
+  heartRate float,
+  cancerRate float,
+  manRate float,
+  womanRate float,
+  fieldJobRate float,
+  officeJobRate float,
+  noJobRate float,
+  dangerousJobRate float,
+  PRIMARY KEY (injuryProposalID),
+  foreign key(insuranceDeveloperTeamID) references InsuranceDeveloperTeam (insuranceDeveloperTeamID)
+  on delete cascade on update cascade
+);
+
+CREATE TABLE VehicleProposal (
+  vehicleProposalID INT(11) unsigned NOT NULL AUTO_INCREMENT,
+  proposalContent varchar(32),
+  isInternalApproved int(8),
+  isExternalApproved int(8),
+  proposalName varchar(32),
+  insuranceType varchar(32),
+  verificationDocuments blob,
+  insuranceDeveloperTeamID INT(11) unsigned,
+  forBusinessRate float,
+  ownVehicleRate float,
+  rentalRate float,
+  suvRate float,
+  sedanRate float,
+  truckRate float,
+  pickupTruckRate float,
+  busRate float,
+  specialVehicleRate float,
+  PRIMARY KEY (vehicleProposalID),
+  foreign key(insuranceDeveloperTeamID) references InsuranceDeveloperTeam (insuranceDeveloperTeamID)
+  on delete cascade on update cascade
+);
+
+create table InsuranceInternalApprover(
+	insuranceInternalApproverID int(11) unsigned not null auto_increment,
+    team varchar(16),
+    insuranceInternalApproverName varchar(16),
+    jobPosition varchar(16),
+    PRIMARY KEY (insuranceInternalApproverID)
+);
+
+commit;

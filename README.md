@@ -14,7 +14,3 @@
 
   <hr>
 
-  #### Main page
-
-<img src=".\src\main\resources\images\README_Images\index.png">
-
